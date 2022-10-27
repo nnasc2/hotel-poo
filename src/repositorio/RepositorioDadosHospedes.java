@@ -19,7 +19,7 @@ List<Hospedes> listaUsuarios = new ArrayList<>( );
         } catch (Exception e) {
             return false;
         }
-        return false;
+        return true;
     }
 
     @Override
@@ -34,6 +34,6 @@ List<Hospedes> listaUsuarios = new ArrayList<>( );
 
     @Override
     public List<Hospedes> listar() {
-        return null;
+        return listaUsuarios;
     }
 }
