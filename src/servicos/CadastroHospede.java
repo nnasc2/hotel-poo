@@ -1,6 +1,6 @@
-package serviço;
+package servicos;
 
-import entidade.Hospedes;
+import entidades.Hospedes;
 
 public class CadastroHospede extends Hospedes {
 

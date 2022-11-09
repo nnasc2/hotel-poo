@@ -1,4 +1,4 @@
-package entidade;
+package entidades;
 
 public class Pessoa {
     private long id;

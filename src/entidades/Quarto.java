@@ -1,11 +1,15 @@
-package entidade;
+package entidades;
 
-public class Quartos {
+public class Quarto {
     private long id;
     private String tipoQuarto;
+    private int tamanhoM2;
+
+    private double diaria;
+
     private int quantidadePessoa;
     private boolean refeicao;
-   private String tipoCama;
+    private String tipoCama;
    private int numeroCama;
     private int numeroQuarto;
 
@@ -66,5 +70,19 @@ public class Quartos {
         this.refeicao = refeicao;
     }
 
+    public int getTamanhoM2() {
+        return tamanhoM2;
+    }
 
+    public void setTamanhoM2(int tamanhoM2) {
+        this.tamanhoM2 = tamanhoM2;
+    }
+
+    public double getDiaria() {
+        return diaria;
+    }
+
+    public void setDiaria(double diaria) {
+        this.diaria = diaria;
+    }
 }

@@ -1,6 +1,7 @@
-package repositorio;
+package repositorios;
 
-import entidade.Hospedes;
+import entidades.Hospedes;
+import interfaces.repositorio.IRepositorioGenerico;
 
 import java.util.ArrayList;
 import java.util.List;

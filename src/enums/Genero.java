@@ -1,4 +1,4 @@
-package enum1;
+package enums;
 
 public enum Genero {
     Feminino,

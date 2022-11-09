@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="98895fa8-715a-418d-8128-a56c04d7dd50" name="Changes" comment="commit da entidade checkin e ajustes no repositorio">
-      <change afterPath="$PROJECT_DIR$/src/repositorio/RepositorioDadosFuncionarios.java" afterDir="false" />
+    <list default="true" id="02062ef5-18c3-4183-a284-0ae51051c0f8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/hotel-poo.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entidades/Hotel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entidades/Reserva.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enums/Estrelas.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/repositorio/IHotelRepositorio.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/servico/IHotelServico.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/repositorios/HotelRepositorio.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/servicos/HotelServico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repositorio/IRepositorioGenerico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositorio/IRepositorioGenerico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repositorio/RepositorioDadosHospedes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositorio/RepositorioDadosHospedes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entidade/Checkin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Checkin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entidade/Funcionarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Funcionarios.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entidade/Pagamentos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Pagamentos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entidade/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Pessoa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entidade/Quartos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Quarto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enum1/Genero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums/Genero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enum1/Pagameto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums/Pagameto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repositorio/IRepositorioGenerico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/repositorio/IRepositorioGenerico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repositorio/RepositorioDadosFuncionarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositorios/RepositorioDadosFuncionarios.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repositorio/RepositorioDadosHospedes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositorios/RepositorioDadosHospedes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/serviço/CadastroHospede.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servicos/CadastroHospede.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/serviço/MainHospede.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servicos/MainHospede.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="Enum" />
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -30,47 +38,44 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2Gdm0ha2eeKDq6LKYbImCWKOSyW" />
+  <component name="ProjectId" id="2HJNMKbSR0nH8lnvhC1hklBYGOL" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Elaine/IdeaProjects/Hotel-POO&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/mathe/Documents/GitHub/hotel-poo/src/servicos"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mathe\Documents\GitHub\hotel-poo\src\servicos" />
+      <recent name="C:\Users\mathe\Documents\GitHub\hotel-poo\src\repositorios" />
+      <recent name="C:\Users\mathe\Documents\GitHub\hotel-poo\src\interfaces\servico" />
+      <recent name="C:\Users\mathe\Documents\GitHub\hotel-poo\src\interfaces\repositorio" />
+      <recent name="C:\Users\mathe\Documents\GitHub\hotel-poo\src\entidades" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="interfaces.repositorio" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="enums" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="98895fa8-715a-418d-8128-a56c04d7dd50" name="Changes" comment="" />
-      <created>1666726617077</created>
+      <changelist id="02062ef5-18c3-4183-a284-0ae51051c0f8" name="Changes" comment="" />
+      <created>1667999178729</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1666726617077</updated>
+      <updated>1667999178729</updated>
     </task>
-    <task id="LOCAL-00001" summary="primeiro commit com entidades">
-      <created>1666835480621</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1666835480622</updated>
-    </task>
-    <task id="LOCAL-00002" summary="commit da entidade checkin e ajustes no repositorio">
-      <created>1666839723206</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1666839723206</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -83,10 +88,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="primeiro commit com entidades" />
-    <MESSAGE value="commit da entidade checkin e ajustes no repositorio" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit da entidade checkin e ajustes no repositorio" />
   </component>
 </project>

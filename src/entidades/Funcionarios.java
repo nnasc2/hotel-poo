@@ -1,4 +1,4 @@
-package entidade;
+package entidades;
 
 public class Funcionarios extends Pessoa {
      private long id;

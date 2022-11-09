@@ -1,12 +1,12 @@
-package repositorio;
+package repositorios;
 
-import entidade.Funcionarios;
-import entidade.Hospedes;
+import entidades.Funcionarios;
+import interfaces.repositorio.IRepositorioGenerico;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioDadosFuncionarios implements IRepositorioGenerico <Funcionarios> {
+public class RepositorioDadosFuncionarios implements IRepositorioGenerico<Funcionarios> {
     List<Funcionarios> listaFuncionarios = new ArrayList<>( );
 
 
