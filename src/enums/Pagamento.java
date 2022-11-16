@@ -1,6 +1,6 @@
 package enums;
 
-public enum Pagameto {
+public enum Pagamento {
     Avista,
     Credito,
     Debito,

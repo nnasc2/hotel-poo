@@ -6,4 +6,3 @@ public class CadastroHospede extends Hospedes {
 
 
 }
-

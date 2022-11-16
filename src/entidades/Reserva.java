@@ -1,9 +1,13 @@
 package entidades;
 
+import java.time.LocalDate;
+
 public class Reserva {
+    private long id;
+
     private long numero;
-    private String dataInicio;
-    private String dataFim;
+    private LocalDate dataInicio;
+    private LocalDate dataFim;
     private long idHotel;
     private long idHospede;
 
@@ -29,19 +33,19 @@ public class Reserva {
         this.numero = numero;
     }
 
-    public String getDataInicio() {
+    public LocalDate getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(String dataInicio) {
+    public void setDataInicio(LocalDate dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public String getDataFim() {
+    public LocalDate getDataFim() {
         return dataFim;
     }
 
-    public void setDataFim(String dataFim) {
+    public void setDataFim(LocalDate dataFim) {
         this.dataFim = dataFim;
     }
 
@@ -60,4 +64,13 @@ public class Reserva {
     public void setIdHotel(long idHotel) {
         this.idHotel = idHotel;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
 }

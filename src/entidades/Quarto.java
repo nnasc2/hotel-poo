@@ -3,15 +3,18 @@ package entidades;
 public class Quarto {
     private long id;
     private String tipoQuarto;
-    private int tamanhoM2;
+    private int metrosQuadrados;
 
     private double diaria;
 
-    private int quantidadePessoa;
+    private boolean ocupado;
+
+    private int maximoPessoas;
     private boolean refeicao;
     private String tipoCama;
-   private int numeroCama;
+    private int numeroCama;
     private int numeroQuarto;
+    private long hotelId;
 
 
     public long getId() {
@@ -54,12 +57,12 @@ public class Quarto {
         this.tipoQuarto = tipoQuarto;
     }
 
-    public int getQuantidadePessoa() {
-        return quantidadePessoa;
+    public int getMaximoPessoas() {
+        return maximoPessoas;
     }
 
-    public void setQuantidadePessoa(int quantidadePessoa) {
-        this.quantidadePessoa = quantidadePessoa;
+    public void setMaximoPessoas(int maximoPessoas) {
+        this.maximoPessoas = maximoPessoas;
     }
 
     public boolean isRefeicao() {
@@ -70,12 +73,12 @@ public class Quarto {
         this.refeicao = refeicao;
     }
 
-    public int getTamanhoM2() {
-        return tamanhoM2;
+    public int getMetrosQuadrados() {
+        return metrosQuadrados;
     }
 
-    public void setTamanhoM2(int tamanhoM2) {
-        this.tamanhoM2 = tamanhoM2;
+    public void setMetrosQuadrados(int metrosQuadrados) {
+        this.metrosQuadrados = metrosQuadrados;
     }
 
     public double getDiaria() {
@@ -84,5 +87,21 @@ public class Quarto {
 
     public void setDiaria(double diaria) {
         this.diaria = diaria;
+    }
+
+    public long getHotelId() {
+        return hotelId;
+    }
+
+    public void setHotelId(long hotelId) {
+        this.hotelId = hotelId;
+    }
+
+    public boolean isOcupado() {
+        return ocupado;
+    }
+
+    public void setOcupado(boolean ocupado) {
+        this.ocupado = ocupado;
     }
 }

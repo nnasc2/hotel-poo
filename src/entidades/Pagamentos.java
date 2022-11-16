@@ -1,10 +1,11 @@
 package entidades;
 
 import java.util.Date;
+import enums.Pagamento;
 
 public class Pagamentos {
     private long id;
-    private String formaPagamento;
+    private Pagamento formaPagamento;
     /*enum para forma de pagameto*/
     private String nomeResposavelChekin;
     private double valor;
@@ -19,11 +20,11 @@ public class Pagamentos {
         this.id = id;
     }
 
-    public String getFormaPagamento() {
+    public Pagamento getFormaPagamento() {
         return formaPagamento;
     }
 
-    public void setFormaPagamento(String formaPagamento) {
+    public void setFormaPagamento(Pagamento formaPagamento) {
         this.formaPagamento = formaPagamento;
     }
 

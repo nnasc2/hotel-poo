@@ -32,7 +32,7 @@ public class HotelRepositorio implements IHotelRepositorio {
     }
 
     @Override
-    public List<Hotel> retornar() {
+    public List<Hotel> listar() {
         return hoteisRepositorio;
     }
 

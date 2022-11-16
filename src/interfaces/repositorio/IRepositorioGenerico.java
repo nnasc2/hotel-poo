@@ -1,7 +1,5 @@
 package interfaces.repositorio;
 
-import entidades.Hospedes;
-
 import java.util.List;
 
 public interface IRepositorioGenerico<Entidade>{

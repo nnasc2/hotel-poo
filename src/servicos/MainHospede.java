@@ -1,2 +1,4 @@
-package servicos;public class MainHospede {
+package servicos;
+
+public class MainHospede {
 }

@@ -1,11 +1,11 @@
 package entidades;
-import enums.Estrelas;
+import enums.Classificacao;
 
 public class Hotel {
     private long id;
     private String nome;
     private String descricao;
-    private Estrelas classEstrelas;
+    private Classificacao classificacao;
     private String estado;
     private String cidade;
     private String rua;
@@ -38,12 +38,12 @@ public class Hotel {
         this.descricao = descricao;
     }
 
-    public Estrelas getClassEstrelas() {
-        return classEstrelas;
+    public Classificacao getClassEstrelas() {
+        return classificacao;
     }
 
-    public void setClassEstrelas(Estrelas classEstrelas) {
-        this.classEstrelas = classEstrelas;
+    public void setClassificacao(Classificacao classificacao) {
+        this.classificacao = classificacao;
     }
 
     public String getEstado() {
