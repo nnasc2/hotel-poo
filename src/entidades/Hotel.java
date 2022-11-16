@@ -12,7 +12,7 @@ public class Hotel {
     private String bairro;
     private String complemento;
     private String numero;
-    private int cnpj;
+    private long cnpj;
 
     public long getId() {
         return id;
@@ -38,7 +38,7 @@ public class Hotel {
         this.descricao = descricao;
     }
 
-    public Classificacao getClassEstrelas() {
+    public Classificacao getClassificacao() {
         return classificacao;
     }
 
@@ -94,11 +94,11 @@ public class Hotel {
         this.numero = numero;
     }
 
-    public int getCnpj() {
+    public long getCnpj() {
         return cnpj;
     }
 
-    public void setCnpj(int cnpj) {
+    public void setCnpj(long cnpj) {
         this.cnpj = cnpj;
     }
 }

@@ -23,7 +23,9 @@ public class HotelRepositorio implements IHotelRepositorio {
     @Override
     public boolean salvar(Hotel hotel) {
         try{
-            hoteisRepositorio.add(hotel);
+            if (hoteisRepositorio.size() <= 3){
+                hoteisRepositorio.add(hotel);
+            }
         } catch(Exception e) {
             System.out.println("Error:"+e.getMessage());
             return false;

@@ -1,6 +1,6 @@
 package entidades;
 
-public class Funcionarios extends Pessoa {
+public class Funcionario extends Pessoa {
      private long id;
     private String cargo;
     private String usuario;

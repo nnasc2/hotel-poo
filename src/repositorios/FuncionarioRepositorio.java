@@ -1,37 +1,37 @@
 package repositorios;
 
-import entidades.Funcionarios;
+import entidades.Funcionario;
 import interfaces.repositorio.IRepositorioGenerico;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioDadosFuncionarios implements IRepositorioGenerico<Funcionarios> {
-    List<Funcionarios> listaFuncionarios = new ArrayList<>( );
+public class FuncionarioRepositorio implements IRepositorioGenerico<Funcionario> {
+    List<Funcionario> listaFuncionarios = new ArrayList<>( );
 
 
 
     @Override
-    public boolean salvar(Funcionarios funcionario) {
+    public boolean salvar(Funcionario funcionario) {
         //adicionando usuario a lista, tratamento de exceção utilizado foi o try/catch.//
         try {
             listaFuncionarios.add(funcionario);
         } catch (Exception ex) {
-            System.out.println (">>>Error:"+ Funcionarios.class.getName() + "messager_error:" + ex.getMessage());
+            System.out.println (">>>Error:"+ Funcionario.class.getName() + "messager_error:" + ex.getMessage());
             ex.printStackTrace();
         }
         return true;
     }
 
     @Override
-    public boolean altera(int id, Funcionarios funcionario) {
+    public boolean altera(int id, Funcionario funcionario) {
         try{ if ( listaFuncionarios.contains(id)){
             listaFuncionarios.set(id, funcionario );
             return true;
         }
         }
         catch (Exception ex){
-            System.out.println (">>>Error:"+ Funcionarios.class.getName() + "messager_error:" + ex.getMessage());
+            System.out.println (">>>Error:"+ Funcionario.class.getName() + "messager_error:" + ex.getMessage());
             ex.printStackTrace();
         }
         return false;
@@ -46,20 +46,20 @@ public class RepositorioDadosFuncionarios implements IRepositorioGenerico<Funcio
                 return true;
             }
         } catch (Exception ex){
-            System.out.println (">>>Error:"+ Funcionarios.class.getName() + "messager_error:" + ex.getMessage());
+            System.out.println (">>>Error:"+ Funcionario.class.getName() + "messager_error:" + ex.getMessage());
             ex.printStackTrace();
         }
         return false;
     }
 
     @Override
-    public List<Funcionarios> listar() {
+    public List<Funcionario> listar() {
         try{
             return this.listaFuncionarios;
         } catch(Exception ex){
-            System.out.println (">>>Error:"+ Funcionarios.class.getName() + "messager_error:" + ex.getMessage());
+            System.out.println (">>>Error:"+ Funcionario.class.getName() + "messager_error:" + ex.getMessage());
             ex.printStackTrace();
-            return new ArrayList<Funcionarios>();
+            return new ArrayList<Funcionario>();
         }
 
     }

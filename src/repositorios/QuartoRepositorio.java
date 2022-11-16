@@ -21,7 +21,9 @@ public class QuartoRepositorio implements IQuartoRepositorio {
 
     @Override
     public boolean salvar(Quarto quarto) {
-        quartos.add(quarto);
+        if (quartos.size() <= 3){
+            quartos.add(quarto);
+        }
         return true;
     }
 
