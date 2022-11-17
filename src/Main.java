@@ -1,5 +1,6 @@
 import entidades.Hotel;
 import entidades.Quarto;
+import entidades.Reserva;
 import enums.Classificacao;
 import servicos.HotelServico;
 import servicos.QuartoServico;
@@ -103,8 +104,8 @@ public class Main {
         boolean continuar = true;
         int entrada = -1;
         do{
-            System.out.println("---- SEJA BEM-VINDO! ----");
-            System.out.println("Para começar, digite o número corresponde a opção escolhida:");
+            System.out.println("----   SEJA BEM-VINDO!   ----");
+            System.out.println("Digite o número corresponde a opção escolhida:");
             System.out.println("1 - Fazer uma reserva");
             System.out.println("2 - Me cadastrar");
             System.out.println("3 - Entrar");
@@ -121,16 +122,28 @@ public class Main {
                     break;
 
                 case 1:
+                    Reserva reserva = new Reserva();
                     List<Hotel> hoteis = hotelServico.listar();
                     System.out.println("Escolha um hotel:");
                     for (int i = 0; i < hoteis.size(); i++){
                         System.out.println((i+1)+" - Para "+ hoteis.get(i).getNome());
                     }
                     Scanner scann = new Scanner(System.in);
-                    //int numero = Integer.parseInt(scann.next());
-                    long numero = Long.valueOf(Integer.parseInt(scann.next()));
-                    numero--;
-                    List<Quarto> quartos = quartoServico.listarPorHotel(hoteis.get(numero));
+                    int numero = Integer.parseInt(scann.next());
+                    numero = numero - 1;
+                    reserva.setIdHotel(hoteis.get(numero).getId());
+                    List<Quarto> quartos = quartoServico.listarPorHotel(hoteis.get(numero).getId());
+                    System.out.println("Escolha um quarto:");
+                    for (int i = 0; i < quartos.size(); i++){
+                        System.out.println((i+1)+" - Para: ");
+                        System.out.println(quartos.get(i).getTipoQuarto());
+                        System.out.println(quartos.get(i).getTipoCama());
+                        System.out.println(quartos.get(i).getMetrosQuadrados());
+                    }
+                    numero = Integer.parseInt(scann.next());
+                    numero = numero - 1;
+                    reserva.setNumQuarto(quartos.get(numero).getNumeroQuarto());
+
 
                     break;
 
