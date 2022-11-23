@@ -18,6 +18,7 @@ public class Hospede extends Pessoa{
         this.telefone = telefone;
         this.login = login;
     }
+    public Hospede(){}
 
     public Hospede(String nome, String cpf) {
         super (nome, cpf);

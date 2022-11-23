@@ -24,7 +24,7 @@ public class FuncionarioRepositorio implements IRepositorioGenerico<Funcionario>
     }
 
     @Override
-    public boolean altera(int id, Funcionario funcionario) {
+    public boolean alterar(int id, Funcionario funcionario) {
         try{ if ( listaFuncionarios.contains(id)){
             listaFuncionarios.set(id, funcionario );
             return true;

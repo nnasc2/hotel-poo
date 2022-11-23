@@ -33,7 +33,7 @@ public class HospedeRepositorio implements IRepositorioGenerico<Hospede> {
     }
 
     @Override
-    public boolean altera(int idHospedes, Hospede usuario) {
+    public boolean alterar(int idHospedes, Hospede usuario) {
         try {
             if (listaHospedes.contains(idHospedes)){
                 listaHospedes.set(idHospedes, usuario);

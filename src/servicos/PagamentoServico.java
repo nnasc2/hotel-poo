@@ -27,12 +27,12 @@ public class PagamentoServico implements IBasicoServico<Pagamento> {
     }
 
     @Override
-    public void salvar(Pagamento usuario) {
+    public void salvar(Pagamento objeto) {
 
     }
 
     @Override
-    public void alterar(int index, Pagamento usuario) {
+    public void alterar(int index, Pagamento objeto) {
 
     }
 

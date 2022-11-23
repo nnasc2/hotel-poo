@@ -34,7 +34,7 @@ public class PagamentoRepositorio implements IRepositorioGenerico<Pagamento> {
     }
 
     @Override
-    public boolean altera(int idPagamentos, Pagamento pagamento) {
+    public boolean alterar(int idPagamentos, Pagamento pagamento) {
         try{ if ( listaPagamentos.contains(idPagamentos)){
             listaPagamentos.set(idPagamentos, pagamento);
             return true;

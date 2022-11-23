@@ -6,6 +6,7 @@ import enums.SexoEnum;
 import interfaces.servico.IBasicoServico;
 import repositorios.HospedeRepositorio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HospedeServico implements IBasicoServico<Hospede> {
@@ -29,19 +30,19 @@ public class HospedeServico implements IBasicoServico<Hospede> {
 
 
     @Override
-    public void salvar(Hospede usuario) {
-
+    public void salvar(Hospede objeto) {
+        HospedeRepositorio.getInstance().salvar(objeto);
     }
 
     @Override
-    public void alterar(int index, Hospede usuario) {
-
-
+    public void alterar(int index, Hospede objeto) {
+        HospedeRepositorio.getInstance().alterar(index, objeto);
     }
 
     @Override
     public List<Hospede> listar() {
-        return null;
+        List<Hospede> hospedes = new ArrayList<>(HospedeRepositorio.getInstance().listar());
+        return hospedes;
     }
 
     @Override
