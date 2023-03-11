@@ -6,11 +6,10 @@ import enums.PagamentoEnum;
 public class Pagamento {
     private long id;
     private PagamentoEnum formaPagamento;
-    /*enum para forma de pagameto*/
-    private String nomeResposavelChekin;
+    private String nomeResponsavelChekin;
     private double valor;
     private String status;
-    private Date dataVencimento ;
+    private Date dataVencimento;
 
     public long getId() {
         return id;
@@ -28,12 +27,12 @@ public class Pagamento {
         this.formaPagamento = formaPagamento;
     }
 
-    public String getNomeResposavelChekin() {
-        return nomeResposavelChekin;
+    public String getNomeResponsavelChekin() {
+        return nomeResponsavelChekin;
     }
 
-    public void setNomeResposavelChekin(String nomeResposavelChekin) {
-        this.nomeResposavelChekin = nomeResposavelChekin;
+    public void setNomeResponsavelChekin(String nomeResponsavelChekin) {
+        this.nomeResponsavelChekin = nomeResponsavelChekin;
     }
 
     public double getValor() {

@@ -20,6 +20,13 @@ public class QuartoServico implements IQuartoServico {
         return quartos;
     }
 
+    public Quarto listar(int numeroQuarto){
+        for (int i = 0; i < listar().size(); i++)
+            if (listar().get(i).getNumeroQuarto() == numeroQuarto)
+                return listar().get(i);
+        return null;
+    }
+
     public List<Quarto> listarPorHotel(long idHotel) {
         List<Quarto> quartos = new ArrayList<>();
         List<Quarto> quartosRepositorio = QuartoRepositorio.getInstance().listar();

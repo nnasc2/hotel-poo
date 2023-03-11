@@ -17,7 +17,7 @@ public class PagamentoServico implements IBasicoServico<Pagamento> {
             novoPagamento.setFormaPagamento(formaPagamento);
             novoPagamento.setValor(valor);
             novoPagamento.setStatus(status);
-            novoPagamento.setNomeResposavelChekin(nomeResposavelChekin);
+            novoPagamento.setNomeResponsavelChekin(nomeResposavelChekin);
 
             PagamentoRepositorio.getInstance().salvar(novoPagamento);
         }catch (Exception e){

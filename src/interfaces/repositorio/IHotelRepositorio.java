@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface IHotelRepositorio {
 
-    public boolean salvar(Hotel hotel);
-    public List<Hotel> listar();
-    public boolean alterar(long hotelId, Hotel hotel);
-    public boolean deletar(long hotelId);
+    boolean salvar(Hotel hotel);
+    List<Hotel> listar();
+    boolean alterar(long hotelId, Hotel hotel);
+    boolean deletar(long hotelId);
 }

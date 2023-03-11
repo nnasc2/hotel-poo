@@ -10,6 +10,16 @@ public class Reserva {
     private LocalDate dataFim;
     private long idHotel;
     private long idHospede;
+    private int numQuarto;
+    private double valor;
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
 
     public void setNumero(long numero) {
         this.numero = numero;
@@ -22,8 +32,6 @@ public class Reserva {
     public void setIdHospede(long idHospede) {
         this.idHospede = idHospede;
     }
-
-    private int numQuarto;
 
     public long getNumero() {
         return numero;
