@@ -3,16 +3,12 @@ import entidades.Hotel;
 import entidades.Quarto;
 import entidades.Reserva;
 import enums.Classificacao;
-import enums.PagamentoEnum;
 import repositorios.HospedeRepositorio;
-import repositorios.PagamentoRepositorio;
 import servicos.HospedeServico;
 import servicos.HotelServico;
 import servicos.QuartoServico;
 import servicos.ReservaServico;
 
-import java.net.StandardSocketOptions;
-import java.sql.SQLOutput;
 import java.time.chrono.ChronoLocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -92,16 +88,17 @@ public class Main {
         hospedeServico.salvar(hospede1);
 
         Scanner scanner = new Scanner(System.in);
+        boolean voltar = false;
         boolean continuar = true;
         int entrada = -1;
-        System.out.println("---  Seja bem-vindo(a)!  ---");
+        System.out.println(">> Seja bem-vindo(a)!");
         do{
-            System.out.println("<<   INÍCIO   >>");
-            System.out.println("Digite o número corresponde a opção escolhida:");
+            System.out.println("--   Menu Inicial   --");
             System.out.println("1 - Fazer uma reserva");
             System.out.println("2 - Cadastrar");
             System.out.println("3 - Entrar");
             System.out.println("0 - Sair/Fechar");
+            System.out.println("Digite o número corresponde a opção escolhida:");
             try{
                 entrada = Integer.parseInt(scanner.next());
             } catch(Exception ex) {
@@ -118,19 +115,32 @@ public class Main {
                     Scanner scann = new Scanner(System.in);
                     int numero = -1;
                     List<Quarto> quartos = quartoServico.listar();
-                    System.out.println("Escolha um quarto:");
+                    System.out.println("Escolha um destes quartos:");
                     for (int i = 0; i < quartos.size(); i++){
-                        System.out.println("\n"+(i+1)+" - Para: ");
-                        System.out.println(" Tipo: " + quartos.get(i).getTipoQuarto());
+                        System.out.println("\n"+(i+1)+" - "+ quartos.get(i).getTipoQuarto());
                         System.out.println(" Tipo cama: " + quartos.get(i).getTipoCama());
                         System.out.println(" Tamanho do quarto: " + quartos.get(i).getMetrosQuadrados() + "m²");
                         System.out.printf(" Diária: R$%,3.2f\n", quartos.get(i).getDiaria());
                     }
-                    numero = Integer.parseInt(scann.next());
+                    do {
+                        System.out.println("\nDigite o número correspondente ao quarto escolhido:");
+                        try{
+                            numero = Integer.parseInt(scanner.next());
+                            if(numero < 1 || numero > quartos.size()){
+                                System.out.println(">> Opção inválida! Tente novamente");
+                                voltar = true;
+                            } else {
+                                voltar = false;
+                            }
+                        } catch (Exception ex){
+                            System.out.println(">> Entrada inválida! Tente novamente");
+                            voltar = true;
+                        }
+                    } while (voltar);
                     numero = numero - 1;
                     reserva.setNumQuarto(quartos.get(numero).getNumeroQuarto());
 
-                    System.out.println("Escolha a data de início:");
+                    System.out.println("Escolha a data de entrada (check-in):");
                     System.out.println("Digite o dia:");
                     int diaInicio = Integer.parseInt(scanner.next());
                     System.out.println("Digite o mês:");
@@ -139,7 +149,7 @@ public class Main {
                     int anoInicio = Integer.parseInt(scanner.next());
                     reserva.setDataInicio(LocalDate.of(anoInicio, mesInicio, diaInicio));
 
-                    System.out.println("Escolha a data do fim:");
+                    System.out.println("Escolha a data de saída (check-out):");
                     System.out.println("Digite o dia:");
                     int diaFim = Integer.parseInt(scanner.next());
                     System.out.println("Digite o mês:");
@@ -151,20 +161,28 @@ public class Main {
                     System.out.println("Confira e confirme sua reserva:");
                     System.out.println("Quarto "+ quartoServico.listar(reserva.getNumQuarto()).getTipoQuarto());
                     System.out.printf("Diária: R$%,3.2f\n", quartoServico.listar(reserva.getNumQuarto()).getDiaria());
-                    System.out.println("Data de entrada: " + reserva.getDataInicio());
-                    System.out.println("Data de saída: " + reserva.getDataFim());
+                    System.out.println("Data de entrada (check-in): " + reserva.getDataInicio());
+                    System.out.println("Data de saída (check-out): " + reserva.getDataFim());
                     int numeroDias = (int) ChronoUnit.DAYS.between(reserva.getDataInicio(), reserva.getDataFim());
                     System.out.printf("Dias de estadia: %s\n", numeroDias);
                     float diaria = (float) quartoServico.listar(reserva.getNumQuarto()).getDiaria();
                     reserva.setValor(numeroDias * diaria);
                     System.out.printf("Valor: R$%,3.2f\n", reserva.getValor());
-                    System.out.println("\nConfirmar reserva?\n1 - Sim\n0 - Não");
-                    try{
-                        numero = Integer.parseInt(scanner.next());
-                    } catch (Exception ex){
-                        System.out.println("Entrada inválida");
-                        numero = 1;
-                    }
+                    do {
+                        System.out.println("\nConfirmar reserva?\n1 - Sim\n0 - Não");
+                        try{
+                            numero = Integer.parseInt(scanner.next());
+                            if(numero < 0 || numero > 1){
+                                System.out.println(">> Opção inválida! Tente novamente\n");
+                                voltar = true;
+                            } else {
+                                voltar = false;
+                            }
+                        } catch (Exception ex){
+                            System.out.println(">> Entrada inválida! Tente novamente\n");
+                            voltar = true;
+                        }
+                    } while (voltar);
 
                     if (numero == 1){
 
@@ -175,7 +193,7 @@ public class Main {
                         numero = Integer.parseInt(scanner.next());
                         switch (numero){
                             case 1:
-                                System.out.printf("O pagamento de R$%,3.2f deve ser realizado em até 3 dias!\n",
+                                System.out.printf("O pagamento de R$%,3.2f deve ser realizado em até 7 dias!\n",
                                         reserva.getValor());
                                 break;
                             case 2:
@@ -185,7 +203,7 @@ public class Main {
                                 String nomeTitular = scann.next();
                                 System.out.println("Digite a data de vencimento no formato dia/mes/ano:");
                                 String dataVencimentoCartao = scann.next();
-                                System.out.println("Pagamento realizado com sucesso!");
+                                System.out.println(">> Pagamento realizado com sucesso!");
                                 break;
                             case 3:
                                 System.out.println("Digite o número do cartão de crédito:");
@@ -195,22 +213,41 @@ public class Main {
                                 String aux = scann.nextLine();
                                 System.out.println("Digite a data de vencimento no formato dia/mes/ano:");
                                 dataVencimentoCartao = scann.next();
-                                System.out.println("Digite o número de parcelas:");
-                                int numeroParcelas = Integer.parseInt(scann.next());
+                                int numeroParcelas = 0;
+                                do{
+                                    System.out.println("Digite o número de parcelas (máximo de 6x):");
+                                    try{
+                                        numeroParcelas = Integer.parseInt(scann.next());
+                                        if (numeroParcelas >= 1 && numeroParcelas <= 6){
+                                            voltar = false;
+                                        } else {
+                                            String mensagem = ">> Número inválido de parcelas! Tente novamente";
+                                            if(numeroParcelas > 6){
+                                                mensagem = ">> Número máximo de parcelas ultrapassado! Tente novamente.";
+                                            }
+                                            System.out.println(mensagem);
+                                            voltar = true;
+                                        }
+                                    } catch (Exception e) {
+                                        System.out.println(">> Opção inválida! Tente novamente.");
+                                        voltar = true;
+                                    }
+                                } while (voltar);
+
                                 System.out.printf("Você pagará %s parcelas de R$%,3.2f\n", numeroParcelas, reserva.getValor()/numeroParcelas);
                                 System.out.println("Confirmar pagamento?\n1 - sim\n0 - Não ");
                                 numero = scann.nextInt();
                                 if(numero == 1)
-                                    System.out.println("Pagamento realizado com sucesso!");
+                                    System.out.println(">> Pagamento realizado com sucesso!");
                                 else
-                                    System.out.println("Pagamento e reserva cancelados!");
+                                    System.out.println(">> Pagamento e reserva cancelados!");
                                 break;
                         }
                         ReservaServico reservaServico = new ReservaServico();
                         reservaServico.cadastrar(reserva);
-                        System.out.println("Reserva realizada com sucesso!");
+                        System.out.println(">> Reserva realizada com sucesso!\n");
                     } else if (numero == 0) {
-                        System.out.println("Reserva cancelada!");
+                        System.out.println(">> Reserva cancelada!\n");
                     }
 
                     break;
@@ -231,7 +268,7 @@ public class Main {
                     String senha = scann.nextLine();
                     hospede.setSenha(senha);
                     hospedeServico.salvar(hospede);
-                    System.out.println(" Cadastro realizado com sucesso! ");
+                    System.out.println(">> Cadastro realizado com sucesso! ");
                     break;
 
                 case 3:
@@ -240,7 +277,7 @@ public class Main {
                     boolean encontrado = false;
                     int index = 0;
                     List<Hospede> hospedes = new ArrayList<>(HospedeRepositorio.getInstance().listar());
-                    System.out.println("#   ENTRAR");
+                    System.out.println("--   Entrada   --");
                     for(int i = 0; i < 3 && !encontrado; i++) {
                         System.out.println("Digite seu e-mail:");
                         email = scann.next();
@@ -254,9 +291,9 @@ public class Main {
                         }
 
                         if (!encontrado && i < 2){
-                            System.out.println("Seu email não foi encontrado! Tente novamente ou cadastre-se.\n");
+                            System.out.println(">> Seu email não foi encontrado! Tente novamente.\n");
                         } else if (!encontrado && i < 3){
-                            System.out.println("Número de tentativas esgotado! Tente novamente ou cadastre-se.\n");
+                            System.out.println(">> Número de tentativas esgotado! Tente novamente mais tarde ou cadastre-se.\n");
                         }
                     }
 
@@ -269,24 +306,24 @@ public class Main {
                         }
 
                         if (!conectado && i < 2){
-                            System.out.println("Senha incorreta! Tente novamente ou cadastre-se.\n");
+                            System.out.println(">> Senha incorreta! Tente novamente.\n");
                         } else if (!conectado && i < 3){
-                            System.out.println("Número de tentativas esgotado! Tente novamente ou cadastre-se.\n");
+                            System.out.println(">> Número de tentativas esgotado! Tente novamente mais tarde.\n");
                         }
                     }
 
                     if (encontrado && conectado){
                         String[] nomeSplit = hospedes.get(index).getNome().split(" ");
-                        System.out.println("Bem-vindo(a), "+nomeSplit[0]+" "+nomeSplit[nomeSplit.length - 1]+"!\n");
+                        System.out.println(">> Bem-vindo(a), "+nomeSplit[0]+" "+nomeSplit[nomeSplit.length - 1]+"!\n");
                     }
                     break;
 
                 default:
-                    System.out.println("Opção digitada é inválida, tente novamente!");
+                    System.out.println(">> Opção digitada é inválida, tente novamente!");
             }
 
         } while(continuar);
 
-        System.out.println("Volte sempre!");
+        System.out.println(">> Volte sempre!");
     }
 }
