@@ -1,5 +1,6 @@
 package entidades;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Fila<Objeto> {
@@ -9,6 +10,7 @@ public class Fila<Objeto> {
     private int t = 0;
 
     public Fila(int size){
+        fila = new ArrayList<>();
         t = size;
     }
     public List<Objeto> getFila() {
