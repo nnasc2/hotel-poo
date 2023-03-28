@@ -1,15 +1,12 @@
-import entidades.Hospede;
-import entidades.Hotel;
-import entidades.Quarto;
-import entidades.Reserva;
-import enums.Classificacao;
+import entidades.*;
+import enums.ClassificacaoEnum;
+import enums.OcupacaoEnum;
 import repositorios.HospedeRepositorio;
 import servicos.HospedeServico;
 import servicos.HotelServico;
 import servicos.QuartoServico;
 import servicos.ReservaServico;
 
-import java.time.chrono.ChronoLocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,32 +16,31 @@ import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) {
 
-
         HotelServico hotelServico = new HotelServico();
         QuartoServico quartoServico = new QuartoServico();
 
         Hotel hotel = new Hotel();
         hotel.setId(1);
-        hotel.setNome("Hotel da Marina");
+        hotel.setNome("Roland Hotel");
         hotel.setDescricao("");
-        hotel.setClassificacao(Classificacao.TRES_ESTRELAS);
-        hotel.setCidade("Recife");
+        hotel.setClassificacao(ClassificacaoEnum.QUATRO_ESTRELAS);
         hotel.setEstado("Pernambuco");
-        hotel.setRua("");
-        hotel.setBairro("");
+        hotel.setCidade("Ipojuca");
+        hotel.setRua("João Joaquim");
+        hotel.setBairro("Porto de Galinhas");
         hotel.setComplemento("");
-        hotel.setNumero("");
-        hotel.setCnpj(597495945);
+        hotel.setNumero("290");
+        hotel.setCnpj("23.455.121/0001-66");
         hotelServico.cadastrar(hotel);
 
         Quarto quarto1 = new Quarto();
         quarto1.setId(4);
-        quarto1.setTipoQuarto("Single Room");
-        quarto1.setTipoCama("Solteiro");
+        quarto1.setTipoQuarto("Quarto individual");
+        quarto1.setDescricaoCama("Uma cama de solteiro");
         quarto1.setMetrosQuadrados(30);
         quarto1.setDiaria(130);
         quarto1.setOcupado(false);
-        quarto1.setMaximoPessoas(2);
+        quarto1.setOcupacao(OcupacaoEnum.DUPLO);
         quarto1.setRefeicao(false);
         quarto1.setNumeroCama(1);
         quarto1.setNumeroQuarto(1);
@@ -53,12 +49,12 @@ public class Main {
 
         Quarto quarto2 = new Quarto();
         quarto2.setId(5);
-        quarto2.setTipoQuarto("Suite");
-        quarto2.setTipoCama("King Size");
+        quarto2.setTipoQuarto("Quarto duplo");
+        quarto2.setDescricaoCama("Uma cama de casal");
         quarto2.setMetrosQuadrados(80);
         quarto2.setDiaria(500);
         quarto2.setOcupado(false);
-        quarto2.setMaximoPessoas(2);
+        quarto2.setOcupacao(OcupacaoEnum.DUPLO);
         quarto2.setRefeicao(false);
         quarto2.setNumeroCama(1);
         quarto2.setNumeroQuarto(2);
@@ -67,17 +63,31 @@ public class Main {
 
         Quarto quarto3 = new Quarto();
         quarto3.setId(4);
-        quarto3.setTipoQuarto("Quarto casal");
-        quarto3.setTipoCama("Casal");
+        quarto3.setTipoQuarto("Quarto triplo");
+        quarto3.setDescricaoCama("Uma cama de casal e uma cama de solteiro");
         quarto3.setMetrosQuadrados(50);
         quarto3.setDiaria(230);
         quarto3.setOcupado(false);
-        quarto3.setMaximoPessoas(2);
+        quarto3.setOcupacao(OcupacaoEnum.DUPLO);
         quarto3.setRefeicao(false);
         quarto3.setNumeroCama(1);
         quarto3.setNumeroQuarto(3);
         quarto3.setHotelId(1);
         quartoServico.cadastrar(quarto3);
+
+        Quarto quarto4 = new Quarto();
+        quarto4.setId(4);
+        quarto4.setTipoQuarto("Quarto quádruplo");
+        quarto4.setDescricaoCama("Uma cama de casal e duas de solteiro");
+        quarto4.setMetrosQuadrados(50);
+        quarto4.setDiaria(230);
+        quarto4.setOcupado(false);
+        quarto4.setOcupacao(OcupacaoEnum.DUPLO);
+        quarto4.setRefeicao(false);
+        quarto4.setNumeroCama(1);
+        quarto4.setNumeroQuarto(4);
+        quarto4.setHotelId(1);
+        quartoServico.cadastrar(quarto4);
 
         Hospede hospede1 = new Hospede();
         hospede1.setNome("Maria Luiza da Silva Campos");
@@ -91,7 +101,7 @@ public class Main {
         boolean voltar = false;
         boolean continuar = true;
         int entrada = -1;
-        System.out.println(">> Seja bem-vindo(a)!");
+        System.out.printf(">> Seja bem-vindo(a) ao %s!\n", hotel.getNome());
         do{
             System.out.println("--   Menu Inicial   --");
             System.out.println("1 - Fazer uma reserva");
@@ -118,9 +128,9 @@ public class Main {
                     System.out.println("Escolha um destes quartos:");
                     for (int i = 0; i < quartos.size(); i++){
                         System.out.println("\n"+(i+1)+" - "+ quartos.get(i).getTipoQuarto());
-                        System.out.println(" Tipo cama: " + quartos.get(i).getTipoCama());
-                        System.out.println(" Tamanho do quarto: " + quartos.get(i).getMetrosQuadrados() + "m²");
-                        System.out.printf(" Diária: R$%,3.2f\n", quartos.get(i).getDiaria());
+                        System.out.println("    Cama(s): " + quartos.get(i).getDescricaoCama());
+                        System.out.println("    Tamanho do quarto: " + quartos.get(i).getMetrosQuadrados() + "m²");
+                        System.out.printf("    Diária: R$%,3.2f\n", quartos.get(i).getDiaria());
                     }
                     do {
                         System.out.println("\nDigite o número correspondente ao quarto escolhido:");
@@ -158,8 +168,8 @@ public class Main {
                     int anoFim = Integer.parseInt(scanner.next());
                     reserva.setDataFim(LocalDate.of(anoFim, mesFim, diaFim));
 
-                    System.out.println("Confira e confirme sua reserva:");
-                    System.out.println("Quarto "+ quartoServico.listar(reserva.getNumQuarto()).getTipoQuarto());
+                    System.out.println("Confira e confirme sua reserva:\n");
+                    System.out.println(quartoServico.listar(reserva.getNumQuarto()).getTipoQuarto());
                     System.out.printf("Diária: R$%,3.2f\n", quartoServico.listar(reserva.getNumQuarto()).getDiaria());
                     System.out.println("Data de entrada (check-in): " + reserva.getDataInicio());
                     System.out.println("Data de saída (check-out): " + reserva.getDataFim());

@@ -1,7 +1,7 @@
 package servicos;
 
 import entidades.Hotel;
-import enums.Classificacao;
+import enums.ClassificacaoEnum;
 import interfaces.servico.IHotelServico;
 import repositorios.HotelRepositorio;
 
@@ -20,14 +20,14 @@ public class HotelServico implements IHotelServico {
     }
 
     @Override
-    public void cadastrar(long id, String nome, String descricao, Classificacao classificacao, String estado, String cidade,
-                           String rua, String bairro, String complemento, String numero, int cnpj) {
+    public void cadastrar(long id, String nome, String descricao, ClassificacaoEnum classificacaoEnum, String estado, String cidade,
+                          String rua, String bairro, String complemento, String numero, String cnpj) {
         try {
             Hotel novoHotel = new Hotel();
             novoHotel.setId(id);
             novoHotel.setNome(nome);
             novoHotel.setDescricao(descricao);
-            novoHotel.setClassificacao(classificacao);
+            novoHotel.setClassificacao(classificacaoEnum);
             novoHotel.setEstado(estado);
             novoHotel.setRua(rua);
             novoHotel.setBairro(bairro);

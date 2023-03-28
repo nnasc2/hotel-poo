@@ -1,6 +1,6 @@
 package enums;
 
-public enum Classificacao {
+public enum ClassificacaoEnum {
     UMA_ESTRELA ("1 estrela"),
     DUAS_ESTRELAS ("2 estrelas"),
     TRES_ESTRELAS ("3 estrelas"),
@@ -8,7 +8,7 @@ public enum Classificacao {
     CINCO_ESTRELAS ("5 estrelas");
 
     private String descricao;
-    Classificacao(String descricao) {
+    ClassificacaoEnum(String descricao) {
         this.descricao = descricao;
     }
 

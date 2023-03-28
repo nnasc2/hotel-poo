@@ -1,5 +1,7 @@
 package entidades;
 
+import enums.OcupacaoEnum;
+
 public class Quarto {
     private long id;
     private String tipoQuarto;
@@ -8,14 +10,20 @@ public class Quarto {
     private double diaria;
 
     private boolean ocupado;
-
-    private int maximoPessoas;
     private boolean refeicao;
-    private String tipoCama;
+    private String descricaoCama;
     private int numeroCama;
     private int numeroQuarto;
     private long hotelId;
+    private OcupacaoEnum ocupacao;
 
+    public OcupacaoEnum getOcupacao() {
+        return ocupacao;
+    }
+
+    public void setOcupacao(OcupacaoEnum ocupacao) {
+        this.ocupacao = ocupacao;
+    }
 
     public long getId() {
         return id;
@@ -25,12 +33,12 @@ public class Quarto {
         this.id = id;
     }
 
-    public String getTipoCama() {
-        return tipoCama;
+    public String getDescricaoCama() {
+        return descricaoCama;
     }
 
-    public void setTipoCama(String tipoCama) {
-        this.tipoCama = tipoCama;
+    public void setDescricaoCama(String descricaoCama) {
+        this.descricaoCama = descricaoCama;
     }
 
     public int getNumeroCama() {
@@ -55,14 +63,6 @@ public class Quarto {
 
     public void setTipoQuarto(String tipoQuarto) {
         this.tipoQuarto = tipoQuarto;
-    }
-
-    public int getMaximoPessoas() {
-        return maximoPessoas;
-    }
-
-    public void setMaximoPessoas(int maximoPessoas) {
-        this.maximoPessoas = maximoPessoas;
     }
 
     public boolean isRefeicao() {

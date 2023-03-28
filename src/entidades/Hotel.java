@@ -1,18 +1,18 @@
 package entidades;
-import enums.Classificacao;
+import enums.ClassificacaoEnum;
 
 public class Hotel {
     private long id;
     private String nome;
     private String descricao;
-    private Classificacao classificacao;
+    private ClassificacaoEnum classificacaoEnum;
     private String estado;
     private String cidade;
     private String rua;
     private String bairro;
     private String complemento;
     private String numero;
-    private long cnpj;
+    private String cnpj;
 
     public long getId() {
         return id;
@@ -38,12 +38,12 @@ public class Hotel {
         this.descricao = descricao;
     }
 
-    public Classificacao getClassificacao() {
-        return classificacao;
+    public ClassificacaoEnum getClassificacao() {
+        return classificacaoEnum;
     }
 
-    public void setClassificacao(Classificacao classificacao) {
-        this.classificacao = classificacao;
+    public void setClassificacao(ClassificacaoEnum classificacaoEnum) {
+        this.classificacaoEnum = classificacaoEnum;
     }
 
     public String getEstado() {
@@ -94,11 +94,11 @@ public class Hotel {
         this.numero = numero;
     }
 
-    public long getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 
-    public void setCnpj(long cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 }
