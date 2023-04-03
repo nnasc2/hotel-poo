@@ -3,9 +3,9 @@ package entidades;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fila<Objeto> {
+public class Fila<T> {
 
-    private List<Objeto> fila;
+    private List<T> fila;
     private int f = 0;
     private int t = 0;
 
@@ -13,27 +13,31 @@ public class Fila<Objeto> {
         fila = new ArrayList<>();
         t = size;
     }
-    public List<Objeto> getFila() {
+    public List<T> getFila() {
         return fila;
     }
 
-    public void insert(Objeto objeto) {
+    public void insert(T element) {
         if(f == 0){
-            fila.set(f, objeto);
+            int index = f;
+            fila.set(index, element);
         }
         f++;
     }
 
-    public void remove() {
+    public T remove() {
         if(!empty()) {
             for(int i = 0; i < f; i++) {
+                T element = fila.get(0);
                 if(i+1 < f) {
                     fila.set(i, fila.get(i+1));
                 } else if(i+1 == t) {
                     fila.remove(i);
                 }
+                return element;
             }
         }
+        return null;
     }
 
     public boolean empty() {
@@ -47,7 +51,7 @@ public class Fila<Objeto> {
         return f;
     }
 
-    public Objeto front() {
+    public T front() {
         return fila.get(0);
     }
 
