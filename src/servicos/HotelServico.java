@@ -11,20 +11,19 @@ import java.util.List;
 public class HotelServico implements IHotelServico {
 
     @Override
-    public void cadastrar(Hotel novoHotel) {
+    public void cadastrar(Hotel hotel) {
         try {
-            HotelRepositorio.getInstance().salvar(novoHotel);
+            HotelRepositorio.getInstance().salvar(hotel);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
 
     @Override
-    public void cadastrar(long id, String nome, String descricao, ClassificacaoEnum classificacaoEnum, String estado, String cidade,
+    public void cadastrar(String nome, String descricao, ClassificacaoEnum classificacaoEnum, String estado, String cidade,
                           String rua, String bairro, String complemento, String numero, String cnpj) {
         try {
             Hotel novoHotel = new Hotel();
-            novoHotel.setId(id);
             novoHotel.setNome(nome);
             novoHotel.setDescricao(descricao);
             novoHotel.setClassificacao(classificacaoEnum);

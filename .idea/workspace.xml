@@ -5,25 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02062ef5-18c3-4183-a284-0ae51051c0f8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/enums/QuartoEnum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/util/ConnectionSingleton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hotel-poo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-poo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Checkin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Fila.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/Fila.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Funcionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Funcionario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Hospede.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Hospede.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Pessoa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Quarto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Quarto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Reserva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Reserva.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enums/OcupacaoEnum.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/servico/IBasicoServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/servico/IBasicoServico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repositorios/FuncionarioRepositorio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositorios/FuncionarioRepositorio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repositorios/PagamentoRepositorio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositorios/PagamentoRepositorio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/servicos/HospedeServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servicos/HospedeServico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/servicos/PagamentoServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servicos/PagamentoServico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/servicos/QuartoServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servicos/QuartoServico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/servico/IHotelServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/servico/IHotelServico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/servicos/HotelServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servicos/HotelServico.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
