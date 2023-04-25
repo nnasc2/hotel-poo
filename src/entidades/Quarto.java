@@ -1,28 +1,34 @@
 package entidades;
 
-import enums.OcupacaoEnum;
+import enums.QuartoEnum;
 
 public class Quarto {
     private long id;
-    private String tipoQuarto;
-    private int metrosQuadrados;
-
+    private int numeroQuarto;
+    private QuartoEnum tipoQuarto;
+    private int area;
     private double diaria;
-
-    private boolean ocupado;
+    private boolean operante;
     private boolean refeicao;
     private String descricaoCama;
-    private int numeroCama;
-    private int numeroQuarto;
     private long hotelId;
-    private OcupacaoEnum ocupacao;
+    private int ocupacaoMaxima;
+    private int andar;
 
-    public OcupacaoEnum getOcupacao() {
-        return ocupacao;
+    public int getAndar() {
+        return andar;
     }
 
-    public void setOcupacao(OcupacaoEnum ocupacao) {
-        this.ocupacao = ocupacao;
+    public void setAndar(int andar) {
+        this.andar = andar;
+    }
+
+    public int getOcupacaoMaxima() {
+        return ocupacaoMaxima;
+    }
+
+    public void setOcupacaoMaxima(int ocupacaoMaxima) {
+        this.ocupacaoMaxima = ocupacaoMaxima;
     }
 
     public long getId() {
@@ -41,14 +47,6 @@ public class Quarto {
         this.descricaoCama = descricaoCama;
     }
 
-    public int getNumeroCama() {
-        return numeroCama;
-    }
-
-    public void setNumeroCama(int numeroCama) {
-        this.numeroCama = numeroCama;
-    }
-
     public int getNumeroQuarto() {
         return numeroQuarto;
     }
@@ -57,11 +55,11 @@ public class Quarto {
         this.numeroQuarto = numeroQuarto;
     }
 
-    public String getTipoQuarto() {
+    public QuartoEnum getTipoQuarto() {
         return tipoQuarto;
     }
 
-    public void setTipoQuarto(String tipoQuarto) {
+    public void setTipoQuarto(QuartoEnum tipoQuarto) {
         this.tipoQuarto = tipoQuarto;
     }
 
@@ -73,12 +71,12 @@ public class Quarto {
         this.refeicao = refeicao;
     }
 
-    public int getMetrosQuadrados() {
-        return metrosQuadrados;
+    public int getArea() {
+        return area;
     }
 
-    public void setMetrosQuadrados(int metrosQuadrados) {
-        this.metrosQuadrados = metrosQuadrados;
+    public void setArea(int area) {
+        this.area = area;
     }
 
     public double getDiaria() {
@@ -97,11 +95,11 @@ public class Quarto {
         this.hotelId = hotelId;
     }
 
-    public boolean isOcupado() {
-        return ocupado;
+    public boolean isOperante() {
+        return operante;
     }
 
-    public void setOcupado(boolean ocupado) {
-        this.ocupado = ocupado;
+    public void setOperante(boolean operante) {
+        this.operante = operante;
     }
 }

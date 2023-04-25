@@ -2,21 +2,22 @@ package entidades;
 
 import enums.SexoEnum;
 
-public class Pessoa {
+abstract public class Pessoa {
     private long id;
     private String nome;
     private SexoEnum sexo;
     private String dataNascimento;
     private String cpf;
+    private int telefone;
 
     public Pessoa(){}
-    public Pessoa(String nome, String cpf) {
-
+    public Pessoa(long id, String nome, String dataNascimento, SexoEnum sexo, String cpf, int telefone) {
+        this.id = id;
         this.nome = nome;
-
-    }
-
-    public Pessoa(String nome, String dataNascimento, SexoEnum sexo, String cpf) {
+        this.dataNascimento = dataNascimento;
+        this.sexo = sexo;
+        this.cpf = cpf;
+        this.telefone = telefone;
     }
 
     public long getId() {
@@ -57,5 +58,13 @@ public class Pessoa {
 
     public SexoEnum getSexo() {
         return sexo;
+    }
+
+    public int getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(int telefone) {
+        this.telefone = telefone;
     }
 }

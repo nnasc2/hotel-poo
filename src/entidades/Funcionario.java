@@ -1,11 +1,19 @@
 package entidades;
 
+import enums.SexoEnum;
+
 public class Funcionario extends Pessoa {
-     private long id;
     private String cargo;
-    private String usuario;
     private String senha;
     private String status;
+
+    public Funcionario(){}
+    public Funcionario(long id, String nome, String dataNascimento, SexoEnum sexo, String cpf, int telefone, String cargo, String senha, String status){
+        super(id, nome, dataNascimento, sexo, cpf, telefone);
+        this.cargo = cargo;
+        this.senha = senha;
+        this.status = status;
+    }
 
     public String getCargo() {
         return cargo;
@@ -15,28 +23,12 @@ public class Funcionario extends Pessoa {
         this.cargo = cargo;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
     public String getSenha() {
         return senha;
     }
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getStatus() {

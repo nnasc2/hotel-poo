@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FuncionarioRepositorio implements IRepositorioGenerico<Funcionario> {
-    List<Funcionario> listaFuncionarios = new ArrayList<>( );
-
-
+    List<Funcionario> listaFuncionarios = new ArrayList<>();
 
     @Override
     public boolean salvar(Funcionario funcionario) {

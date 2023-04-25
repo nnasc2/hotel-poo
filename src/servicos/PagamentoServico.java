@@ -10,8 +10,8 @@ import java.util.List;
 
 public class PagamentoServico implements IBasicoServico<Pagamento> {
 
-    public void  registrar(long id, PagamentoEnum formaPagamento,
-                           String nomeResposavelChekin, double valor, String status, Date dataCompra){
+    public void sslvar(long id, PagamentoEnum formaPagamento,
+                       String nomeResposavelChekin, double valor, String status, Date dataVencimento){
         try {
             Pagamento novoPagamento = new Pagamento();
             novoPagamento.setFormaPagamento(formaPagamento);
@@ -27,18 +27,18 @@ public class PagamentoServico implements IBasicoServico<Pagamento> {
     }
 
     @Override
-    public void salvar(Pagamento objeto) {
-
+    public void salvar(Pagamento pagamento) {
+        PagamentoRepositorio.getInstance().salvar(pagamento);
     }
 
     @Override
-    public void alterar(int index, Pagamento objeto) {
-
+    public void alterar(int id, Pagamento pagamento) {
+        PagamentoRepositorio.getInstance().alterar(id, pagamento);
     }
 
     @Override
     public void deletarPorId(long id) {
-        IBasicoServico.super.deletarPorId(id);
+        System.out.print("");
     }
 
     @Override

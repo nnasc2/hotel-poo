@@ -10,17 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HospedeServico implements IBasicoServico<Hospede> {
-    public void cadastrar(String nome, SexoEnum sexo, String dataNascimento, String cpf, long idHospede,String email, String senha, int telefone, String login) {
+    public void cadastrar(String nome, SexoEnum sexo, String dataNascimento, String cpf, long idHospede, String email, String senha, int telefone) {
         try{
-            Hospede novoHospede = new Hospede(nome, cpf);
-            novoHospede.setIdHospede(idHospede);
+            Hospede novoHospede = new Hospede();
+            novoHospede.setId(idHospede);
+            novoHospede.setNome(nome);
+            novoHospede.setCpf(cpf);
             novoHospede.setDataNascimento(dataNascimento);
             novoHospede.setSexo(sexo);
             novoHospede.setTelefone(telefone);
             novoHospede.setEmail(email);
-            novoHospede.setLogin(login);
             novoHospede.setSenha(senha);
-
             HospedeRepositorio.getInstance().salvar(novoHospede);
         }catch (Exception e){
             System.out.println("Error:"+e.getMessage());
@@ -35,8 +35,8 @@ public class HospedeServico implements IBasicoServico<Hospede> {
     }
 
     @Override
-    public void alterar(int index, Hospede objeto) {
-        HospedeRepositorio.getInstance().alterar(index, objeto);
+    public void alterar(int id, Hospede objeto) {
+        HospedeRepositorio.getInstance().alterar(id, objeto);
     }
 
     @Override
@@ -46,8 +46,8 @@ public class HospedeServico implements IBasicoServico<Hospede> {
     }
 
     @Override
-    public void deletarPorId(long idHospedes) {
-        interfaces.servico.IBasicoServico.super.deletarPorId(idHospedes);
+    public void deletarPorId(long idHospede) {
+        HospedeRepositorio.getInstance().deletarPorId(idHospede);
     }
 }
 

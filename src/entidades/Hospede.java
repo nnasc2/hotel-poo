@@ -3,33 +3,16 @@ package entidades;
 import enums.SexoEnum;
 
 public class Hospede extends Pessoa{
-  private  long idHospede;
-  private String email;
-  private String senha;
-  private int telefone;
-  private String login;
+    private String email;
+    private String senha;
 
-    public Hospede(String nome, String dataNascimento, SexoEnum sexo, String cpf,
-                   long idHospede, String email, String senha, int telefone, String login) {
-        super(nome, dataNascimento, sexo, cpf);
-        this.idHospede = idHospede;
-        this.email = email;
-        this.senha = senha;
-        this.telefone = telefone;
-        this.login = login;
-    }
     public Hospede(){}
 
-    public Hospede(String nome, String cpf) {
-        super (nome, cpf);
-    }
-
-    public long getIdHospede() {
-        return idHospede;
-    }
-
-    public void setIdHospede(long idHospede) {
-        this.idHospede = idHospede;
+    public Hospede(long id, String nome, String dataNascimento, SexoEnum sexo, String cpf,
+                   String email, String senha, int telefone) {
+        super(id, nome, dataNascimento, sexo, cpf, telefone);
+        this.email = email;
+        this.senha = senha;
     }
 
     public String getEmail() {
@@ -48,19 +31,4 @@ public class Hospede extends Pessoa{
         this.senha = senha;
     }
 
-    public int getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(int telefone) {
-        this.telefone = telefone;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
 }

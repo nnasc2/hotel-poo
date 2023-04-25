@@ -1,6 +1,8 @@
+package gui;
+
 import entidades.*;
 import enums.ClassificacaoEnum;
-import enums.OcupacaoEnum;
+import enums.QuartoEnum;
 import repositorios.HospedeRepositorio;
 import servicos.HospedeServico;
 import servicos.HotelServico;
@@ -34,80 +36,75 @@ public class Main {
         hotelServico.cadastrar(hotel);
 
         Quarto quarto1 = new Quarto();
-        quarto1.setId(4);
-        quarto1.setTipoQuarto("Quarto individual");
+        quarto1.setId(1);
+        quarto1.setTipoQuarto(QuartoEnum.INDIVIDUAL);
         quarto1.setDescricaoCama("Uma cama de solteiro");
-        quarto1.setMetrosQuadrados(30);
+        quarto1.setArea(20);
         quarto1.setDiaria(130);
-        quarto1.setOcupado(false);
-        quarto1.setOcupacao(OcupacaoEnum.DUPLO);
+        quarto1.setOperante(true);
+        quarto1.setOcupacaoMaxima(1);
         quarto1.setRefeicao(false);
-        quarto1.setNumeroCama(1);
         quarto1.setNumeroQuarto(1);
         quarto1.setHotelId(1);
         quartoServico.cadastrar(quarto1);
 
         Quarto quarto2 = new Quarto();
-        quarto2.setId(5);
-        quarto2.setTipoQuarto("Quarto duplo");
+        quarto2.setId(2);
+        quarto2.setTipoQuarto(QuartoEnum.DUPLO);
         quarto2.setDescricaoCama("Uma cama de casal");
-        quarto2.setMetrosQuadrados(80);
-        quarto2.setDiaria(500);
-        quarto2.setOcupado(false);
-        quarto2.setOcupacao(OcupacaoEnum.DUPLO);
+        quarto2.setArea(30);
+        quarto2.setDiaria(230);
+        quarto2.setOperante(true);
+        quarto2.setOcupacaoMaxima(2);
         quarto2.setRefeicao(false);
-        quarto2.setNumeroCama(1);
         quarto2.setNumeroQuarto(2);
         quarto2.setHotelId(1);
         quartoServico.cadastrar(quarto2);
 
         Quarto quarto3 = new Quarto();
-        quarto3.setId(4);
-        quarto3.setTipoQuarto("Quarto triplo");
+        quarto3.setId(3);
+        quarto3.setTipoQuarto(QuartoEnum.TRIPLO);
         quarto3.setDescricaoCama("Uma cama de casal e uma cama de solteiro");
-        quarto3.setMetrosQuadrados(50);
-        quarto3.setDiaria(230);
-        quarto3.setOcupado(false);
-        quarto3.setOcupacao(OcupacaoEnum.DUPLO);
+        quarto3.setArea(40);
+        quarto3.setDiaria(330);
+        quarto3.setOperante(true);
+        quarto3.setOcupacaoMaxima(3);
         quarto3.setRefeicao(false);
-        quarto3.setNumeroCama(1);
         quarto3.setNumeroQuarto(3);
         quarto3.setHotelId(1);
         quartoServico.cadastrar(quarto3);
 
         Quarto quarto4 = new Quarto();
         quarto4.setId(4);
-        quarto4.setTipoQuarto("Quarto quádruplo");
+        quarto4.setTipoQuarto(QuartoEnum.QUADRUPLO);
         quarto4.setDescricaoCama("Uma cama de casal e duas de solteiro");
-        quarto4.setMetrosQuadrados(50);
-        quarto4.setDiaria(230);
-        quarto4.setOcupado(false);
-        quarto4.setOcupacao(OcupacaoEnum.DUPLO);
+        quarto4.setArea(60);
+        quarto4.setDiaria(500);
+        quarto4.setOperante(true);
+        quarto4.setOcupacaoMaxima(4);
         quarto4.setRefeicao(false);
-        quarto4.setNumeroCama(1);
         quarto4.setNumeroQuarto(4);
         quarto4.setHotelId(1);
         quartoServico.cadastrar(quarto4);
 
-        Hospede hospede1 = new Hospede();
-        hospede1.setNome("Maria Luiza da Silva Campos");
-        hospede1.setEmail("marialuiza@gmail.com");
-        hospede1.setSenha("12345");
-
+        Hospede hospedeTeste = new Hospede();
+        hospedeTeste.setNome("Maria Luiza da Silva Campos");
+        hospedeTeste.setEmail("marialuiza@gmail.com");
+        hospedeTeste.setSenha("12345");
         HospedeServico hospedeServico = new HospedeServico();
-        hospedeServico.salvar(hospede1);
+        hospedeServico.salvar(hospedeTeste);
 
         Scanner scanner = new Scanner(System.in);
         boolean voltar = false;
         boolean continuar = true;
         int entrada = -1;
-        System.out.printf(">> Seja bem-vindo(a) ao %s!\n", hotel.getNome());
+        System.out.printf(">> Seja bem-vindo(a) ao %s!\n\n", hotel.getNome());
         do{
             System.out.println("--   Menu Inicial   --");
             System.out.println("1 - Fazer uma reserva");
             System.out.println("2 - Cadastrar");
             System.out.println("3 - Entrar");
-            System.out.println("0 - Sair/Fechar");
+            System.out.println("0 - Sair/Fechar\n");
             System.out.println("Digite o número corresponde a opção escolhida:");
             try{
                 entrada = Integer.parseInt(scanner.next());
@@ -127,9 +124,10 @@ public class Main {
                     List<Quarto> quartos = quartoServico.listar();
                     System.out.println("Escolha um destes quartos:");
                     for (int i = 0; i < quartos.size(); i++){
-                        System.out.println("\n"+(i+1)+" - "+ quartos.get(i).getTipoQuarto());
+                        System.out.println("\n"+(i+1)+" - "+ quartos.get(i).getTipoQuarto().getDescricao());
                         System.out.println("    Cama(s): " + quartos.get(i).getDescricaoCama());
-                        System.out.println("    Tamanho do quarto: " + quartos.get(i).getMetrosQuadrados() + "m²");
+                        System.out.println("    Capacidade para: "+quartos.get(i).getOcupacaoMaxima()+" pessoa(s)");
+                        System.out.println("    Tamanho do quarto: " + quartos.get(i).getArea() + "m²");
                         System.out.printf("    Diária: R$%,3.2f\n", quartos.get(i).getDiaria());
                     }
                     do {

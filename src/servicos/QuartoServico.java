@@ -64,7 +64,7 @@ public class QuartoServico implements IQuartoServico {
         boolean retorno = false;
         for (Quarto q: quartos){
             if (q.getNumeroQuarto() == numeroQuarto){
-                retorno = q.isOcupado();
+                retorno = q.isOperante();
             }
         }
         return retorno;

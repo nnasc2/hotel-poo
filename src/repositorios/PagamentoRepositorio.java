@@ -14,17 +14,12 @@ public class PagamentoRepositorio implements IRepositorioGenerico<Pagamento> {
     public static PagamentoRepositorio getInstance() {
         if (instance == null)
             instance = new PagamentoRepositorio();
-
         return instance;
     }
 
-
-
     @Override
     public boolean salvar(Pagamento pagamento) {
-        //adicionando usuario a lista, tratamento de exceção utilizado foi o try/catch.//
         try {
-
             listaPagamentos.add(pagamento);
         } catch (Exception ex) {
             System.out.println (">>>Error:"+ Pagamento.class.getName() + "messager_error:" + ex.getMessage());
@@ -35,10 +30,11 @@ public class PagamentoRepositorio implements IRepositorioGenerico<Pagamento> {
 
     @Override
     public boolean alterar(int idPagamentos, Pagamento pagamento) {
-        try{ if ( listaPagamentos.contains(idPagamentos)){
+        try{
+            if (listaPagamentos.contains(idPagamentos)) {
             listaPagamentos.set(idPagamentos, pagamento);
             return true;
-        }
+            }
         }
         catch (Exception ex){
             System.out.println (">>>Error:"+ Pagamento.class.getName() + "messager_error:" + ex.getMessage());
