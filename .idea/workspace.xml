@@ -9,7 +9,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/repositorios/PagamentoRepositorio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositorios/PagamentoRepositorio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/servicos/PagamentoServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servicos/PagamentoServico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/servicos/P beforeDir="false" afterPagamentoServico.java"ath="$PROJECT_DIR$/src/servicos/PagamentoServico.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/util/ConnectionSingleton.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/util/Fila.java" beforeDir="false" />
     </list>
