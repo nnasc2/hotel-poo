@@ -11,7 +11,6 @@ public class FuncionarioRepositorio implements IRepositorioGenerico<Funcionario>
 
     @Override
     public boolean salvar(Funcionario funcionario) {
-        //adicionando usuario a lista, tratamento de exceção utilizado foi o try/catch.//
         try {
             listaFuncionarios.add(funcionario);
         } catch (Exception ex) {
