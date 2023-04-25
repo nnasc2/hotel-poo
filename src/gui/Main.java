@@ -9,6 +9,7 @@ import servicos.HotelServico;
 import servicos.QuartoServico;
 import servicos.ReservaServico;
 
+import java.sql.SQLException;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,13 +17,12 @@ import java.util.Scanner;
 import java.time.LocalDate;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
         HotelServico hotelServico = new HotelServico();
         QuartoServico quartoServico = new QuartoServico();
 
         Hotel hotel = new Hotel();
-        hotel.setId(1);
         hotel.setNome("Roland Hotel");
         hotel.setDescricao("");
         hotel.setClassificacao(ClassificacaoEnum.QUATRO_ESTRELAS);
@@ -36,7 +36,6 @@ public class Main {
         hotelServico.cadastrar(hotel);
 
         Quarto quarto1 = new Quarto();
-        quarto1.setId(1);
         quarto1.setTipoQuarto(QuartoEnum.INDIVIDUAL);
         quarto1.setDescricaoCama("Uma cama de solteiro");
         quarto1.setArea(20);
@@ -49,7 +48,6 @@ public class Main {
         quartoServico.cadastrar(quarto1);
 
         Quarto quarto2 = new Quarto();
-        quarto2.setId(2);
         quarto2.setTipoQuarto(QuartoEnum.DUPLO);
         quarto2.setDescricaoCama("Uma cama de casal");
         quarto2.setArea(30);
@@ -62,7 +60,6 @@ public class Main {
         quartoServico.cadastrar(quarto2);
 
         Quarto quarto3 = new Quarto();
-        quarto3.setId(3);
         quarto3.setTipoQuarto(QuartoEnum.TRIPLO);
         quarto3.setDescricaoCama("Uma cama de casal e uma cama de solteiro");
         quarto3.setArea(40);
@@ -75,7 +72,6 @@ public class Main {
         quartoServico.cadastrar(quarto3);
 
         Quarto quarto4 = new Quarto();
-        quarto4.setId(4);
         quarto4.setTipoQuarto(QuartoEnum.QUADRUPLO);
         quarto4.setDescricaoCama("Uma cama de casal e duas de solteiro");
         quarto4.setArea(60);

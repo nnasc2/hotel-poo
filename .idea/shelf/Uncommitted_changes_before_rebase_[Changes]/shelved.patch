@@ -1,0 +1,347 @@
+Index: src/repositorios/PagamentoRepositorio.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package repositorios;\r\n\r\nimport entidades.Pagamento;\r\nimport interfaces.repositorio.IRepositorioGenerico;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class PagamentoRepositorio implements IRepositorioGenerico<Pagamento> {\r\n\r\n    private static PagamentoRepositorio instance;\r\n    List<Pagamento> listaPagamentos = new ArrayList<>();\r\n\r\n    public static PagamentoRepositorio getInstance() {\r\n        if (instance == null)\r\n            instance = new PagamentoRepositorio();\r\n        return instance;\r\n    }\r\n\r\n    @Override\r\n    public boolean salvar(Pagamento pagamento) {\r\n        try {\r\n            listaPagamentos.add(pagamento);\r\n        } catch (Exception ex) {\r\n            System.out.println (\">>>Error:\"+ Pagamento.class.getName() + \"messager_error:\" + ex.getMessage());\r\n            ex.printStackTrace();\r\n        }\r\n        return true;\r\n    }\r\n\r\n    @Override\r\n    public boolean alterar(int idPagamentos, Pagamento pagamento) {\r\n        try{\r\n            if (listaPagamentos.contains(idPagamentos)) {\r\n            listaPagamentos.set(idPagamentos, pagamento);\r\n            return true;\r\n            }\r\n        }\r\n        catch (Exception ex){\r\n            System.out.println (\">>>Error:\"+ Pagamento.class.getName() + \"messager_error:\" + ex.getMessage());\r\n            ex.printStackTrace();\r\n        }\r\n        return false;\r\n    }\r\n\r\n\r\n    @Override\r\n    public boolean deletarPorId(long idPagamentos) {\r\n        try {\r\n            if (listaPagamentos.contains(idPagamentos)) {\r\n                listaPagamentos.remove(idPagamentos);\r\n                return true;\r\n            }\r\n        } catch (Exception ex){\r\n            System.out.println (\">>>Error:\"+ Pagamento.class.getName() + \"messager_error:\" + ex.getMessage());\r\n            ex.printStackTrace();\r\n        }\r\n        return false;\r\n    }\r\n\r\n    @Override\r\n    public List<Pagamento> listar() {\r\n        try{\r\n            return this.listaPagamentos;\r\n        } catch(Exception ex){\r\n            System.out.println (\">>>Error:\"+ Pagamento.class.getName() + \"messager_error:\" + ex.getMessage());\r\n            ex.printStackTrace();\r\n            return new ArrayList<Pagamento>();\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/repositorios/PagamentoRepositorio.java b/src/repositorios/PagamentoRepositorio.java
+--- a/src/repositorios/PagamentoRepositorio.java	(revision cd40d39acce633ea13b7c34d6c4fb2a62766ad77)
++++ b/src/repositorios/PagamentoRepositorio.java	(date 1682425306613)
+@@ -35,8 +35,7 @@
+             listaPagamentos.set(idPagamentos, pagamento);
+             return true;
+             }
+-        }
+-        catch (Exception ex){
++        } catch (Exception ex){
+             System.out.println (">>>Error:"+ Pagamento.class.getName() + "messager_error:" + ex.getMessage());
+             ex.printStackTrace();
+         }
+Index: src/gui/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package gui;\r\n\r\nimport entidades.*;\r\nimport enums.ClassificacaoEnum;\r\nimport enums.QuartoEnum;\r\nimport repositorios.HospedeRepositorio;\r\nimport servicos.HospedeServico;\r\nimport servicos.HotelServico;\r\nimport servicos.QuartoServico;\r\nimport servicos.ReservaServico;\r\n\r\nimport java.time.temporal.ChronoUnit;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\nimport java.util.Scanner;\r\nimport java.time.LocalDate;\r\n\r\npublic class Main {\r\n    public static void main(String[] args) {\r\n\r\n        HotelServico hotelServico = new HotelServico();\r\n        QuartoServico quartoServico = new QuartoServico();\r\n\r\n        Hotel hotel = new Hotel();\r\n        hotel.setId(1);\r\n        hotel.setNome(\"Roland Hotel\");\r\n        hotel.setDescricao(\"\");\r\n        hotel.setClassificacao(ClassificacaoEnum.QUATRO_ESTRELAS);\r\n        hotel.setEstado(\"Pernambuco\");\r\n        hotel.setCidade(\"Ipojuca\");\r\n        hotel.setRua(\"João Joaquim\");\r\n        hotel.setBairro(\"Porto de Galinhas\");\r\n        hotel.setComplemento(\"\");\r\n        hotel.setNumero(\"290\");\r\n        hotel.setCnpj(\"23.455.121/0001-66\");\r\n        hotelServico.cadastrar(hotel);\r\n\r\n        Quarto quarto1 = new Quarto();\r\n        quarto1.setId(1);\r\n        quarto1.setTipoQuarto(QuartoEnum.INDIVIDUAL);\r\n        quarto1.setDescricaoCama(\"Uma cama de solteiro\");\r\n        quarto1.setArea(20);\r\n        quarto1.setDiaria(130);\r\n        quarto1.setOperante(true);\r\n        quarto1.setOcupacaoMaxima(1);\r\n        quarto1.setRefeicao(false);\r\n        quarto1.setNumeroQuarto(1);\r\n        quarto1.setHotelId(1);\r\n        quartoServico.cadastrar(quarto1);\r\n\r\n        Quarto quarto2 = new Quarto();\r\n        quarto2.setId(2);\r\n        quarto2.setTipoQuarto(QuartoEnum.DUPLO);\r\n        quarto2.setDescricaoCama(\"Uma cama de casal\");\r\n        quarto2.setArea(30);\r\n        quarto2.setDiaria(230);\r\n        quarto2.setOperante(true);\r\n        quarto2.setOcupacaoMaxima(2);\r\n        quarto2.setRefeicao(false);\r\n        quarto2.setNumeroQuarto(2);\r\n        quarto2.setHotelId(1);\r\n        quartoServico.cadastrar(quarto2);\r\n\r\n        Quarto quarto3 = new Quarto();\r\n        quarto3.setId(3);\r\n        quarto3.setTipoQuarto(QuartoEnum.TRIPLO);\r\n        quarto3.setDescricaoCama(\"Uma cama de casal e uma cama de solteiro\");\r\n        quarto3.setArea(40);\r\n        quarto3.setDiaria(330);\r\n        quarto3.setOperante(true);\r\n        quarto3.setOcupacaoMaxima(3);\r\n        quarto3.setRefeicao(false);\r\n        quarto3.setNumeroQuarto(3);\r\n        quarto3.setHotelId(1);\r\n        quartoServico.cadastrar(quarto3);\r\n\r\n        Quarto quarto4 = new Quarto();\r\n        quarto4.setId(4);\r\n        quarto4.setTipoQuarto(QuartoEnum.QUADRUPLO);\r\n        quarto4.setDescricaoCama(\"Uma cama de casal e duas de solteiro\");\r\n        quarto4.setArea(60);\r\n        quarto4.setDiaria(500);\r\n        quarto4.setOperante(true);\r\n        quarto4.setOcupacaoMaxima(4);\r\n        quarto4.setRefeicao(false);\r\n        quarto4.setNumeroQuarto(4);\r\n        quarto4.setHotelId(1);\r\n        quartoServico.cadastrar(quarto4);\r\n\r\n        Hospede hospedeTeste = new Hospede();\r\n        hospedeTeste.setNome(\"Maria Luiza da Silva Campos\");\r\n        hospedeTeste.setEmail(\"marialuiza@gmail.com\");\r\n        hospedeTeste.setSenha(\"12345\");\r\n        HospedeServico hospedeServico = new HospedeServico();\r\n        hospedeServico.salvar(hospedeTeste);\r\n\r\n        Scanner scanner = new Scanner(System.in);\r\n        boolean voltar = false;\r\n        boolean continuar = true;\r\n        int entrada = -1;\r\n        System.out.printf(\">> Seja bem-vindo(a) ao %s!\\n\\n\", hotel.getNome());\r\n        do{\r\n            System.out.println(\"--   Menu Inicial   --\");\r\n            System.out.println(\"1 - Fazer uma reserva\");\r\n            System.out.println(\"2 - Cadastrar\");\r\n            System.out.println(\"3 - Entrar\");\r\n            System.out.println(\"0 - Sair/Fechar\\n\");\r\n            System.out.println(\"Digite o número corresponde a opção escolhida:\");\r\n            try{\r\n                entrada = Integer.parseInt(scanner.next());\r\n            } catch(Exception ex) {\r\n                entrada = -1;\r\n            }\r\n\r\n            switch(entrada){\r\n                case 0:\r\n                    continuar = false;\r\n                    break;\r\n\r\n                case 1:\r\n                    Reserva reserva = new Reserva();\r\n                    Scanner scann = new Scanner(System.in);\r\n                    int numero = -1;\r\n                    List<Quarto> quartos = quartoServico.listar();\r\n                    System.out.println(\"Escolha um destes quartos:\");\r\n                    for (int i = 0; i < quartos.size(); i++){\r\n                        System.out.println(\"\\n\"+(i+1)+\" - \"+ quartos.get(i).getTipoQuarto().getDescricao());\r\n                        System.out.println(\"    Cama(s): \" + quartos.get(i).getDescricaoCama());\r\n                        System.out.println(\"    Capacidade para: \"+quartos.get(i).getOcupacaoMaxima()+\" pessoa(s)\");\r\n                        System.out.println(\"    Tamanho do quarto: \" + quartos.get(i).getArea() + \"m²\");\r\n                        System.out.printf(\"    Diária: R$%,3.2f\\n\", quartos.get(i).getDiaria());\r\n                    }\r\n                    do {\r\n                        System.out.println(\"\\nDigite o número correspondente ao quarto escolhido:\");\r\n                        try{\r\n                            numero = Integer.parseInt(scanner.next());\r\n                            if(numero < 1 || numero > quartos.size()){\r\n                                System.out.println(\">> Opção inválida! Tente novamente\");\r\n                                voltar = true;\r\n                            } else {\r\n                                voltar = false;\r\n                            }\r\n                        } catch (Exception ex){\r\n                            System.out.println(\">> Entrada inválida! Tente novamente\");\r\n                            voltar = true;\r\n                        }\r\n                    } while (voltar);\r\n                    numero = numero - 1;\r\n                    reserva.setNumQuarto(quartos.get(numero).getNumeroQuarto());\r\n\r\n                    System.out.println(\"Escolha a data de entrada (check-in):\");\r\n                    System.out.println(\"Digite o dia:\");\r\n                    int diaInicio = Integer.parseInt(scanner.next());\r\n                    System.out.println(\"Digite o mês:\");\r\n                    int mesInicio = Integer.parseInt(scanner.next());\r\n                    System.out.println(\"Digite o ano:\");\r\n                    int anoInicio = Integer.parseInt(scanner.next());\r\n                    reserva.setDataInicio(LocalDate.of(anoInicio, mesInicio, diaInicio));\r\n\r\n                    System.out.println(\"Escolha a data de saída (check-out):\");\r\n                    System.out.println(\"Digite o dia:\");\r\n                    int diaFim = Integer.parseInt(scanner.next());\r\n                    System.out.println(\"Digite o mês:\");\r\n                    int mesFim = Integer.parseInt(scanner.next());\r\n                    System.out.println(\"Digite o ano:\");\r\n                    int anoFim = Integer.parseInt(scanner.next());\r\n                    reserva.setDataFim(LocalDate.of(anoFim, mesFim, diaFim));\r\n\r\n                    System.out.println(\"Confira e confirme sua reserva:\\n\");\r\n                    System.out.println(quartoServico.listar(reserva.getNumQuarto()).getTipoQuarto());\r\n                    System.out.printf(\"Diária: R$%,3.2f\\n\", quartoServico.listar(reserva.getNumQuarto()).getDiaria());\r\n                    System.out.println(\"Data de entrada (check-in): \" + reserva.getDataInicio());\r\n                    System.out.println(\"Data de saída (check-out): \" + reserva.getDataFim());\r\n                    int numeroDias = (int) ChronoUnit.DAYS.between(reserva.getDataInicio(), reserva.getDataFim());\r\n                    System.out.printf(\"Dias de estadia: %s\\n\", numeroDias);\r\n                    float diaria = (float) quartoServico.listar(reserva.getNumQuarto()).getDiaria();\r\n                    reserva.setValor(numeroDias * diaria);\r\n                    System.out.printf(\"Valor: R$%,3.2f\\n\", reserva.getValor());\r\n                    do {\r\n                        System.out.println(\"\\nConfirmar reserva?\\n1 - Sim\\n0 - Não\");\r\n                        try{\r\n                            numero = Integer.parseInt(scanner.next());\r\n                            if(numero < 0 || numero > 1){\r\n                                System.out.println(\">> Opção inválida! Tente novamente\\n\");\r\n                                voltar = true;\r\n                            } else {\r\n                                voltar = false;\r\n                            }\r\n                        } catch (Exception ex){\r\n                            System.out.println(\">> Entrada inválida! Tente novamente\\n\");\r\n                            voltar = true;\r\n                        }\r\n                    } while (voltar);\r\n\r\n                    if (numero == 1){\r\n\r\n                        System.out.println(\"Escolha a forma de pagamento:\");\r\n                        System.out.println(\"1 - À vista\");\r\n                        System.out.println(\"2 - Débito\");\r\n                        System.out.println(\"3 - Crédito (sem juros)\");\r\n                        numero = Integer.parseInt(scanner.next());\r\n                        switch (numero){\r\n                            case 1:\r\n                                System.out.printf(\"O pagamento de R$%,3.2f deve ser realizado em até 7 dias!\\n\",\r\n                                        reserva.getValor());\r\n                                break;\r\n                            case 2:\r\n                                System.out.println(\"Digite o número do cartão de débito:\");\r\n                                String numeroCartao = scann.next();\r\n                                System.out.println(\"Digite o nome do titular:\");\r\n                                String nomeTitular = scann.next();\r\n                                System.out.println(\"Digite a data de vencimento no formato dia/mes/ano:\");\r\n                                String dataVencimentoCartao = scann.next();\r\n                                System.out.println(\">> Pagamento realizado com sucesso!\");\r\n                                break;\r\n                            case 3:\r\n                                System.out.println(\"Digite o número do cartão de crédito:\");\r\n                                numeroCartao = scann.next();\r\n                                System.out.println(\"Digite o nome do titular:\");\r\n                                nomeTitular = scann.next();\r\n                                String aux = scann.nextLine();\r\n                                System.out.println(\"Digite a data de vencimento no formato dia/mes/ano:\");\r\n                                dataVencimentoCartao = scann.next();\r\n                                int numeroParcelas = 0;\r\n                                do{\r\n                                    System.out.println(\"Digite o número de parcelas (máximo de 6x):\");\r\n                                    try{\r\n                                        numeroParcelas = Integer.parseInt(scann.next());\r\n                                        if (numeroParcelas >= 1 && numeroParcelas <= 6){\r\n                                            voltar = false;\r\n                                        } else {\r\n                                            String mensagem = \">> Número inválido de parcelas! Tente novamente\";\r\n                                            if(numeroParcelas > 6){\r\n                                                mensagem = \">> Número máximo de parcelas ultrapassado! Tente novamente.\";\r\n                                            }\r\n                                            System.out.println(mensagem);\r\n                                            voltar = true;\r\n                                        }\r\n                                    } catch (Exception e) {\r\n                                        System.out.println(\">> Opção inválida! Tente novamente.\");\r\n                                        voltar = true;\r\n                                    }\r\n                                } while (voltar);\r\n\r\n                                System.out.printf(\"Você pagará %s parcelas de R$%,3.2f\\n\", numeroParcelas, reserva.getValor()/numeroParcelas);\r\n                                System.out.println(\"Confirmar pagamento?\\n1 - sim\\n0 - Não \");\r\n                                numero = scann.nextInt();\r\n                                if(numero == 1)\r\n                                    System.out.println(\">> Pagamento realizado com sucesso!\");\r\n                                else\r\n                                    System.out.println(\">> Pagamento e reserva cancelados!\");\r\n                                break;\r\n                        }\r\n                        ReservaServico reservaServico = new ReservaServico();\r\n                        reservaServico.cadastrar(reserva);\r\n                        System.out.println(\">> Reserva realizada com sucesso!\\n\");\r\n                    } else if (numero == 0) {\r\n                        System.out.println(\">> Reserva cancelada!\\n\");\r\n                    }\r\n\r\n                    break;\r\n\r\n                case 2:\r\n                    scann = new Scanner(System.in);\r\n                    Hospede hospede = new Hospede();\r\n                    System.out.println(\"Digite seu nome completo:\");\r\n                    String nome = scann.nextLine();\r\n                    hospede.setNome(nome);\r\n                    System.out.println(\"Digite seu CPF:\");\r\n                    String cpf = scann.next();\r\n                    hospede.setCpf(cpf);\r\n                    System.out.println(\"Digite seu email:\");\r\n                    String email = scann.next();\r\n                    hospede.setEmail(email);\r\n                    System.out.println(\"Digite sua senha:\");\r\n                    String senha = scann.nextLine();\r\n                    hospede.setSenha(senha);\r\n                    hospedeServico.salvar(hospede);\r\n                    System.out.println(\">> Cadastro realizado com sucesso! \");\r\n                    break;\r\n\r\n                case 3:\r\n                    scann = new Scanner(System.in);\r\n                    boolean conectado = false;\r\n                    boolean encontrado = false;\r\n                    int index = 0;\r\n                    List<Hospede> hospedes = new ArrayList<>(HospedeRepositorio.getInstance().listar());\r\n                    System.out.println(\"--   Entrada   --\");\r\n                    for(int i = 0; i < 3 && !encontrado; i++) {\r\n                        System.out.println(\"Digite seu e-mail:\");\r\n                        email = scann.next();\r\n\r\n                        for (int j = 0; j < hospedes.size(); j++) {\r\n                            if (hospedes.get(j).getEmail().equals(email)) {\r\n                                encontrado = true;\r\n                                index = j;\r\n                                break;\r\n                            }\r\n                        }\r\n\r\n                        if (!encontrado && i < 2){\r\n                            System.out.println(\">> Seu email não foi encontrado! Tente novamente.\\n\");\r\n                        } else if (!encontrado && i < 3){\r\n                            System.out.println(\">> Número de tentativas esgotado! Tente novamente mais tarde ou cadastre-se.\\n\");\r\n                        }\r\n                    }\r\n\r\n                    for (int i = 0; i < 3 && encontrado; i++) {\r\n                        System.out.println(\"Digite sua senha:\");\r\n                        senha = scann.next();\r\n                        if(hospedes.get(index).getSenha().equals(senha)){\r\n                            conectado = true;\r\n                            break;\r\n                        }\r\n\r\n                        if (!conectado && i < 2){\r\n                            System.out.println(\">> Senha incorreta! Tente novamente.\\n\");\r\n                        } else if (!conectado && i < 3){\r\n                            System.out.println(\">> Número de tentativas esgotado! Tente novamente mais tarde.\\n\");\r\n                        }\r\n                    }\r\n\r\n                    if (encontrado && conectado){\r\n                        String[] nomeSplit = hospedes.get(index).getNome().split(\" \");\r\n                        System.out.println(\">> Bem-vindo(a), \"+nomeSplit[0]+\" \"+nomeSplit[nomeSplit.length - 1]+\"!\\n\");\r\n                    }\r\n                    break;\r\n\r\n                default:\r\n                    System.out.println(\">> Opção digitada é inválida, tente novamente!\");\r\n            }\r\n\r\n        } while(continuar);\r\n\r\n        System.out.println(\">> Volte sempre!\");\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/gui/Main.java b/src/gui/Main.java
+--- a/src/gui/Main.java	(revision cd40d39acce633ea13b7c34d6c4fb2a62766ad77)
++++ b/src/gui/Main.java	(date 1682425306629)
+@@ -9,6 +9,7 @@
+ import servicos.QuartoServico;
+ import servicos.ReservaServico;
+ 
++import java.sql.SQLException;
+ import java.time.temporal.ChronoUnit;
+ import java.util.ArrayList;
+ import java.util.List;
+@@ -16,13 +17,12 @@
+ import java.time.LocalDate;
+ 
+ public class Main {
+-    public static void main(String[] args) {
++    public static void main(String[] args) throws SQLException {
+ 
+         HotelServico hotelServico = new HotelServico();
+         QuartoServico quartoServico = new QuartoServico();
+ 
+         Hotel hotel = new Hotel();
+-        hotel.setId(1);
+         hotel.setNome("Roland Hotel");
+         hotel.setDescricao("");
+         hotel.setClassificacao(ClassificacaoEnum.QUATRO_ESTRELAS);
+@@ -36,7 +36,6 @@
+         hotelServico.cadastrar(hotel);
+ 
+         Quarto quarto1 = new Quarto();
+-        quarto1.setId(1);
+         quarto1.setTipoQuarto(QuartoEnum.INDIVIDUAL);
+         quarto1.setDescricaoCama("Uma cama de solteiro");
+         quarto1.setArea(20);
+@@ -49,7 +48,6 @@
+         quartoServico.cadastrar(quarto1);
+ 
+         Quarto quarto2 = new Quarto();
+-        quarto2.setId(2);
+         quarto2.setTipoQuarto(QuartoEnum.DUPLO);
+         quarto2.setDescricaoCama("Uma cama de casal");
+         quarto2.setArea(30);
+@@ -62,7 +60,6 @@
+         quartoServico.cadastrar(quarto2);
+ 
+         Quarto quarto3 = new Quarto();
+-        quarto3.setId(3);
+         quarto3.setTipoQuarto(QuartoEnum.TRIPLO);
+         quarto3.setDescricaoCama("Uma cama de casal e uma cama de solteiro");
+         quarto3.setArea(40);
+@@ -75,7 +72,6 @@
+         quartoServico.cadastrar(quarto3);
+ 
+         Quarto quarto4 = new Quarto();
+-        quarto4.setId(4);
+         quarto4.setTipoQuarto(QuartoEnum.QUADRUPLO);
+         quarto4.setDescricaoCama("Uma cama de casal e duas de solteiro");
+         quarto4.setArea(60);
+Index: src/servicos/PagamentoServico.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package servicos;\r\n\r\nimport entidades.Pagamento;\r\nimport enums.PagamentoEnum;\r\nimport interfaces.servico.IBasicoServico;\r\nimport repositorios.PagamentoRepositorio;\r\n\r\nimport java.util.Date;\r\nimport java.util.List;\r\n\r\npublic class PagamentoServico implements IBasicoServico<Pagamento> {\r\n\r\n    public void sslvar(long id, PagamentoEnum formaPagamento,\r\n                       String nomeResposavelChekin, double valor, String status, Date dataVencimento){\r\n        try {\r\n            Pagamento novoPagamento = new Pagamento();\r\n            novoPagamento.setFormaPagamento(formaPagamento);\r\n            novoPagamento.setValor(valor);\r\n            novoPagamento.setStatus(status);\r\n            novoPagamento.setNomeResponsavelChekin(nomeResposavelChekin);\r\n\r\n            PagamentoRepositorio.getInstance().salvar(novoPagamento);\r\n        }catch (Exception e){\r\n            System.out.println(\"Error:\"+e.getMessage());\r\n        }\r\n\r\n    }\r\n\r\n    @Override\r\n    public void salvar(Pagamento pagamento) {\r\n        PagamentoRepositorio.getInstance().salvar(pagamento);\r\n    }\r\n\r\n    @Override\r\n    public void alterar(int id, Pagamento pagamento) {\r\n        PagamentoRepositorio.getInstance().alterar(id, pagamento);\r\n    }\r\n\r\n    @Override\r\n    public void deletarPorId(long id) {\r\n        System.out.print(\"\");\r\n    }\r\n\r\n    @Override\r\n    public List<Pagamento> listar() {\r\n        return null;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/servicos/PagamentoServico.java b/src/servicos/PagamentoServico.java
+--- a/src/servicos/PagamentoServico.java	(revision cd40d39acce633ea13b7c34d6c4fb2a62766ad77)
++++ b/src/servicos/PagamentoServico.java	(date 1682425306629)
+@@ -5,12 +5,13 @@
+ import interfaces.servico.IBasicoServico;
+ import repositorios.PagamentoRepositorio;
+ 
++import java.util.ArrayList;
+ import java.util.Date;
+ import java.util.List;
+ 
+ public class PagamentoServico implements IBasicoServico<Pagamento> {
+ 
+-    public void sslvar(long id, PagamentoEnum formaPagamento,
++    public void salvar(long id, PagamentoEnum formaPagamento,
+                        String nomeResposavelChekin, double valor, String status, Date dataVencimento){
+         try {
+             Pagamento novoPagamento = new Pagamento();
+@@ -20,7 +21,7 @@
+             novoPagamento.setNomeResponsavelChekin(nomeResposavelChekin);
+ 
+             PagamentoRepositorio.getInstance().salvar(novoPagamento);
+-        }catch (Exception e){
++        } catch (Exception e){
+             System.out.println("Error:"+e.getMessage());
+         }
+ 
+@@ -28,21 +29,38 @@
+ 
+     @Override
+     public void salvar(Pagamento pagamento) {
+-        PagamentoRepositorio.getInstance().salvar(pagamento);
++        try {
++            PagamentoRepositorio.getInstance().salvar(pagamento);
++        } catch (Exception e){
++        System.out.println("Error:"+e.getMessage());
++        }
+     }
+ 
+     @Override
+     public void alterar(int id, Pagamento pagamento) {
+-        PagamentoRepositorio.getInstance().alterar(id, pagamento);
++        try {
++            PagamentoRepositorio.getInstance().alterar(id, pagamento);
++        } catch (Exception e){
++            System.out.println("Error:"+e.getMessage());
++        }
+     }
+ 
+     @Override
+     public void deletarPorId(long id) {
+-        System.out.print("");
++        try {
++            PagamentoRepositorio.getInstance().deletarPorId(id);
++        } catch (Exception e){
++            System.out.println("Error:"+e.getMessage());
++        }
+     }
+ 
+     @Override
+     public List<Pagamento> listar() {
++        try {
++            return PagamentoRepositorio.getInstance().listar();
++        } catch (Exception e){
++            System.out.println("Error:"+e.getMessage());
++        }
+         return null;
+     }
+ }
+Index: src/util/ConnectionSingleton.java
+===================================================================
+diff --git a/src/util/ConnectionSingleton.java b/src/util/ConnectionSingleton.java
+deleted file mode 100644
+--- a/src/util/ConnectionSingleton.java	(revision cd40d39acce633ea13b7c34d6c4fb2a62766ad77)
++++ /dev/null	(revision cd40d39acce633ea13b7c34d6c4fb2a62766ad77)
+@@ -1,29 +0,0 @@
+-package util;
+-
+-import java.nio.channels.ScatteringByteChannel;
+-import java.sql.Connection;
+-import java.sql.DriverManager;
+-import java.sql.SQLException;
+-
+-public class ConnectionSingleton {
+-    private static ConnectionSingleton instance;
+-    private Connection conexao = null;
+-
+-    private ConnectionSingleton() throws SQLException{
+-        String url = "jdbc:mysql://localhost:3306/holandhotel?useTimezone=true&serverTimezone=UTC";
+-        String user = "root";
+-        String password = "root";
+-
+-        this.conexao = DriverManager.getConnection(url, user, password);
+-    }
+-
+-    public ConnectionSingleton getInstance() throws SQLException {
+-        if(instance == null || instance.conexao.isClosed()){
+-            instance = new ConnectionSingleton();
+-            System.out.println(">> Conecção iniciada");
+-        } else {
+-            System.out.println(">> Conecção reestabelecida");
+-        }
+-        return instance;
+-    }
+-}
+Index: src/util/Fila.java
+===================================================================
+diff --git a/src/util/Fila.java b/src/util/Fila.java
+deleted file mode 100644
+--- a/src/util/Fila.java	(revision cd40d39acce633ea13b7c34d6c4fb2a62766ad77)
++++ /dev/null	(revision cd40d39acce633ea13b7c34d6c4fb2a62766ad77)
+@@ -1,66 +0,0 @@
+-package util;
+-
+-import java.util.ArrayList;
+-import java.util.List;
+-
+-public class Fila<T> {
+-
+-    private List<T> fila;
+-    private int f = 0;
+-    private int t = 0;
+-
+-    public Fila(int size){
+-        fila = new ArrayList<>();
+-        t = size;
+-    }
+-    public List<T> getFila() {
+-        return fila;
+-    }
+-
+-    public void insert(T element) {
+-        if(f == 0){
+-            int index = f;
+-            fila.set(index, element);
+-        }
+-        f++;
+-    }
+-
+-    public T remove() {
+-        if(!empty()) {
+-            for(int i = 0; i < f; i++) {
+-                T element = fila.get(0);
+-                if(i+1 < f) {
+-                    fila.set(i, fila.get(i+1));
+-                } else if(i+1 == t) {
+-                    fila.remove(i);
+-                }
+-                return element;
+-            }
+-        }
+-        return null;
+-    }
+-
+-    public boolean empty() {
+-        if(f == 0) {
+-            return true;
+-        }
+-        return false;
+-    }
+-
+-    public int size() {
+-        return f;
+-    }
+-
+-    public T front() {
+-        return fila.get(0);
+-    }
+-
+-}
+-
+-
+-
+-
+-
+-
+-
+-
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"02062ef5-18c3-4183-a284-0ae51051c0f8\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/src/interfaces/servico/IHotelServico.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/interfaces/servico/IHotelServico.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/servicos/HotelServico.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/servicos/HotelServico.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Enum\" />\r\n        <option value=\"Interface\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2HJNMKbSR0nH8lnvhC1hklBYGOL\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"git-widget-placeholder\": \"repositorios-mysql\",\r\n    \"ignore.virus.scanning.warn.message\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/mathe/Downloads/mysql-connector-j-8.0.32.jar\",\r\n    \"project.structure.last.edited\": \"Libraries\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.2\",\r\n    \"settings.editor.selected.configurable\": \"reference.settings.ide.settings.new.ui\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\mathe\\Documents\\GitHub\\hotel-poo\\src\\enums\" />\r\n      <recent name=\"C:\\Users\\mathe\\Documents\\GitHub\\hotel-poo\\src\\servicos\" />\r\n      <recent name=\"C:\\Users\\mathe\\Documents\\GitHub\\hotel-poo\\src\\repositorios\" />\r\n      <recent name=\"C:\\Users\\mathe\\Documents\\GitHub\\hotel-poo\\src\\interfaces\\servico\" />\r\n      <recent name=\"C:\\Users\\mathe\\Documents\\GitHub\\hotel-poo\\src\\interfaces\\repositorio\" />\r\n    </key>\r\n    <key name=\"MoveClassesOrPackagesDialog.RECENTS_KEY\">\r\n      <recent name=\"gui\" />\r\n      <recent name=\"util\" />\r\n      <recent name=\"interfaces.repositorio\" />\r\n    </key>\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"repositorios\" />\r\n      <recent name=\"servicos\" />\r\n      <recent name=\"entidades\" />\r\n      <recent name=\"interfaces.servico\" />\r\n      <recent name=\"interfaces.repositorio\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"gui.Main\" />\r\n      <module name=\"hotel-poo\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.Main\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"02062ef5-18c3-4183-a284-0ae51051c0f8\" name=\"Changes\" comment=\"\" />\r\n      <created>1667999178729</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1667999178729</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.History.Properties\">\r\n    <option name=\"COLUMN_ID_ORDER\">\r\n      <list>\r\n        <option value=\"Default.Root\" />\r\n        <option value=\"Default.Author\" />\r\n        <option value=\"Default.Date\" />\r\n        <option value=\"Default.Subject\" />\r\n        <option value=\"Space.CommitStatus\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision cd40d39acce633ea13b7c34d6c4fb2a62766ad77)
++++ b/.idea/workspace.xml	(date 1682424211130)
+@@ -5,8 +5,11 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="02062ef5-18c3-4183-a284-0ae51051c0f8" name="Changes" comment="">
+-      <change beforePath="$PROJECT_DIR$/src/interfaces/servico/IHotelServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/servico/IHotelServico.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/servicos/HotelServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servicos/HotelServico.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/gui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Main.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/servicos/PagamentoServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servicos/PagamentoServico.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/util/ConnectionSingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/ConnectionSingleton.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -39,20 +42,20 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "git-widget-placeholder": "repositorios-mysql",
+-    "ignore.virus.scanning.warn.message": "true",
+-    "last_opened_file_path": "C:/Users/mathe/Downloads/mysql-connector-j-8.0.32.jar",
+-    "project.structure.last.edited": "Libraries",
+-    "project.structure.proportion": "0.0",
+-    "project.structure.side.proportion": "0.2",
+-    "settings.editor.selected.configurable": "reference.settings.ide.settings.new.ui"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;repositorios-mysql&quot;,
++    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/mathe/Downloads/mysql-connector-j-8.0.32.jar&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="C:\Users\mathe\Documents\GitHub\hotel-poo\src\enums" />
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_17\" default=\"true\" project-jdk-name=\"openjdk-17\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision cd40d39acce633ea13b7c34d6c4fb2a62766ad77)
++++ b/.idea/misc.xml	(date 1682395817593)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="openjdk-17" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="openjdk-17" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file

@@ -5,12 +5,13 @@ import enums.PagamentoEnum;
 import interfaces.servico.IBasicoServico;
 import repositorios.PagamentoRepositorio;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class PagamentoServico implements IBasicoServico<Pagamento> {
 
-    public void sslvar(long id, PagamentoEnum formaPagamento,
+    public void salvar(long id, PagamentoEnum formaPagamento,
                        String nomeResposavelChekin, double valor, String status, Date dataVencimento){
         try {
             Pagamento novoPagamento = new Pagamento();
@@ -20,7 +21,7 @@ public class PagamentoServico implements IBasicoServico<Pagamento> {
             novoPagamento.setNomeResponsavelChekin(nomeResposavelChekin);
 
             PagamentoRepositorio.getInstance().salvar(novoPagamento);
-        }catch (Exception e){
+        } catch (Exception e){
             System.out.println("Error:"+e.getMessage());
         }
 
@@ -28,21 +29,38 @@ public class PagamentoServico implements IBasicoServico<Pagamento> {
 
     @Override
     public void salvar(Pagamento pagamento) {
-        PagamentoRepositorio.getInstance().salvar(pagamento);
+        try {
+            PagamentoRepositorio.getInstance().salvar(pagamento);
+        } catch (Exception e){
+        System.out.println("Error:"+e.getMessage());
+        }
     }
 
     @Override
     public void alterar(int id, Pagamento pagamento) {
-        PagamentoRepositorio.getInstance().alterar(id, pagamento);
+        try {
+            PagamentoRepositorio.getInstance().alterar(id, pagamento);
+        } catch (Exception e){
+            System.out.println("Error:"+e.getMessage());
+        }
     }
 
     @Override
     public void deletarPorId(long id) {
-        System.out.print("");
+        try {
+            PagamentoRepositorio.getInstance().deletarPorId(id);
+        } catch (Exception e){
+            System.out.println("Error:"+e.getMessage());
+        }
     }
 
     @Override
     public List<Pagamento> listar() {
+        try {
+            return PagamentoRepositorio.getInstance().listar();
+        } catch (Exception e){
+            System.out.println("Error:"+e.getMessage());
+        }
         return null;
     }
 }

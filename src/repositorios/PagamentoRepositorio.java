@@ -35,8 +35,7 @@ public class PagamentoRepositorio implements IRepositorioGenerico<Pagamento> {
             listaPagamentos.set(idPagamentos, pagamento);
             return true;
             }
-        }
-        catch (Exception ex){
+        } catch (Exception ex){
             System.out.println (">>>Error:"+ Pagamento.class.getName() + "messager_error:" + ex.getMessage());
             ex.printStackTrace();
         }

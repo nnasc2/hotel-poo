@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02062ef5-18c3-4183-a284-0ae51051c0f8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/interfaces/servico/IHotelServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/servico/IHotelServico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/servicos/HotelServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servicos/HotelServico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repositorios/PagamentoRepositorio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositorios/PagamentoRepositorio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/servicos/PagamentoServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servicos/PagamentoServico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/ConnectionSingleton.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/Fila.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,11 +49,11 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "repositorios-mysql",
+    "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/mathe/Downloads/mysql-connector-j-8.0.32.jar",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.settings.ide.settings.new.ui"
   }
