@@ -8,7 +8,7 @@ import java.util.List;
 public interface IHotelServico {
     void cadastrar(Hotel hotel);
     void cadastrar(String nome, String descricao, ClassificacaoEnum classificacaoEnum, String estado, String cidade,
-                   String rua, String bairro, String complemento, String numero, String cnpj);
+                   String rua, String bairro, String complemento, int numero, String cnpj);
     List<Hotel> listar();
     void alterar(long idHotel, Hotel hotel);
     void deletar(long idHotel);

@@ -11,7 +11,7 @@ public class Hotel {
     private String rua;
     private String bairro;
     private String complemento;
-    private String numero;
+    private int numero;
     private String cnpj;
 
     public long getId() {
@@ -86,11 +86,11 @@ public class Hotel {
         this.complemento = complemento;
     }
 
-    public String getNumero() {
+    public int getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
 

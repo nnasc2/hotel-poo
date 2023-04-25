@@ -21,7 +21,7 @@ public class HotelServico implements IHotelServico {
 
     @Override
     public void cadastrar(String nome, String descricao, ClassificacaoEnum classificacaoEnum, String estado, String cidade,
-                          String rua, String bairro, String complemento, String numero, String cnpj) {
+                          String rua, String bairro, String complemento, int numero, String cnpj) {
         try {
             Hotel novoHotel = new Hotel();
             novoHotel.setNome(nome);
