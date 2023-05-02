@@ -5,17 +5,18 @@ import interfaces.servico.IQuartoServico;
 import repositorios.QuartoRepositorio;
 import repositorios.ReservaRepositorio;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class QuartoServico implements IQuartoServico {
     @Override
-    public void cadastrar(Quarto quarto) {
+    public void cadastrar(Quarto quarto) throws SQLException {
         QuartoRepositorio.getInstance().salvar(quarto);
     }
 
     @Override
-    public List<Quarto> listar() {
+    public List<Quarto> listar() throws SQLException {
         List<Quarto> quartos = QuartoRepositorio.getInstance().listar();
         return quartos;
     }
@@ -50,7 +51,7 @@ public class QuartoServico implements IQuartoServico {
     }
 
     @Override
-    public void alterar(long idQuarto, Quarto quarto) {
+    public void alterar(long idQuarto, Quarto quarto) throws SQLException {
         QuartoRepositorio.getInstance().alterar(idQuarto, quarto);
     }
 

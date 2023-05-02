@@ -31,7 +31,7 @@ public class Main {
         hotel.setRua("João Joaquim");
         hotel.setBairro("Porto de Galinhas");
         hotel.setComplemento("");
-        hotel.setNumero("290");
+        hotel.setNumero(290);
         hotel.setCnpj("23.455.121/0001-66");
         hotelServico.cadastrar(hotel);
 
@@ -44,7 +44,7 @@ public class Main {
         quarto1.setOcupacaoMaxima(1);
         quarto1.setRefeicao(false);
         quarto1.setNumeroQuarto(1);
-        quarto1.setHotelId(1);
+        quarto1.setHotelId(hotel.getId());
         quartoServico.cadastrar(quarto1);
 
         Quarto quarto2 = new Quarto();
@@ -56,7 +56,7 @@ public class Main {
         quarto2.setOcupacaoMaxima(2);
         quarto2.setRefeicao(false);
         quarto2.setNumeroQuarto(2);
-        quarto2.setHotelId(1);
+        quarto2.setHotelId(hotel.getId());
         quartoServico.cadastrar(quarto2);
 
         Quarto quarto3 = new Quarto();
@@ -151,7 +151,7 @@ public class Main {
                     int mesInicio = Integer.parseInt(scanner.next());
                     System.out.println("Digite o ano:");
                     int anoInicio = Integer.parseInt(scanner.next());
-                    reserva.setDataInicio(LocalDate.of(anoInicio, mesInicio, diaInicio));
+                    //reserva.setDataInicio(LocalDate.of(anoInicio, mesInicio, diaInicio));
 
                     System.out.println("Escolha a data de saída (check-out):");
                     System.out.println("Digite o dia:");
@@ -160,17 +160,17 @@ public class Main {
                     int mesFim = Integer.parseInt(scanner.next());
                     System.out.println("Digite o ano:");
                     int anoFim = Integer.parseInt(scanner.next());
-                    reserva.setDataFim(LocalDate.of(anoFim, mesFim, diaFim));
+                    //reserva.setDataFim(LocalDate.of(anoFim, mesFim, diaFim));
 
                     System.out.println("Confira e confirme sua reserva:\n");
                     System.out.println(quartoServico.listar(reserva.getNumQuarto()).getTipoQuarto());
                     System.out.printf("Diária: R$%,3.2f\n", quartoServico.listar(reserva.getNumQuarto()).getDiaria());
                     System.out.println("Data de entrada (check-in): " + reserva.getDataInicio());
                     System.out.println("Data de saída (check-out): " + reserva.getDataFim());
-                    int numeroDias = (int) ChronoUnit.DAYS.between(reserva.getDataInicio(), reserva.getDataFim());
-                    System.out.printf("Dias de estadia: %s\n", numeroDias);
+                    //int numeroDias = (int) ChronoUnit.DAYS.between(reserva.getDataInicio(), reserva.getDataFim());
+                    //System.out.printf("Dias de estadia: %s\n", numeroDias);
                     float diaria = (float) quartoServico.listar(reserva.getNumQuarto()).getDiaria();
-                    reserva.setValor(numeroDias * diaria);
+                    //reserva.setValor(numeroDias * diaria);
                     System.out.printf("Valor: R$%,3.2f\n", reserva.getValor());
                     do {
                         System.out.println("\nConfirmar reserva?\n1 - Sim\n0 - Não");

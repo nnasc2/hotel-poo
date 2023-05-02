@@ -17,6 +17,17 @@ public enum ClassificacaoEnum {
         return this.descricao;
     }
 
+    public static ClassificacaoEnum intToClassificacaoEnum(int num){
+        return switch (num){
+            case 1 -> ClassificacaoEnum.UMA_ESTRELA;
+            case 2 -> ClassificacaoEnum.DUAS_ESTRELAS;
+            case 3 -> ClassificacaoEnum.TRES_ESTRELAS;
+            case 4 -> ClassificacaoEnum.QUATRO_ESTRELAS;
+            case 5 -> ClassificacaoEnum.CINCO_ESTRELAS;
+            default -> ClassificacaoEnum.UMA_ESTRELA;
+        };
+    }
+
     public int getValue(){
         return this.value;
     }

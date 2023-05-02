@@ -1,20 +1,21 @@
 package entidades;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class Reserva {
     private long id;
-    private LocalDate dataInicio;
-    private LocalDate dataFim;
-    private LocalDate dataCheckin;
-    private LocalDate dataCheckout;
+    private Date dataInicio;
+    private Date dataFim;
+    private Date dataCheckin;
+    private Date dataCheckout;
     private long idHotel;
     private long idHospede;
     private int numQuarto;
     private double valor;
 
     public Reserva(){}
-    public Reserva(long id, LocalDate dataInicio, LocalDate dataFim, long idHotel, long idHospede, int numQuarto, double valor){
+    public Reserva(long id, Date dataInicio, Date dataFim, long idHotel, long idHospede, int numQuarto, double valor){
         this.id = id;
         this.idHotel = idHotel;
         this.idHospede = idHospede;
@@ -23,19 +24,19 @@ public class Reserva {
         this.dataFim = dataFim;
         this.valor = valor;
     }
-    public LocalDate getDataCheckin() {
+    public Date getDataCheckin() {
         return dataCheckin;
     }
 
-    public void setDataCheckin(LocalDate dataCheckin) {
+    public void setDataCheckin(Date dataCheckin) {
         this.dataCheckin = dataCheckin;
     }
 
-    public LocalDate getDataCheckout() {
+    public Date getDataCheckout() {
         return dataCheckout;
     }
 
-    public void setDataCheckout(LocalDate dataCheckout) {
+    public void setDataCheckout(Date dataCheckout) {
         this.dataCheckout = dataCheckout;
     }
 
@@ -58,19 +59,19 @@ public class Reserva {
     public void setNumero(int numero) {
     }
 
-    public LocalDate getDataInicio() {
+    public Date getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(LocalDate dataInicio) {
+    public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public LocalDate getDataFim() {
+    public Date getDataFim() {
         return dataFim;
     }
 
-    public void setDataFim(LocalDate dataFim) {
+    public void setDataFim(Date dataFim) {
         this.dataFim = dataFim;
     }
 

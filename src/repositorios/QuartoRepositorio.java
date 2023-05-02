@@ -39,7 +39,7 @@ public class QuartoRepositorio implements IQuartoRepositorio {
     public boolean salvar(Quarto quarto) throws SQLException {
         try {
             String sql = ("INSERT INTO quarto (numero, tipo, area, diaria, operante, refeicao, desc_cama," +
-                    "ocup_maxima, andar, id hotel);");
+                    "ocup_maxima, andar, id hotel) values(?,?,?,?,?,?,?,?,?,?);");
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setInt(1, quarto.getNumeroQuarto());
             ps.setInt(2, quarto.getTipoQuarto().getIndex());
@@ -55,7 +55,8 @@ public class QuartoRepositorio implements IQuartoRepositorio {
             int retorno = ps.executeUpdate();
 
             if (retorno == 0) {
-                throw new SQLException("Não foi possível persistir Quarto");
+                System.out.println("Não foi possível persistir Quarto");
+                return false;
             }
 
         } catch (Exception e) {
@@ -81,15 +82,13 @@ public class QuartoRepositorio implements IQuartoRepositorio {
                 quarto.setNumeroQuarto(rs.getInt("num_quarto"));
                 quarto.setTipoQuarto(QuartoEnum.intToQuartoEnum(rs.getInt("tipo")));
                 quarto.setArea(rs.getInt("area"));
-                //diaria
                 quarto.setDiaria(rs.getDouble("diaria"));
-                //operante
                 quarto.setOperante(binaryToBoolean(rs.getInt("operante")));
-                //refeicao
-                //desc_cama
-                //ocup_maxima
-                //andar
-                //id_hotel
+                quarto.setRefeicao(binaryToBoolean(rs.getInt("refeição")));
+                quarto.setDescricaoCama(rs.getString("desc_cama"));
+                quarto.setOcupacaoMaxima(rs.getInt("ocup_maxima"));
+                quarto.setAndar(rs.getInt("andar"));
+                quarto.setHotelId(rs.getInt("id_hotel"));
 
                 quartos.add(quarto);
             }
@@ -98,28 +97,93 @@ public class QuartoRepositorio implements IQuartoRepositorio {
 
         } catch (Exception e) {
             System.out.println("Erro: "+e.getMessage());
-            throw new SQLException("");
+            throw new SQLException("Não foi possíveal listar Quartos");
+        }
+    }
+
+    public List<Quarto> listarOperantes()  throws SQLException{
+        try {
+            String sql = ("SELECT * FROM quarto WHERE operante=1;");
+            PreparedStatement ps = conexao.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            List<Quarto> quartos = new ArrayList<>();
+
+            while(rs.next()){
+                Quarto quarto = new Quarto();
+                quarto.setId(rs.getInt("id"));
+                quarto.setNumeroQuarto(rs.getInt("num_quarto"));
+                quarto.setTipoQuarto(QuartoEnum.intToQuartoEnum(rs.getInt("tipo")));
+                quarto.setArea(rs.getInt("area"));
+                quarto.setDiaria(rs.getDouble("diaria"));
+                quarto.setOperante(binaryToBoolean(rs.getInt("operante")));
+                quarto.setRefeicao(binaryToBoolean(rs.getInt("refeição")));
+                quarto.setDescricaoCama(rs.getString("desc_cama"));
+                quarto.setOcupacaoMaxima(rs.getInt("ocup_maxima"));
+                quarto.setAndar(rs.getInt("andar"));
+                quarto.setHotelId(rs.getInt("id_hotel"));
+
+                quartos.add(quarto);
+            }
+
+            return quartos;
+
+        } catch (Exception e) {
+            System.out.println("Erro: "+e.getMessage());
+            throw new SQLException("Não foi possível listar Quartos operantes");
         }
     }
 
     @Override
     public boolean alterar(long idQuarto, Quarto quarto)  throws SQLException{
-        for (int i = 0; i < quartos.size(); i++) {
-            if (quartos.get(i).getId() == idQuarto) {
-                quartos.set(i, quarto);
-                break;
+        try {
+            String sql = ("UPDATE quarto SET numero=?, tipo=?, area=?, diaria=?, operante=?, refeicao=?, desc_cama=?," +
+                    "ocup_maxima=?, andar=?, id_hotel=? WHERE id=?;");
+            PreparedStatement ps = conexao.prepareStatement(sql);
+            ps.setInt(1, quarto.getNumeroQuarto());
+            ps.setInt(2, quarto.getTipoQuarto().getIndex());
+            ps.setInt(3, quarto.getArea());
+            ps.setDouble(4, quarto.getDiaria());
+            ps.setInt(5, (quarto.isOperante() ? 1 : 0));
+            ps.setInt(6, (quarto.isRefeicao() ? 1 : 0));
+            ps.setString(7, quarto.getDescricaoCama());
+            ps.setInt(8, quarto.getOcupacaoMaxima());
+            ps.setInt(9, quarto.getAndar());
+            ps.setInt(10, (int) quarto.getHotelId());
+            ps.setInt(11, (int) quarto.getId());
+
+            int retorno = ps.executeUpdate();
+
+            if (retorno == 0) {
+                System.out.println("Não foi possível alterar Quarto");
+                return false;
             }
+
+        } catch (Exception e) {
+            System.out.println("Erro: "+e.getMessage());
+            throw new SQLException("Não foi possível alterar Quarto");
         }
         return true;
     }
 
     @Override
     public boolean deletar(long idQuarto)  throws SQLException{
-        for (int i = 0; i < quartos.size(); i++) {
-            if (quartos.get(i).getId() == idQuarto) {
-                quartos.remove(i);
-                break;
+        try {
+            String sql = ("DELETE FROM quarto WHERE id=?;");
+            PreparedStatement ps = conexao.prepareStatement(sql);
+            ps.setInt(1, (int) idQuarto);
+
+            boolean retorno = ps.execute(sql);
+
+            if (!retorno) {
+                System.out.println("Não foi possível deletar Quarto");
+                return false;
             }
+
+        } catch (Exception e) {
+            System.out.println("Erro: "+e.getMessage());
+            throw new SQLException("Não foi possível deletar Quarto");
         }
         return true;
     }
