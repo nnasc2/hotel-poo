@@ -2,13 +2,15 @@ package entidades;
 
 import enums.SexoEnum;
 
+import java.time.LocalDate;
+
 public class Funcionario extends Pessoa {
     private String cargo;
     private String senha;
     private String status;
 
     public Funcionario(){}
-    public Funcionario(long id, String nome, String dataNascimento, SexoEnum sexo, String cpf, int telefone, String cargo, String senha, String status){
+    public Funcionario(long id, String nome, LocalDate dataNascimento, SexoEnum sexo, String cpf, int telefone, String cargo, String senha, String status){
         super(id, nome, dataNascimento, sexo, cpf, telefone);
         this.cargo = cargo;
         this.senha = senha;

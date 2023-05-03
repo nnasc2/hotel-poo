@@ -1,15 +1,16 @@
 package entidades;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 import enums.PagamentoEnum;
 
 public class Pagamento {
     private long id;
     private PagamentoEnum formaPagamento;
-    private String nomeResponsavelChekin;
+    private long idHospede;
     private double valor;
     private String status;
-    private Date dataVencimento;
+    private LocalDate dataVencimento;
 
     public long getId() {
         return id;
@@ -27,12 +28,12 @@ public class Pagamento {
         this.formaPagamento = formaPagamento;
     }
 
-    public String getNomeResponsavelChekin() {
-        return nomeResponsavelChekin;
+    public long getIdHospede() {
+        return idHospede;
     }
 
-    public void setNomeResponsavelChekin(String nomeResponsavelChekin) {
-        this.nomeResponsavelChekin = nomeResponsavelChekin;
+    public void setIdHospede(long idHospede) {
+        this.idHospede = idHospede;
     }
 
     public double getValor() {
@@ -51,11 +52,11 @@ public class Pagamento {
         this.status = status;
     }
 
-    public Date getDataVencimento() {
+    public LocalDate getDataVencimento() {
         return dataVencimento;
     }
 
-    public void setDataVencimento(Date dataVencimento) {
+    public void setDataVencimento(LocalDate dataVencimento) {
         this.dataVencimento = dataVencimento;
     }
 }

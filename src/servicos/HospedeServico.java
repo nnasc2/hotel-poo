@@ -6,11 +6,12 @@ import enums.SexoEnum;
 import interfaces.servico.IBasicoServico;
 import repositorios.HospedeRepositorio;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HospedeServico implements IBasicoServico<Hospede> {
-    public void cadastrar(String nome, SexoEnum sexo, String dataNascimento, String cpf, long idHospede, String email, String senha, int telefone) {
+    public void cadastrar(String nome, SexoEnum sexo, LocalDate dataNascimento, String cpf, long idHospede, String email, String senha, int telefone) {
         try{
             Hospede novoHospede = new Hospede();
             novoHospede.setId(idHospede);

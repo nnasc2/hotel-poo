@@ -2,13 +2,15 @@ package entidades;
 
 import enums.SexoEnum;
 
+import java.time.LocalDate;
+
 public class Hospede extends Pessoa{
     private String email;
     private String senha;
 
     public Hospede(){}
 
-    public Hospede(long id, String nome, String dataNascimento, SexoEnum sexo, String cpf,
+    public Hospede(long id, String nome, LocalDate dataNascimento, SexoEnum sexo, String cpf,
                    String email, String senha, int telefone) {
         super(id, nome, dataNascimento, sexo, cpf, telefone);
         this.email = email;

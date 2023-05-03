@@ -2,16 +2,18 @@ package entidades;
 
 import enums.SexoEnum;
 
+import java.time.LocalDate;
+
 abstract public class Pessoa {
     private long id;
     private String nome;
     private SexoEnum sexo;
-    private String dataNascimento;
+    private LocalDate dataNascimento;
     private String cpf;
     private int telefone;
 
     public Pessoa(){}
-    public Pessoa(long id, String nome, String dataNascimento, SexoEnum sexo, String cpf, int telefone) {
+    public Pessoa(long id, String nome, LocalDate dataNascimento, SexoEnum sexo, String cpf, int telefone) {
         this.id = id;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
@@ -37,11 +39,11 @@ abstract public class Pessoa {
     }
 
 
-    public String getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
