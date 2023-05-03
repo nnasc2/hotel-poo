@@ -4,6 +4,7 @@ import entidades.Funcionario;
 import entidades.Hospede;
 import enums.SexoEnum;
 import interfaces.repositorio.IRepositorioGenerico;
+import util.ConnectionSingleton;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,13 +15,14 @@ public class FuncionarioRepositorio implements IRepositorioGenerico<Funcionario>
     private static FuncionarioRepositorio instance;
     public Connection conexao;
 
-    private FuncionarioRepositorio(){
+    private FuncionarioRepositorio() throws SQLException {
+        this.conexao = ConnectionSingleton.getInstance().conexao;
+    }
+
+    public static FuncionarioRepositorio getInstance() throws SQLException {
         if(instance == null){
             instance = new FuncionarioRepositorio();
         }
-    }
-
-    public static FuncionarioRepositorio getInstance(){
         return instance;
     }
 

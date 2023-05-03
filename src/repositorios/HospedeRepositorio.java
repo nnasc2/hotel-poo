@@ -19,7 +19,6 @@ public class HospedeRepositorio implements IRepositorioGenerico<Hospede> {
     }
 
     public static IRepositorioGenerico<Hospede> getInstance() throws SQLException {
-
         if (instance == null) {
             instance = new HospedeRepositorio();
         }

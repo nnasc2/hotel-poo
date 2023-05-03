@@ -19,8 +19,9 @@ public class PagamentoRepositorio implements IRepositorioGenerico<Pagamento> {
     }
 
     public static PagamentoRepositorio getInstance() throws SQLException {
-        if (instance == null)
+        if (instance == null) {
             instance = new PagamentoRepositorio();
+        }
         return instance;
     }
 

@@ -1,30 +1,26 @@
 package repositorios;
 
-import entidades.Hotel;
-import entidades.Quarto;
 import entidades.Reserva;
-import enums.ClassificacaoEnum;
 import interfaces.repositorio.IReservaRepositorio;
 import util.ConnectionSingleton;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReservaRepositorio implements IReservaRepositorio {
-    private static ReservaRepositorio reservaRepositorio;
-    private Connection conexao;
+    private static ReservaRepositorio instance;
+    public Connection conexao;
 
     private ReservaRepositorio() throws SQLException {
         this.conexao = ConnectionSingleton.getInstance().conexao;
     }
 
     public static ReservaRepositorio getInstance() throws SQLException {
-        if (reservaRepositorio == null) {
-            reservaRepositorio = new ReservaRepositorio();
+        if (instance == null) {
+            instance = new ReservaRepositorio();
         }
-        return reservaRepositorio;
+        return instance;
     }
     @Override
     public boolean salvar(Reserva reserva) throws SQLException {
