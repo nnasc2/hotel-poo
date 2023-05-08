@@ -5,18 +5,20 @@ import enums.ClassificacaoEnum;
 import interfaces.servico.IHotelServico;
 import repositorios.HotelRepositorio;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HotelServico implements IHotelServico {
 
     @Override
-    public void cadastrar(Hotel hotel) {
+    public boolean cadastrar(Hotel hotel) {
         try {
-            HotelRepositorio.getInstance().salvar(hotel);
+            return HotelRepositorio.getInstance().salvar(hotel);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
+        return false;
     }
 
     @Override
@@ -41,21 +43,21 @@ public class HotelServico implements IHotelServico {
         }
     }
     @Override
-    public List<Hotel> listar() {
+    public List<Hotel> listar() throws SQLException {
         return HotelRepositorio.getInstance().listar();
     }
 
     @Override
-    public void alterar(long idHotel, Hotel hotel) {
+    public void alterar(long idHotel, Hotel hotel) throws SQLException {
         HotelRepositorio.getInstance().alterar(idHotel, hotel);
     }
 
     @Override
-    public void deletar(long idHotel) {
+    public void deletar(long idHotel) throws SQLException {
         HotelRepositorio.getInstance().deletar(idHotel);
     }
 
-    public List<String> listarTodasCidades() {
+    public List<String> listarTodasCidades() throws SQLException {
         List<String> cidades = new ArrayList<>();
         List<Hotel> hoteis = HotelRepositorio.getInstance().listar();
         for (int i = 0; i < hoteis.size(); i++) {
@@ -77,7 +79,7 @@ public class HotelServico implements IHotelServico {
         return cidades;
     }
 
-    public List<String> listarTodosEstados() {
+    public List<String> listarTodosEstados() throws SQLException {
         List<String> estados = new ArrayList<>();
         List<Hotel> hoteis = HotelRepositorio.getInstance().listar();
         for(int i = 0; i < hoteis.size(); i++) {
@@ -99,7 +101,7 @@ public class HotelServico implements IHotelServico {
         return estados;
     }
 
-    public List<String> listarCidadesPorEstado(String estado) {
+    public List<String> listarCidadesPorEstado(String estado) throws SQLException {
         List<String> cidades = new ArrayList<>();
         List<Hotel> hoteis = HotelRepositorio.getInstance().listar();
         for (int i = 0; i < hoteis.size(); i++) {
@@ -123,7 +125,7 @@ public class HotelServico implements IHotelServico {
         return cidades;
     }
 
-    public List<Hotel> listarHoteisPorCidade(String cidade) {
+    public List<Hotel> listarHoteisPorCidade(String cidade) throws SQLException {
         List<Hotel> hoteis = new ArrayList<>();
         List<Hotel> todosHoteis = HotelRepositorio.getInstance().listar();
         for(int i = 0; i < todosHoteis.size(); i++){
@@ -134,7 +136,7 @@ public class HotelServico implements IHotelServico {
         return hoteis;
     }
 
-    public Hotel listarHotelPorId(long idHotel){
+    public Hotel listarHotelPorId(long idHotel) throws SQLException {
         Hotel hotel = new Hotel();
         for (Hotel h: HotelRepositorio.getInstance().listar()) {
             if (h.getId() == idHotel){

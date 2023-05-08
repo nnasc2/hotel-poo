@@ -82,16 +82,9 @@ public class PagamentoRepositorio implements IRepositorioGenerico<Pagamento> {
     @Override
     public boolean deletarPorId(long idPagamento) throws SQLException {
         try {
-            String sql = ("DELETE FROM pagamento WHERE id=?;");
+            String sql = ("DELETE FROM pagamento WHERE id="+idPagamento);
             PreparedStatement ps = conexao.prepareStatement(sql);
-            ps.setInt(1, (int) idPagamento);
-
-            boolean retorno = ps.execute(sql);
-
-            if (!retorno) {
-                System.out.println("Não foi possível deletar registro na tabela 'pagamento'");
-                return false;
-            }
+            ps.execute(sql);
 
         } catch (Exception e) {
             System.out.println("Erro: "+e.getMessage());

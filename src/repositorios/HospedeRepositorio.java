@@ -87,16 +87,9 @@ public class HospedeRepositorio implements IRepositorioGenerico<Hospede> {
     @Override
     public boolean deletarPorId(long idHospedes) throws SQLException{
         try {
-            String sql = ("DELETE FROM hospede WHERE id=?;");
+            String sql = ("DELETE FROM hospede WHERE id="+idHospedes);
             PreparedStatement ps = conexao.prepareStatement(sql);
-            ps.setInt(1, (int) idHospedes);
-
-            boolean retorno = ps.execute(sql);
-
-            if (!retorno) {
-                System.out.println("Não foi possível deletar registro na tabela 'hospede'");
-                return false;
-            }
+            ps.execute(sql);
 
         } catch (Exception e) {
             System.out.println("Erro: "+e.getMessage());

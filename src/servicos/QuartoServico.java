@@ -21,14 +21,14 @@ public class QuartoServico implements IQuartoServico {
         return quartos;
     }
 
-    public Quarto listar(int numeroQuarto){
+    public Quarto listar(int numeroQuarto) throws SQLException {
         for (int i = 0; i < listar().size(); i++)
             if (listar().get(i).getNumeroQuarto() == numeroQuarto)
                 return listar().get(i);
         return null;
     }
 
-    public List<Quarto> listarPorHotel(long idHotel) {
+    public List<Quarto> listarPorHotel(long idHotel) throws SQLException {
         List<Quarto> quartos = new ArrayList<>();
         List<Quarto> quartosRepositorio = QuartoRepositorio.getInstance().listar();
         for(int i = 0; i < quartosRepositorio.size(); i++){
@@ -39,7 +39,7 @@ public class QuartoServico implements IQuartoServico {
         return quartos;
     }
 
-    public Quarto listarPorId(long idQuarto){
+    public Quarto listarPorId(long idQuarto) throws SQLException {
         Quarto quarto = new Quarto();
         List<Quarto> quartosRepositorio = QuartoRepositorio.getInstance().listar();
         for (int i = 0; i < quartosRepositorio.size(); i++){
@@ -56,11 +56,11 @@ public class QuartoServico implements IQuartoServico {
     }
 
     @Override
-    public void deletar(long idQuarto) {
+    public void deletar(long idQuarto) throws SQLException {
         ReservaRepositorio.getInstance().deletar(idQuarto);
     }
 
-    public boolean verificarDisponibilidadeQuarto(int numeroQuarto){
+    public boolean verificarDisponibilidadeQuarto(int numeroQuarto) throws SQLException {
         List<Quarto> quartos = new ArrayList<>(listar());
         boolean retorno = false;
         for (Quarto q: quartos){

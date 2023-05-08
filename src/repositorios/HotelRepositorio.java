@@ -1,9 +1,7 @@
 package repositorios;
 
 import entidades.Hotel;
-import entidades.Quarto;
 import enums.ClassificacaoEnum;
-import enums.QuartoEnum;
 import interfaces.repositorio.IHotelRepositorio;
 import util.ConnectionSingleton;
 
@@ -41,11 +39,11 @@ public class HotelRepositorio implements IHotelRepositorio {
     public boolean salvar(Hotel hotel) throws SQLException{
         try {
             String sql = ("INSERT INTO hotel (nome, descricao, classificacao, estado, cidade, rua, bairro," +
-                    "complemento, numero, cnpj)");
+                    "complemento, numero, cnpj) values (?,?,?,?,?,?,?,?,?,?);");
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setString(1, hotel.getNome());
             ps.setString(2, hotel.getDescricao());
-            ps.setInt(3, hotel.getClassificacao().getValue());
+            ps.setInt(3, hotel.getClassificacao().getIndex());
             ps.setString(4, hotel.getEstado());
             ps.setString(5, hotel.getCidade());
             ps.setString(6, hotel.getRua());
@@ -57,12 +55,12 @@ public class HotelRepositorio implements IHotelRepositorio {
             int retorno = ps.executeUpdate();
 
             if (retorno == 0) {
-                throw new SQLException("Não foi possível persistir Hotel");
+                throw new SQLException("Não foi possível persistir <hotel>");
             }
 
         } catch (Exception e) {
             System.out.println("Erro: "+e.getMessage());
-            throw new SQLException("Não foi possível persistir Hotel");
+            throw new SQLException("Não foi possível persistir <hotel>");
         }
         return true;
     }
@@ -85,6 +83,7 @@ public class HotelRepositorio implements IHotelRepositorio {
                 hotel.setClassificacao(ClassificacaoEnum.intToClassificacaoEnum(rs.getInt("classificacao")));
                 hotel.setEstado(rs.getString("estado"));
                 hotel.setCidade(rs.getString("cidade"));
+                hotel.setRua(rs.getString("rua"));
                 hotel.setBairro(rs.getString("bairro"));
                 hotel.setComplemento(rs.getString("complemento"));
                 hotel.setNumero(rs.getInt("numero"));
@@ -109,7 +108,7 @@ public class HotelRepositorio implements IHotelRepositorio {
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setString(1, hotel.getNome());
             ps.setString(2, hotel.getDescricao());
-            ps.setInt(3, hotel.getClassificacao().getValue());
+            ps.setInt(3, hotel.getClassificacao().getIndex());
             ps.setString(4, hotel.getEstado());
             ps.setString(5, hotel.getCidade());
             ps.setString(6, hotel.getRua());
@@ -117,7 +116,7 @@ public class HotelRepositorio implements IHotelRepositorio {
             ps.setString(8, hotel.getComplemento());
             ps.setInt(9, hotel.getNumero());
             ps.setString(10, hotel.getCnpj());
-            ps.setInt(11, (int) hotel.getId());
+            ps.setInt(11, (int) hotelId);
 
             int retorno = ps.executeUpdate();
 
@@ -134,18 +133,11 @@ public class HotelRepositorio implements IHotelRepositorio {
     }
 
     @Override
-    public boolean deletar(long hotelId)  throws SQLException{
+    public boolean deletar(long hotelId) throws SQLException{
         try {
-            String sql = ("DELETE FROM hotel WHERE id=?;");
+            String sql = ("DELETE FROM hotel WHERE id="+hotelId);
             PreparedStatement ps = conexao.prepareStatement(sql);
-            ps.setInt(1, (int) hotelId);
-
-            boolean retorno = ps.execute(sql);
-
-            if (!retorno) {
-                System.out.println("Não foi possível deletar registro na tabela 'hotel'");
-                return false;
-            }
+            ps.execute(sql);
 
         } catch (Exception e) {
             System.out.println("Erro: "+e.getMessage());

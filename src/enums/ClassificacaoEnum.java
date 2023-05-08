@@ -8,9 +8,10 @@ public enum ClassificacaoEnum {
     CINCO_ESTRELAS ("5 estrelas", 5);
 
     private String descricao;
-    private int value;
-    ClassificacaoEnum(String descricao, int value) {
+    private int index;
+    ClassificacaoEnum(String descricao, int index) {
         this.descricao = descricao;
+        this.index = index;
     }
 
     public String getDescricao(){
@@ -28,8 +29,7 @@ public enum ClassificacaoEnum {
         };
     }
 
-    public int getValue(){
-        return this.value;
+    public int getIndex(){
+        return this.index;
     }
-
 }

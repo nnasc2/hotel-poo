@@ -1,10 +1,11 @@
 package interfaces.servico;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface IBasicoServico<Entidade> {
-    void salvar(Entidade objeto);
-    void alterar(int id, Entidade objeto);
-    void deletarPorId(long id);
-    List<Entidade> listar();
+    void salvar(Entidade objeto) throws SQLException;
+    void alterar(int id, Entidade objeto) throws SQLException;
+    void deletarPorId(long id) throws SQLException;
+    List<Entidade> listar() throws SQLException;
 }

@@ -170,16 +170,9 @@ public class QuartoRepositorio implements IQuartoRepositorio {
     @Override
     public boolean deletar(long idQuarto)  throws SQLException{
         try {
-            String sql = ("DELETE FROM quarto WHERE id=?;");
+            String sql = ("DELETE FROM quarto WHERE id="+idQuarto);
             PreparedStatement ps = conexao.prepareStatement(sql);
-            ps.setInt(1, (int) idQuarto);
-
-            boolean retorno = ps.execute(sql);
-
-            if (!retorno) {
-                System.out.println("Não foi possível deletar Quarto");
-                return false;
-            }
+            ps.execute(sql);
 
         } catch (Exception e) {
             System.out.println("Erro: "+e.getMessage());

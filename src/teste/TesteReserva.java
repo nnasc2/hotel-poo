@@ -1,6 +1,6 @@
 package teste;
 
-public class MainTesteFuncionario {
+public class TesteReserva {
 
     public static void main(String[] args) {
         // Inserção

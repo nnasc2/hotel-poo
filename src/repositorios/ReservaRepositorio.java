@@ -116,16 +116,9 @@ public class ReservaRepositorio implements IReservaRepositorio {
     @Override
     public boolean deletar(long idReserva) throws SQLException{
         try {
-            String sql = ("DELETE FROM reserva WHERE id=?;");
+            String sql = ("DELETE FROM reserva WHERE id="+idReserva);
             PreparedStatement ps = conexao.prepareStatement(sql);
-            ps.setInt(1, (int) idReserva);
-
-            boolean retorno = ps.execute(sql);
-
-            if (!retorno) {
-                System.out.println("Não foi possível deletar registro na tabela 'reserva'");
-                return false;
-            }
+            ps.execute(sql);
 
         } catch (Exception e) {
             System.out.println("Erro: "+e.getMessage());

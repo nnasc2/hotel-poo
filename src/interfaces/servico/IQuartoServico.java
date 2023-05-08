@@ -9,5 +9,5 @@ public interface IQuartoServico {
     void cadastrar(Quarto quarto) throws SQLException;
     List<Quarto> listar() throws SQLException;
     void alterar(long idQuarto, Quarto quarto) throws SQLException;
-    void deletar(long idQuarto);
+    void deletar(long idQuarto) throws SQLException;
 }

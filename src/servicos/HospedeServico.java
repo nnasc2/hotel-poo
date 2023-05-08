@@ -6,6 +6,7 @@ import enums.SexoEnum;
 import interfaces.servico.IBasicoServico;
 import repositorios.HospedeRepositorio;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,23 +32,23 @@ public class HospedeServico implements IBasicoServico<Hospede> {
 
 
     @Override
-    public void salvar(Hospede objeto) {
+    public void salvar(Hospede objeto) throws SQLException {
         HospedeRepositorio.getInstance().salvar(objeto);
     }
 
     @Override
-    public void alterar(int id, Hospede objeto) {
+    public void alterar(int id, Hospede objeto) throws SQLException {
         HospedeRepositorio.getInstance().alterar(id, objeto);
     }
 
     @Override
-    public List<Hospede> listar() {
+    public List<Hospede> listar() throws SQLException {
         List<Hospede> hospedes = new ArrayList<>(HospedeRepositorio.getInstance().listar());
         return hospedes;
     }
 
     @Override
-    public void deletarPorId(long idHospede) {
+    public void deletarPorId(long idHospede) throws SQLException {
         HospedeRepositorio.getInstance().deletarPorId(idHospede);
     }
 }

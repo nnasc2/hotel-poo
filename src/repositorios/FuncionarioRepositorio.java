@@ -89,16 +89,9 @@ public class FuncionarioRepositorio implements IRepositorioGenerico<Funcionario>
     @Override
     public boolean deletarPorId(long idFuncionario) throws SQLException {
         try {
-            String sql = ("DELETE FROM funcionario WHERE id=?;");
+            String sql = ("DELETE FROM funcionario WHERE id="+idFuncionario);
             PreparedStatement ps = conexao.prepareStatement(sql);
-            ps.setInt(1, (int) idFuncionario);
-
-            boolean retorno = ps.execute(sql);
-
-            if (!retorno) {
-                System.out.println("Não foi possível deletar registro na tabela 'funcionario'");
-                return false;
-            }
+            ps.execute(sql);
 
         } catch (Exception e) {
             System.out.println("Erro: "+e.getMessage());
