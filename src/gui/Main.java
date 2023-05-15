@@ -22,6 +22,7 @@ public class Main {
         HotelServico hotelServico = new HotelServico();
         QuartoServico quartoServico = new QuartoServico();
 
+        /*
         Hotel hotel = new Hotel();
         hotel.setNome("Roland Hotel");
         hotel.setDescricao("");
@@ -84,17 +85,21 @@ public class Main {
         quartoServico.cadastrar(quarto4);
 
         Hospede hospedeTeste = new Hospede();
+
         hospedeTeste.setNome("Maria Luiza da Silva Campos");
         hospedeTeste.setEmail("marialuiza@gmail.com");
         hospedeTeste.setSenha("12345");
+        */
         HospedeServico hospedeServico = new HospedeServico();
+        /*
         hospedeServico.salvar(hospedeTeste);
+         */
 
         Scanner scanner = new Scanner(System.in);
         boolean voltar = false;
         boolean continuar = true;
         int entrada = -1;
-        System.out.printf(">> Seja bem-vindo(a) ao %s!\n\n", hotel.getNome());
+        System.out.printf(">> Seja bem-vindo(a) ao %s!\n\n", hotelServico.listar().get(0).getNome());
         do{
             System.out.println("--   Menu Inicial   --");
             System.out.println("1 - Fazer uma reserva");
@@ -144,23 +149,39 @@ public class Main {
                     numero = numero - 1;
                     reserva.setNumQuarto(quartos.get(numero).getNumeroQuarto());
 
-                    System.out.println("Escolha a data de entrada (check-in):");
-                    System.out.println("Digite o dia:");
-                    int diaInicio = Integer.parseInt(scanner.next());
-                    System.out.println("Digite o mês:");
-                    int mesInicio = Integer.parseInt(scanner.next());
-                    System.out.println("Digite o ano:");
-                    int anoInicio = Integer.parseInt(scanner.next());
-                    reserva.setDataInicio(LocalDate.of(anoInicio, mesInicio, diaInicio));
+                    do {
+                        try{
+                            System.out.println("Escolha a data de entrada (check-in):");
+                            System.out.println("Digite o dia:");
+                            int diaInicio = Integer.parseInt(scanner.next());
+                            System.out.println("Digite o mês:");
+                            int mesInicio = Integer.parseInt(scanner.next());
+                            System.out.println("Digite o ano:");
+                            int anoInicio = Integer.parseInt(scanner.next());
+                            reserva.setDataInicio(LocalDate.of(anoInicio, mesInicio, diaInicio));
+                            voltar = false;
+                        } catch(Exception e){
+                            voltar = true;
+                            System.out.println(">> Data inválida, tente novamente.");
+                        }
+                    } while(voltar);
 
-                    System.out.println("Escolha a data de saída (check-out):");
-                    System.out.println("Digite o dia:");
-                    int diaFim = Integer.parseInt(scanner.next());
-                    System.out.println("Digite o mês:");
-                    int mesFim = Integer.parseInt(scanner.next());
-                    System.out.println("Digite o ano:");
-                    int anoFim = Integer.parseInt(scanner.next());
-                    reserva.setDataFim(LocalDate.of(anoFim, mesFim, diaFim));
+                    do {
+                        try {
+                            System.out.println("Escolha a data de saída (check-out):");
+                            System.out.println("Digite o dia:");
+                            int diaFim = Integer.parseInt(scanner.next());
+                            System.out.println("Digite o mês:");
+                            int mesFim = Integer.parseInt(scanner.next());
+                            System.out.println("Digite o ano:");
+                            int anoFim = Integer.parseInt(scanner.next());
+                            reserva.setDataFim(LocalDate.of(anoFim, mesFim, diaFim));
+                            voltar = false;
+                        } catch (Exception e) {
+                            System.out.println(">> Data inválida, tente novamente.");
+                            voltar = true;
+                        }
+                    } while(voltar);
 
                     System.out.println("Confira e confirme sua reserva:\n");
                     System.out.println(quartoServico.listar(reserva.getNumQuarto()).getTipoQuarto());
@@ -180,6 +201,8 @@ public class Main {
                                 System.out.println(">> Opção inválida! Tente novamente\n");
                                 voltar = true;
                             } else {
+                                ReservaServico reservaServico = new ReservaServico();
+                                reservaServico.cadastrar(reserva);
                                 voltar = false;
                             }
                         } catch (Exception ex){
@@ -190,11 +213,18 @@ public class Main {
 
                     if (numero == 1){
 
-                        System.out.println("Escolha a forma de pagamento:");
-                        System.out.println("1 - À vista");
-                        System.out.println("2 - Débito");
-                        System.out.println("3 - Crédito (sem juros)");
-                        numero = Integer.parseInt(scanner.next());
+                        try {
+                            System.out.println("Escolha a forma de pagamento:");
+                            System.out.println("1 - À vista");
+                            System.out.println("2 - Débito");
+                            System.out.println("3 - Crédito (sem juros)");
+                            numero = Integer.parseInt(scanner.next());
+                            voltar = false;
+                        } catch (Exception e){
+                            System.out.println(">> Entrada inválida, tente novamente.");
+                            voltar = true;
+                        }
+
                         switch (numero){
                             case 1:
                                 System.out.printf("O pagamento de R$%,3.2f deve ser realizado em até 7 dias!\n",

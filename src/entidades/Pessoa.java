@@ -10,10 +10,10 @@ abstract public class Pessoa {
     private SexoEnum sexo;
     private LocalDate dataNascimento;
     private String cpf;
-    private int telefone;
+    private String telefone;
 
     public Pessoa(){}
-    public Pessoa(long id, String nome, LocalDate dataNascimento, SexoEnum sexo, String cpf, int telefone) {
+    public Pessoa(long id, String nome, LocalDate dataNascimento, SexoEnum sexo, String cpf, String telefone) {
         this.id = id;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
@@ -56,17 +56,18 @@ abstract public class Pessoa {
     }
 
     public void setSexo(SexoEnum sexo) {
+        this.sexo = sexo;
     }
 
     public SexoEnum getSexo() {
         return sexo;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 }

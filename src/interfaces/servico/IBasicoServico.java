@@ -1,5 +1,7 @@
 package interfaces.servico;
 
+import entidades.Funcionario;
+
 import java.sql.SQLException;
 import java.util.List;
 

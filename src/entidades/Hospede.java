@@ -11,7 +11,7 @@ public class Hospede extends Pessoa{
     public Hospede(){}
 
     public Hospede(long id, String nome, LocalDate dataNascimento, SexoEnum sexo, String cpf,
-                   String email, String senha, int telefone) {
+                   String email, String senha, String telefone) {
         super(id, nome, dataNascimento, sexo, cpf, telefone);
         this.email = email;
         this.senha = senha;

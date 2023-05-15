@@ -15,7 +15,7 @@ public class TesteHotel {
         HotelServico hotelServico = new HotelServico();
 
         // Inserção
-        /*
+        ///*
         Hotel hotel1 = new Hotel();
         hotel1.setNome("Roland Hotel");
         hotel1.setDescricao("Hotel beira-mar");
@@ -30,7 +30,7 @@ public class TesteHotel {
 
         String mensagem = hotelServico.cadastrar(hotel1) ? "<hotel> salvo com sucesso!" : "<hotel> não foi salvo!";
         System.out.println(mensagem);
-        */
+        //*/
 
         // Busca
         /*
@@ -74,9 +74,7 @@ public class TesteHotel {
 
         // Exclusão
         /*
-        boolean retorno = HotelRepositorio.getInstance().deletar(1);
-        String mensagem = retorno ? "<hotel> deletado com sucesso!" : "<hotel> não foi deletado!";
-        System.out.println(mensagem);
+        hotelServico.deletar(1);
         */
     }
 }

@@ -1,5 +1,6 @@
 package servicos;
 
+import entidades.Funcionario;
 import entidades.Hospede;
 import enums.SexoEnum;
 
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HospedeServico implements IBasicoServico<Hospede> {
-    public void cadastrar(String nome, SexoEnum sexo, LocalDate dataNascimento, String cpf, long idHospede, String email, String senha, int telefone) {
+    public void cadastrar(String nome, SexoEnum sexo, LocalDate dataNascimento, String cpf, long idHospede, String email, String senha, String telefone) {
         try{
             Hospede novoHospede = new Hospede();
             novoHospede.setId(idHospede);
@@ -28,6 +29,10 @@ public class HospedeServico implements IBasicoServico<Hospede> {
             System.out.println("Error:"+e.getMessage());
         }
 
+    }
+
+    public void cadastrar(Hospede hospede) throws SQLException {
+        HospedeRepositorio.getInstance().salvar(hospede);
     }
 
 

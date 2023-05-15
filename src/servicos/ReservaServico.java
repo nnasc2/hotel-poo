@@ -45,10 +45,10 @@ public class ReservaServico {
         return reservas;
     }
 
-    void alterar(long idReserva, Reserva reserva) throws SQLException {
+    public void alterar(long idReserva, Reserva reserva) throws SQLException {
         ReservaRepositorio.getInstance().alterar(idReserva, reserva);
     }
-    void deletar(long idReserva) throws SQLException {
+    public void deletar(long idReserva) throws SQLException {
         ReservaRepositorio.getInstance().deletar(idReserva);
     }
 }

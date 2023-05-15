@@ -1,7 +1,7 @@
 package repositorios;
 
+import entidades.Funcionario;
 import entidades.Hospede;
-import entidades.Reserva;
 import enums.SexoEnum;
 import interfaces.repositorio.IRepositorioGenerico;
 import util.ConnectionSingleton;
@@ -30,13 +30,13 @@ public class HospedeRepositorio implements IRepositorioGenerico<Hospede> {
     @Override
     public boolean salvar(Hospede hospede) throws SQLException {
         try {
-            String sql = ("INSERT INTO hospede (nome, sexo, dataNascimento, cpf, telefone, email, senha) values(?,?,?,?,?,?,?);");
+            String sql = ("INSERT INTO hospede (nome, sexo, data_nascimento, cpf, telefone, email, senha) values(?,?,?,?,?,?,?);");
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setString(1, hospede.getNome());
             ps.setInt(2, hospede.getSexo().getIndex());
             ps.setDate(3, Date.valueOf(hospede.getDataNascimento()));
             ps.setString(4, hospede.getCpf());
-            ps.setString(5, Integer.toString(hospede.getTelefone()));
+            ps.setString(5, hospede.getTelefone());
             ps.setString(6, hospede.getEmail());
             ps.setString(7, hospede.getSenha());
 
@@ -64,7 +64,7 @@ public class HospedeRepositorio implements IRepositorioGenerico<Hospede> {
             ps.setDate(2, Date.valueOf(hospede.getDataNascimento()));
             ps.setInt(3, hospede.getSexo().getIndex());
             ps.setString(4, hospede.getCpf());
-            ps.setString(5, Integer.toString(hospede.getTelefone()));
+            ps.setString(5, hospede.getTelefone());
             ps.setString(6, hospede.getEmail());
             ps.setString(7, hospede.getSenha());
             ps.setInt(8, idHospedes);
@@ -115,7 +115,7 @@ public class HospedeRepositorio implements IRepositorioGenerico<Hospede> {
                 hospede.setDataNascimento(rs.getDate("data_nascimento").toLocalDate());
                 hospede.setSexo(SexoEnum.binaryToSexoEnum(rs.getInt("sexo")));
                 hospede.setCpf(rs.getString("cpf"));
-                hospede.setTelefone(Integer.getInteger(rs.getString("telefone")));
+                hospede.setTelefone(rs.getString("telefone"));
                 hospede.setEmail(rs.getString("email"));
                 hospede.setSenha(rs.getString("senha"));
 

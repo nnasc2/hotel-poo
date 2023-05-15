@@ -55,7 +55,7 @@ public class PagamentoRepositorio implements IRepositorioGenerico<Pagamento> {
     public boolean alterar(int idPagamentos, Pagamento pagamento) throws SQLException {
         try {
             String sql = ("UPDATE pagamento SET forma_pagamento=?, valor=?, status=?," +
-                    "data_nascimento=?, id_hospede=? WHERE id=?;");
+                    "data_vencimento=?, id_hospede=? WHERE id=?;");
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setInt(1, pagamento.getFormaPagamento().getIndex());
             ps.setDouble(2, pagamento.getValor());

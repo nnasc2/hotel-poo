@@ -1,7 +1,7 @@
 package enums;
 
 public enum PagamentoEnum {
-    Avista("A vista", 1), Debito("debito", 2), Credito("Credito", 3);
+    Avista("A vista", 1), Debito("Debito", 2), Credito("Credito", 3);
     private String descricao;
     private int index;
 

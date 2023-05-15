@@ -50,6 +50,10 @@ public class QuartoServico implements IQuartoServico {
         return quarto;
     }
 
+    public List<Quarto> listarOperantes() throws SQLException {
+        return QuartoRepositorio.getInstance().listarOperantes();
+    }
+
     @Override
     public void alterar(long idQuarto, Quarto quarto) throws SQLException {
         QuartoRepositorio.getInstance().alterar(idQuarto, quarto);
@@ -57,7 +61,7 @@ public class QuartoServico implements IQuartoServico {
 
     @Override
     public void deletar(long idQuarto) throws SQLException {
-        ReservaRepositorio.getInstance().deletar(idQuarto);
+        QuartoRepositorio.getInstance().deletar(idQuarto);
     }
 
     public boolean verificarDisponibilidadeQuarto(int numeroQuarto) throws SQLException {

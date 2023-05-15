@@ -39,7 +39,7 @@ public class QuartoRepositorio implements IQuartoRepositorio {
     public boolean salvar(Quarto quarto) throws SQLException {
         try {
             String sql = ("INSERT INTO quarto (numero, tipo, area, diaria, operante, refeicao, desc_cama," +
-                    "ocup_maxima, andar, id hotel) values(?,?,?,?,?,?,?,?,?,?);");
+                    "ocup_maxima, andar, id_hotel) values(?,?,?,?,?,?,?,?,?,?);");
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setInt(1, quarto.getNumeroQuarto());
             ps.setInt(2, quarto.getTipoQuarto().getIndex());
@@ -79,12 +79,12 @@ public class QuartoRepositorio implements IQuartoRepositorio {
             while(rs.next()){
                 Quarto quarto = new Quarto();
                 quarto.setId(rs.getInt("id"));
-                quarto.setNumeroQuarto(rs.getInt("num_quarto"));
+                quarto.setNumeroQuarto(rs.getInt("numero"));
                 quarto.setTipoQuarto(QuartoEnum.intToQuartoEnum(rs.getInt("tipo")));
                 quarto.setArea(rs.getInt("area"));
                 quarto.setDiaria(rs.getDouble("diaria"));
                 quarto.setOperante(binaryToBoolean(rs.getInt("operante")));
-                quarto.setRefeicao(binaryToBoolean(rs.getInt("refeição")));
+                quarto.setRefeicao(binaryToBoolean(rs.getInt("refeicao")));
                 quarto.setDescricaoCama(rs.getString("desc_cama"));
                 quarto.setOcupacaoMaxima(rs.getInt("ocup_maxima"));
                 quarto.setAndar(rs.getInt("andar"));
@@ -113,12 +113,12 @@ public class QuartoRepositorio implements IQuartoRepositorio {
             while(rs.next()){
                 Quarto quarto = new Quarto();
                 quarto.setId(rs.getInt("id"));
-                quarto.setNumeroQuarto(rs.getInt("num_quarto"));
+                quarto.setNumeroQuarto(rs.getInt("numero"));
                 quarto.setTipoQuarto(QuartoEnum.intToQuartoEnum(rs.getInt("tipo")));
                 quarto.setArea(rs.getInt("area"));
                 quarto.setDiaria(rs.getDouble("diaria"));
                 quarto.setOperante(binaryToBoolean(rs.getInt("operante")));
-                quarto.setRefeicao(binaryToBoolean(rs.getInt("refeição")));
+                quarto.setRefeicao(binaryToBoolean(rs.getInt("refeicao")));
                 quarto.setDescricaoCama(rs.getString("desc_cama"));
                 quarto.setOcupacaoMaxima(rs.getInt("ocup_maxima"));
                 quarto.setAndar(rs.getInt("andar"));
@@ -151,7 +151,7 @@ public class QuartoRepositorio implements IQuartoRepositorio {
             ps.setInt(8, quarto.getOcupacaoMaxima());
             ps.setInt(9, quarto.getAndar());
             ps.setInt(10, (int) quarto.getHotelId());
-            ps.setInt(11, (int) quarto.getId());
+            ps.setInt(11, (int) idQuarto);
 
             int retorno = ps.executeUpdate();
 

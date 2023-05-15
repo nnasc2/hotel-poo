@@ -1,15 +1,15 @@
 package enums;
 
 public enum ClassificacaoEnum {
-    UMA_ESTRELA ("1 estrela", 1),
-    DUAS_ESTRELAS ("2 estrelas", 2),
-    TRES_ESTRELAS ("3 estrelas", 3),
-    QUATRO_ESTRELAS ("4 estrelas", 4),
-    CINCO_ESTRELAS ("5 estrelas", 5);
+    UMA_ESTRELA (1, "1 estrela"),
+    DUAS_ESTRELAS (2, "2 estrelas"),
+    TRES_ESTRELAS (3, "3 estrelas"),
+    QUATRO_ESTRELAS (4, "4 estrelas"),
+    CINCO_ESTRELAS (5, "5 estrelas");
 
     private String descricao;
     private int index;
-    ClassificacaoEnum(String descricao, int index) {
+    ClassificacaoEnum(int index, String descricao) {
         this.descricao = descricao;
         this.index = index;
     }
