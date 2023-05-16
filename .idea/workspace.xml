@@ -5,30 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02062ef5-18c3-4183-a284-0ae51051c0f8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/servicos/FuncionarioServico.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/util/ValidadorCPF.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/teste/TesteValidadorCPF.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Funcionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Funcionario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Hospede.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Hospede.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entidades/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entidades/Pessoa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enums/ClassificacaoEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums/ClassificacaoEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enums/PagamentoEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums/PagamentoEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enums/SexoEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums/SexoEnum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/servico/IBasicoServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/servico/IBasicoServico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repositorios/FuncionarioRepositorio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositorios/FuncionarioRepositorio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repositorios/HospedeRepositorio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositorios/HospedeRepositorio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repositorios/PagamentoRepositorio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositorios/PagamentoRepositorio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repositorios/QuartoRepositorio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositorios/QuartoRepositorio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/servicos/HospedeServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servicos/HospedeServico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/servicos/QuartoServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servicos/QuartoServico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/servicos/ReservaServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servicos/ReservaServico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teste/TesteFuncionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/teste/TesteFuncionario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teste/TesteHospede.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/teste/TesteHospede.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teste/TesteHotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/teste/TesteHotel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teste/TestePagamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/teste/TestePagamento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teste/TesteQuarto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/teste/TesteQuarto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teste/TesteReserva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/teste/TesteReserva.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/ValidadorCPF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/ValidadorCPF.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +76,7 @@
       <recent name="interfaces.servico" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.TesteValidadorCPF">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="gui.Main" />
       <module name="hotel-poo" />
@@ -104,34 +84,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Teste" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="teste.TesteHospede" />
-      <module name="hotel-poo" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="teste.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="TesteFuncionario" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="teste.TesteFuncionario" />
-      <module name="hotel-poo" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="teste.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestePagamento" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="teste.TestePagamento" />
       <module name="hotel-poo" />
       <extension name="coverage">
         <pattern>
@@ -156,13 +110,39 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TesteValidadorCPF" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="teste.TesteValidadorCPF" />
+      <module name="hotel-poo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="teste.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ValidadorCPF" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="util.ValidadorCPF" />
+      <module name="hotel-poo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TesteValidadorCPF" />
+        <item itemvalue="Application.ValidadorCPF" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.TesteFuncionario" />
         <item itemvalue="Application.TesteReserva" />
-        <item itemvalue="Application.TestePagamento" />
-        <item itemvalue="Application.Teste" />
       </list>
     </recent_temporary>
   </component>

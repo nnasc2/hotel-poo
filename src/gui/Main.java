@@ -8,8 +8,11 @@ import servicos.HospedeServico;
 import servicos.HotelServico;
 import servicos.QuartoServico;
 import servicos.ReservaServico;
+import util.ValidadorCPF;
 
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -103,7 +106,7 @@ public class Main {
         do{
             System.out.println("--   Menu Inicial   --");
             System.out.println("1 - Fazer uma reserva");
-            System.out.println("2 - Cadastrar");
+            System.out.println("2 - Cadastrar-se");
             System.out.println("3 - Entrar");
             System.out.println("0 - Sair/Fechar\n");
             System.out.println("Digite o número corresponde a opção escolhida:");
@@ -292,9 +295,26 @@ public class Main {
                     System.out.println("Digite seu nome completo:");
                     String nome = scann.nextLine();
                     hospede.setNome(nome);
-                    System.out.println("Digite seu CPF:");
-                    String cpf = scann.next();
-                    hospede.setCpf(cpf);
+
+                    do {
+                        try {
+                            System.out.println("Digite seu CPF(apenas números):");
+                            String cpf = scann.next();
+                            if (ValidadorCPF.eValido(cpf)){
+                                hospede.setCpf(cpf);
+                                voltar = false;
+                            } else {
+                                System.out.println("CPF inválido! Tente novamente.");
+                                voltar = true;
+                            }
+                        } catch (Exception e) {
+                            System.out.println("CPF inválido! Tente novamente.");
+                            voltar = true;
+                        }
+                    } while(voltar);
+
+                    System.out.println("Digite sua data de nascimento no formato dia/mes/ano:");
+                    String dataNascimento = scann.next();
                     System.out.println("Digite seu email:");
                     String email = scann.next();
                     hospede.setEmail(email);
