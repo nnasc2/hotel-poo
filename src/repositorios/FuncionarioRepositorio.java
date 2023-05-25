@@ -1,7 +1,6 @@
 package repositorios;
 
 import entidades.Funcionario;
-import entidades.Hospede;
 import enums.SexoEnum;
 import interfaces.repositorio.IRepositorioGenerico;
 import util.ConnectionSingleton;
@@ -29,7 +28,7 @@ public class FuncionarioRepositorio implements IRepositorioGenerico<Funcionario>
     @Override
     public boolean salvar(Funcionario funcionario) throws SQLException {
         try {
-            String sql = ("INSERT INTO funcionario (nome, data_nascimento, sexo, cpf, telefone, cargo, senha, status, salario)" +
+            String sql = ("INSERT INTO funcionario (nome, data_nascimento, cod_sexo, cpf, telefone, cargo, senha, status, salario)" +
                     "values(?,?,?,?,?,?,?,?,?);");
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setString(1, funcionario.getNome());
@@ -59,7 +58,7 @@ public class FuncionarioRepositorio implements IRepositorioGenerico<Funcionario>
     @Override
     public boolean alterar(int id, Funcionario funcionario) throws SQLException {
         try {
-            String sql = ("UPDATE funcionario SET nome=?, data_nascimento=?, sexo=?, cpf=?, telefone=?," +
+            String sql = ("UPDATE funcionario SET nome=?, data_nascimento=?, cod_sexo=?, cpf=?, telefone=?," +
                     "cargo=?, senha=?, status=?, salario=? WHERE id=?;");
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setString(1, funcionario.getNome());
@@ -117,7 +116,7 @@ public class FuncionarioRepositorio implements IRepositorioGenerico<Funcionario>
                 funcionario.setId(rs.getInt("id"));
                 funcionario.setNome(rs.getString("nome"));
                 funcionario.setDataNascimento(rs.getDate("data_nascimento").toLocalDate());
-                funcionario.setSexo(SexoEnum.binaryToSexoEnum(rs.getInt("sexo")));
+                funcionario.setSexo(SexoEnum.intToSexoEnum(rs.getInt("cod_sexo")));
                 funcionario.setCpf(rs.getString("cpf"));
                 funcionario.setTelefone(rs.getString("telefone"));
                 funcionario.setCargo(rs.getString("cargo"));

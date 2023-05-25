@@ -38,7 +38,7 @@ public class QuartoRepositorio implements IQuartoRepositorio {
     @Override
     public boolean salvar(Quarto quarto) throws SQLException {
         try {
-            String sql = ("INSERT INTO quarto (numero, tipo, area, diaria, operante, refeicao, desc_cama," +
+            String sql = ("INSERT INTO quarto (numero, cod_tipo, area, diaria, operante, refeicao, desc_cama," +
                     "ocup_maxima, andar, id_hotel) values(?,?,?,?,?,?,?,?,?,?);");
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setInt(1, quarto.getNumeroQuarto());
@@ -80,7 +80,7 @@ public class QuartoRepositorio implements IQuartoRepositorio {
                 Quarto quarto = new Quarto();
                 quarto.setId(rs.getInt("id"));
                 quarto.setNumeroQuarto(rs.getInt("numero"));
-                quarto.setTipoQuarto(QuartoEnum.intToQuartoEnum(rs.getInt("tipo")));
+                quarto.setTipoQuarto(QuartoEnum.intToQuartoEnum(rs.getInt("cod_tipo")));
                 quarto.setArea(rs.getInt("area"));
                 quarto.setDiaria(rs.getDouble("diaria"));
                 quarto.setOperante(binaryToBoolean(rs.getInt("operante")));
@@ -114,7 +114,7 @@ public class QuartoRepositorio implements IQuartoRepositorio {
                 Quarto quarto = new Quarto();
                 quarto.setId(rs.getInt("id"));
                 quarto.setNumeroQuarto(rs.getInt("numero"));
-                quarto.setTipoQuarto(QuartoEnum.intToQuartoEnum(rs.getInt("tipo")));
+                quarto.setTipoQuarto(QuartoEnum.intToQuartoEnum(rs.getInt("cod_tipo")));
                 quarto.setArea(rs.getInt("area"));
                 quarto.setDiaria(rs.getDouble("diaria"));
                 quarto.setOperante(binaryToBoolean(rs.getInt("operante")));
@@ -138,7 +138,7 @@ public class QuartoRepositorio implements IQuartoRepositorio {
     @Override
     public boolean alterar(long idQuarto, Quarto quarto)  throws SQLException{
         try {
-            String sql = ("UPDATE quarto SET numero=?, tipo=?, area=?, diaria=?, operante=?, refeicao=?, desc_cama=?," +
+            String sql = ("UPDATE quarto SET numero=?, cod_tipo=?, area=?, diaria=?, operante=?, refeicao=?, desc_cama=?," +
                     "ocup_maxima=?, andar=?, id_hotel=? WHERE id=?;");
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setInt(1, quarto.getNumeroQuarto());

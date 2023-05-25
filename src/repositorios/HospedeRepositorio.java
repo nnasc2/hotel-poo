@@ -1,6 +1,5 @@
 package repositorios;
 
-import entidades.Funcionario;
 import entidades.Hospede;
 import enums.SexoEnum;
 import interfaces.repositorio.IRepositorioGenerico;
@@ -30,7 +29,7 @@ public class HospedeRepositorio implements IRepositorioGenerico<Hospede> {
     @Override
     public boolean salvar(Hospede hospede) throws SQLException {
         try {
-            String sql = ("INSERT INTO hospede (nome, sexo, data_nascimento, cpf, telefone, email, senha) values(?,?,?,?,?,?,?);");
+            String sql = ("INSERT INTO hospede (nome, cod_sexo, data_nascimento, cpf, telefone, email, senha) values(?,?,?,?,?,?,?);");
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setString(1, hospede.getNome());
             ps.setInt(2, hospede.getSexo().getIndex());
@@ -57,7 +56,7 @@ public class HospedeRepositorio implements IRepositorioGenerico<Hospede> {
     @Override
     public boolean alterar(int idHospedes, Hospede hospede) throws SQLException {
         try {
-            String sql = ("UPDATE hospede SET nome=?, data_nascimento=?, sexo=?, cpf=?, telefone=?," +
+            String sql = ("UPDATE hospede SET nome=?, data_nascimento=?, cod_sexo=?, cpf=?, telefone=?," +
                     "email=?, senha=? WHERE id=?;");
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setString(1, hospede.getNome());
@@ -113,7 +112,7 @@ public class HospedeRepositorio implements IRepositorioGenerico<Hospede> {
                 hospede.setId(rs.getInt("id"));
                 hospede.setNome(rs.getString("nome"));
                 hospede.setDataNascimento(rs.getDate("data_nascimento").toLocalDate());
-                hospede.setSexo(SexoEnum.binaryToSexoEnum(rs.getInt("sexo")));
+                hospede.setSexo(SexoEnum.intToSexoEnum(rs.getInt("cod_sexo")));
                 hospede.setCpf(rs.getString("cpf"));
                 hospede.setTelefone(rs.getString("telefone"));
                 hospede.setEmail(rs.getString("email"));
@@ -128,6 +127,31 @@ public class HospedeRepositorio implements IRepositorioGenerico<Hospede> {
             System.out.println("Erro: " + e.getMessage());
             throw new SQLException("Não foi possíveal listar hospedes");
         }
+    }
 
+    public Hospede listarPorCPF(String cpf) throws SQLException {
+        try {
+            String sql = ("SELECT * FROM hospede where cpf="+cpf+";");
+            PreparedStatement ps = conexao.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            Hospede hospede = new Hospede();
+
+            hospede.setId(rs.getInt("id"));
+            hospede.setNome(rs.getString("nome"));
+            hospede.setDataNascimento(rs.getDate("data_nascimento").toLocalDate());
+            hospede.setSexo(SexoEnum.intToSexoEnum(rs.getInt("cod_sexo")));
+            hospede.setCpf(rs.getString("cpf"));
+            hospede.setTelefone(rs.getString("telefone"));
+            hospede.setEmail(rs.getString("email"));
+            hospede.setSenha(rs.getString("senha"));
+
+            return hospede;
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            throw new SQLException("Não foi possíveal listar hospedes");
+        }
     }
 }

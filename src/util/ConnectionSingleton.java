@@ -19,9 +19,9 @@ public class ConnectionSingleton {
     public static ConnectionSingleton getInstance() throws SQLException {
         if(instance == null || instance.conexao.isClosed()){
             instance = new ConnectionSingleton();
-            System.out.println(">> Conecção iniciada");
+            //System.out.println(">> Conecção iniciada");
         } else {
-            System.out.println(">> Conecção reestabelecida");
+            //System.out.println(">> Conecção reestabelecida");
         }
         return instance;
     }

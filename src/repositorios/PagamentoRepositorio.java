@@ -28,7 +28,7 @@ public class PagamentoRepositorio implements IRepositorioGenerico<Pagamento> {
     @Override
     public boolean salvar(Pagamento pagamento) throws SQLException {
         try {
-            String sql = ("INSERT INTO pagamento (forma_pagamento, valor, status, data_vencimento, id_hospede)" +
+            String sql = ("INSERT INTO pagamento (cod_tipo, valor, status, data_vencimento, id_hospede)" +
                     "values(?,?,?,?,?);");
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setInt(1, pagamento.getFormaPagamento().getIndex());
@@ -54,7 +54,7 @@ public class PagamentoRepositorio implements IRepositorioGenerico<Pagamento> {
     @Override
     public boolean alterar(int idPagamentos, Pagamento pagamento) throws SQLException {
         try {
-            String sql = ("UPDATE pagamento SET forma_pagamento=?, valor=?, status=?," +
+            String sql = ("UPDATE pagamento SET cod_tipo=?, valor=?, status=?," +
                     "data_vencimento=?, id_hospede=? WHERE id=?;");
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setInt(1, pagamento.getFormaPagamento().getIndex());
@@ -106,7 +106,7 @@ public class PagamentoRepositorio implements IRepositorioGenerico<Pagamento> {
             while (rs.next()) {
                 Pagamento pagamento = new Pagamento();
                 pagamento.setId(rs.getInt("id"));
-                pagamento.setFormaPagamento(PagamentoEnum.intToPagamentoEnum(rs.getInt("forma_pagamento")));
+                pagamento.setFormaPagamento(PagamentoEnum.intToPagamentoEnum(rs.getInt("cod_tipo")));
                 pagamento.setValor(rs.getDouble("valor"));
                 pagamento.setStatus(rs.getString("status"));
                 pagamento.setDataVencimento(rs.getDate("data_vencimento").toLocalDate());

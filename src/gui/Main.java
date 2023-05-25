@@ -1,18 +1,13 @@
 package gui;
 
 import entidades.*;
-import enums.ClassificacaoEnum;
-import enums.QuartoEnum;
+import enums.SexoEnum;
 import repositorios.HospedeRepositorio;
-import servicos.HospedeServico;
-import servicos.HotelServico;
-import servicos.QuartoServico;
-import servicos.ReservaServico;
+import servicos.*;
 import util.ValidadorCPF;
 
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,81 +19,13 @@ public class Main {
 
         HotelServico hotelServico = new HotelServico();
         QuartoServico quartoServico = new QuartoServico();
-
-        /*
-        Hotel hotel = new Hotel();
-        hotel.setNome("Roland Hotel");
-        hotel.setDescricao("");
-        hotel.setClassificacao(ClassificacaoEnum.QUATRO_ESTRELAS);
-        hotel.setEstado("Pernambuco");
-        hotel.setCidade("Ipojuca");
-        hotel.setRua("João Joaquim");
-        hotel.setBairro("Porto de Galinhas");
-        hotel.setComplemento("");
-        hotel.setNumero(290);
-        hotel.setCnpj("23.455.121/0001-66");
-        hotelServico.cadastrar(hotel);
-
-        Quarto quarto1 = new Quarto();
-        quarto1.setTipoQuarto(QuartoEnum.INDIVIDUAL);
-        quarto1.setDescricaoCama("Uma cama de solteiro");
-        quarto1.setArea(20);
-        quarto1.setDiaria(130);
-        quarto1.setOperante(true);
-        quarto1.setOcupacaoMaxima(1);
-        quarto1.setRefeicao(false);
-        quarto1.setNumeroQuarto(1);
-        quarto1.setHotelId(hotel.getId());
-        quartoServico.cadastrar(quarto1);
-
-        Quarto quarto2 = new Quarto();
-        quarto2.setTipoQuarto(QuartoEnum.DUPLO);
-        quarto2.setDescricaoCama("Uma cama de casal");
-        quarto2.setArea(30);
-        quarto2.setDiaria(230);
-        quarto2.setOperante(true);
-        quarto2.setOcupacaoMaxima(2);
-        quarto2.setRefeicao(false);
-        quarto2.setNumeroQuarto(2);
-        quarto2.setHotelId(hotel.getId());
-        quartoServico.cadastrar(quarto2);
-
-        Quarto quarto3 = new Quarto();
-        quarto3.setTipoQuarto(QuartoEnum.TRIPLO);
-        quarto3.setDescricaoCama("Uma cama de casal e uma cama de solteiro");
-        quarto3.setArea(40);
-        quarto3.setDiaria(330);
-        quarto3.setOperante(true);
-        quarto3.setOcupacaoMaxima(3);
-        quarto3.setRefeicao(false);
-        quarto3.setNumeroQuarto(3);
-        quarto3.setHotelId(1);
-        quartoServico.cadastrar(quarto3);
-
-        Quarto quarto4 = new Quarto();
-        quarto4.setTipoQuarto(QuartoEnum.QUADRUPLO);
-        quarto4.setDescricaoCama("Uma cama de casal e duas de solteiro");
-        quarto4.setArea(60);
-        quarto4.setDiaria(500);
-        quarto4.setOperante(true);
-        quarto4.setOcupacaoMaxima(4);
-        quarto4.setRefeicao(false);
-        quarto4.setNumeroQuarto(4);
-        quarto4.setHotelId(1);
-        quartoServico.cadastrar(quarto4);
-
-        Hospede hospedeTeste = new Hospede();
-
-        hospedeTeste.setNome("Maria Luiza da Silva Campos");
-        hospedeTeste.setEmail("marialuiza@gmail.com");
-        hospedeTeste.setSenha("12345");
-        */
+        ReservaServico reservaServico = new ReservaServico();
         HospedeServico hospedeServico = new HospedeServico();
-        /*
-        hospedeServico.salvar(hospedeTeste);
-         */
+        FuncionarioServico funcionarioServico = new FuncionarioServico();
 
         Scanner scanner = new Scanner(System.in);
+        boolean conectado = false;
+        int hospedeLogadoId = 0;
         boolean voltar = false;
         boolean continuar = true;
         int entrada = -1;
@@ -106,12 +33,49 @@ public class Main {
         do{
             System.out.println("--   Menu Inicial   --");
             System.out.println("1 - Fazer uma reserva");
-            System.out.println("2 - Cadastrar-se");
-            System.out.println("3 - Entrar");
+                if (!conectado){
+                    System.out.println("2 - Cadastrar-se");
+                    System.out.println("3 - Entrar");
+                }
+                if (conectado){
+                    System.out.println("2 - Minhas reservas");
+                    System.out.println("3 - Excluir conta");
+
+                }
             System.out.println("0 - Sair/Fechar\n");
             System.out.println("Digite o número corresponde a opção escolhida:");
             try{
                 entrada = Integer.parseInt(scanner.next());
+                if (!conectado){
+                    switch (entrada){
+                        case 5:
+                            entrada = -1;
+                            break;
+                        case 6:
+                            entrada = -1;
+                            break;
+                    }
+                }
+                if(conectado){
+                    if(entrada == 4){
+                        entrada = -1;
+                    }
+                    switch (entrada){
+                        case 2:
+                            entrada = 5;
+                            break;
+                        case 3:
+                            entrada = 6;
+                            break;
+                        case 5:
+                            entrada = -1;
+                            break;
+                        case 6:
+                            entrada = -1;
+                            break;
+                    }
+
+                }
             } catch(Exception ex) {
                 entrada = -1;
             }
@@ -122,8 +86,145 @@ public class Main {
                     break;
 
                 case 1:
-                    Reserva reserva = new Reserva();
                     Scanner scann = new Scanner(System.in);
+                    Hospede hospede = new Hospede();
+                    int contador = 0;
+
+                    do {
+                        try {
+                            System.out.println("Digite seu CPF(apenas números):");
+                            String cpf = scann.next();
+                            if (ValidadorCPF.eValido(cpf)){
+                                List<Hospede> hospedes = hospedeServico.listar();
+                                for (Hospede hosp : hospedes) {
+                                    if (hosp.getCpf().equals(cpf)) {
+                                        System.out.println(">> Bem-vindo(a) novamente!");
+                                        hospede.setId(hosp.getId());
+                                        hospede.setNome(hosp.getNome());
+                                        hospede.setCpf(hosp.getCpf());
+                                        hospede.setDataNascimento(hosp.getDataNascimento());
+                                        hospede.setTelefone(hosp.getTelefone());
+                                        hospede.setSexo(hosp.getSexo());
+                                        hospede.setEmail(hosp.getEmail());
+                                        hospede.setSenha(hosp.getSenha());
+                                        voltar = false;
+                                    } else {
+                                        hospede.setCpf(cpf);
+                                        voltar = false;
+                                    }
+                                }
+                            } else {
+                                if (contador == 3){
+                                    System.out.println(">> Número de tentativas engotado!");
+                                    break;
+                                }
+                                System.out.println(">> CPF inválido! Tente novamente.");
+                                voltar = true;
+                                contador++;
+                            }
+                        } catch (Exception e) {
+                            System.out.println(">> CPF inválido! Tente novamente.");
+                            voltar = true;
+                        }
+                    } while(voltar);
+
+                    if (hospede.getId() != 0){
+                        System.out.println(">> Vamos iniciar um rápido cadastro antes que possa reservar um quarto.");
+                        do {
+                            try {
+                                System.out.println("Digite o seu nome completo:");
+                                String nome = scann.nextLine();
+                                if (nome.equals("") || nome.equals(" ") || nome.contains("1")  || nome.contains("2")
+                                        || nome.contains("3") || nome.contains("4") || nome.contains("5")
+                                        || nome.contains("6") || nome.contains("7") || nome.contains("8")
+                                        || nome.contains("9") || nome.contains("0")){
+                                    System.out.println("Nome inválido! Tente novamente.");
+                                    voltar = true;
+                                } else {
+                                    hospede.setNome(nome);
+                                    voltar = false;
+                                }
+                            } catch (Exception e) {
+                                System.out.println("Nome inválido! Tente novamente.");
+                                voltar = true;
+                            }
+                        } while(voltar);
+
+                        do {
+                            try{
+                                System.out.println("Informe a sua data de nascimento:");
+                                System.out.println("Digite o dia do mês:");
+                                int dia = Integer.parseInt(scanner.next());
+                                System.out.println("Digite o número mês:");
+                                int mes = Integer.parseInt(scanner.next());
+                                System.out.println("Digite o ano:");
+                                int ano = Integer.parseInt(scanner.next());
+                                hospede.setDataNascimento(LocalDate.of(ano, mes, dia));
+                                voltar = false;
+                            } catch(Exception e){
+                                voltar = true;
+                                System.out.println(">> Data inválida, tente novamente.");
+                            }
+                        } while(voltar);
+
+                        do {
+                            try {
+                                System.out.println("Escolha entre as opções abaixo:");
+                                for (SexoEnum sexo : SexoEnum.values()){
+                                    System.out.println(sexo.getIndex()+" - Sou do sexo "+sexo.getDescricao());
+                                }
+                                int sexo = scann.nextInt();
+                                if (sexo < 1 || sexo > SexoEnum.values().length){
+                                    System.out.println(">> Opção inválida! Tente novamente.");
+                                    voltar = true;
+                                } else {
+                                    hospede.setSexo(SexoEnum.intToSexoEnum(sexo));
+                                    voltar = false;
+                                }
+                            } catch (Exception e){
+                                System.out.println(">> Opção inválida! Tente novamente.");
+                                voltar = true;
+                            }
+                        } while(voltar);
+
+                        do {
+                            try {
+                                System.out.println("Digite o seu telefone:");
+                                String telefone2 = scann.next();
+                                hospede.setTelefone(telefone2);
+                            } catch (Exception e) {
+                                System.out.println("Entrada inválida! Tente novamente.");
+                                voltar = true;
+                            }
+                        } while(voltar);
+
+                        do {
+                            try {
+                                System.out.println("Digite a email:");
+                                String email2 = scann.next();
+                                hospede.setEmail(email2);
+                            } catch (Exception e) {
+                                System.out.println("Entrada inválida! Tente novamente.");
+                                voltar = true;
+                            }
+                        } while(voltar);
+
+                        do {
+                            try {
+                                System.out.println("Digite a senha:");
+                                String senha2 = scann.next();
+                                hospede.setSenha(senha2);
+                            } catch (Exception e) {
+                                System.out.println("Entrada inválida! Tente novamente.");
+                                voltar = true;
+                            }
+                        } while(voltar);
+
+                        hospedeServico.salvar(hospede);
+                        System.out.println(">> Cadastro realizado com sucesso! ");
+                    }
+
+                    Reserva reserva = new Reserva();
                     int numero = -1;
                     List<Quarto> quartos = quartoServico.listar();
                     System.out.println("Escolha um destes quartos:");
@@ -142,6 +243,9 @@ public class Main {
                                 System.out.println(">> Opção inválida! Tente novamente");
                                 voltar = true;
                             } else {
+                                reserva.setNumQuarto(quartos.get(numero -1).getNumeroQuarto());
+                                reserva.setIdHotel(quartos.get(numero -1).getHotelId());
+                                reserva.setIdHospede(hospede.getId());
                                 voltar = false;
                             }
                         } catch (Exception ex){
@@ -149,15 +253,13 @@ public class Main {
                             voltar = true;
                         }
                     } while (voltar);
-                    numero = numero - 1;
-                    reserva.setNumQuarto(quartos.get(numero).getNumeroQuarto());
 
                     do {
                         try{
                             System.out.println("Escolha a data de entrada (check-in):");
-                            System.out.println("Digite o dia:");
+                            System.out.println("Digite o dia do mês:");
                             int diaInicio = Integer.parseInt(scanner.next());
-                            System.out.println("Digite o mês:");
+                            System.out.println("Digite o número mês:");
                             int mesInicio = Integer.parseInt(scanner.next());
                             System.out.println("Digite o ano:");
                             int anoInicio = Integer.parseInt(scanner.next());
@@ -204,7 +306,6 @@ public class Main {
                                 System.out.println(">> Opção inválida! Tente novamente\n");
                                 voltar = true;
                             } else {
-                                ReservaServico reservaServico = new ReservaServico();
                                 reservaServico.cadastrar(reserva);
                                 voltar = false;
                             }
@@ -234,7 +335,7 @@ public class Main {
                                         reserva.getValor());
                                 break;
                             case 2:
-                                System.out.println("Digite o número do cartão de débito:");
+                                System.out.println("Digite o número do seu cartão de débito:");
                                 String numeroCartao = scann.next();
                                 System.out.println("Digite o nome do titular:");
                                 String nomeTitular = scann.next();
@@ -280,8 +381,8 @@ public class Main {
                                     System.out.println(">> Pagamento e reserva cancelados!");
                                 break;
                         }
-                        ReservaServico reservaServico = new ReservaServico();
                         reservaServico.cadastrar(reserva);
+                        hospede = null;
                         System.out.println(">> Reserva realizada com sucesso!\n");
                     } else if (numero == 0) {
                         System.out.println(">> Reserva cancelada!\n");
@@ -291,10 +392,27 @@ public class Main {
 
                 case 2:
                     scann = new Scanner(System.in);
-                    Hospede hospede = new Hospede();
-                    System.out.println("Digite seu nome completo:");
-                    String nome = scann.nextLine();
-                    hospede.setNome(nome);
+                    hospede = new Hospede();
+
+                    do {
+                        try {
+                            System.out.println("Digite o nome completo:");
+                            String nome = scann.nextLine();
+                            if (nome.equals("") || nome.equals(" ") || nome.contains("1")  || nome.contains("2")
+                                    || nome.contains("3") || nome.contains("4") || nome.contains("5")
+                                    || nome.contains("6") || nome.contains("7") || nome.contains("8")
+                                    || nome.contains("9") || nome.contains("0")){
+                                System.out.println("Nome inválido! Tente novamente.");
+                                voltar = true;
+                            } else {
+                                hospede.setNome(nome);
+                                voltar = false;
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Nome inválido! Tente novamente.");
+                            voltar = true;
+                        }
+                    } while(voltar);
 
                     do {
                         try {
@@ -315,19 +433,46 @@ public class Main {
 
                     System.out.println("Digite sua data de nascimento no formato dia/mes/ano:");
                     String dataNascimento = scann.next();
+
+                    do {
+                        try {
+                            System.out.println("Escolha entre as opções abaixo:");
+                            for (SexoEnum sexo : SexoEnum.values()){
+                                System.out.println(sexo.getIndex()+" - Sou do sexo "+sexo.getDescricao());
+                            }
+                            int sexo = scann.nextInt();
+                            if (sexo < 1 || sexo > SexoEnum.values().length){
+                                System.out.println(">> Opção inválida! Tente novamente.");
+                                voltar = true;
+                            } else {
+                                hospede.setSexo(SexoEnum.intToSexoEnum(sexo));
+                                voltar = false;
+                            }
+                        } catch (Exception e){
+                            System.out.println(">> Opção inválida! Tente novamente.");
+                            voltar = true;
+                        }
+                    } while(voltar);
+
+                    System.out.println("Digite seu telefone:");
+                    String telefone = scann.next();
+                    hospede.setTelefone(telefone);
+
                     System.out.println("Digite seu email:");
                     String email = scann.next();
                     hospede.setEmail(email);
+
                     System.out.println("Digite sua senha:");
                     String senha = scann.nextLine();
                     hospede.setSenha(senha);
+
                     hospedeServico.salvar(hospede);
                     System.out.println(">> Cadastro realizado com sucesso! ");
                     break;
 
                 case 3:
                     scann = new Scanner(System.in);
-                    boolean conectado = false;
+                    conectado = false;
                     boolean encontrado = false;
                     int index = 0;
                     List<Hospede> hospedes = new ArrayList<>(HospedeRepositorio.getInstance().listar());
@@ -355,14 +500,13 @@ public class Main {
                         System.out.println("Digite sua senha:");
                         senha = scann.next();
                         if(hospedes.get(index).getSenha().equals(senha)){
+                            hospedes.get(index).getId();
                             conectado = true;
-                            break;
+
                         }
 
                         if (!conectado && i < 2){
                             System.out.println(">> Senha incorreta! Tente novamente.\n");
-                        } else if (!conectado && i < 3){
-                            System.out.println(">> Número de tentativas esgotado! Tente novamente mais tarde.\n");
                         }
                     }
 
@@ -370,14 +514,104 @@ public class Main {
                         String[] nomeSplit = hospedes.get(index).getNome().split(" ");
                         System.out.println(">> Bem-vindo(a), "+nomeSplit[0]+" "+nomeSplit[nomeSplit.length - 1]+"!\n");
                     }
+                case 4:
+
                     break;
 
+                case 5:
+                    System.out.println("-- Minhas reservas --");
+                    List<Reserva> tReservas = reservaServico.listar();
+                    List<Reserva> mReservas = new ArrayList<>();
+                    for (Reserva reserv : tReservas) {
+                        if (reserv.getIdHospede() == hospedeLogadoId){
+                            mReservas.add(reserv);
+                        }
+                    }
+
+                    if (mReservas.size() == 0){
+                        System.out.println(">> Você não possui reservas!");
+                    } else {
+                        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                        for (Reserva reservaw : mReservas){
+                            Hotel hot = hotelServico.listarHotelPorId(reservaw.getIdHotel());
+                            System.out.println("CÓDIGO: "+reservaw.getId());
+                            System.out.println("HOTEL: "+hot.getNome());
+                            System.out.println("NÚMERO DO QUARTO: "+reservaw.getNumQuarto());
+                            System.out.println("DATA INÍCIO: "+reservaw.getDataInicio().format(formato));
+                            System.out.println("DATA FIM: "+reservaw.getDataFim().format(formato));
+                            System.out.printf("VALOR: R$%,3.2f\n\n", reservaw.getValor());
+                        }
+
+                        System.out.println("[1] Cancelar reserva      [2] Fazer checkin      [3] Fazer checkout      [0] Fechar");
+                        scann = new Scanner(System.in);
+                        int entr = Integer.parseInt(scann.next());
+                        if(entr == 1){
+                            System.out.println("-- Cancelar reserva --\nDigite o código da reserva: ");
+                            entr = Integer.parseInt(scann.next());
+                            reservaServico.deletar(entr);
+                            System.out.println(">> Reserva cancelada!");
+                        } else if (entr == 2){
+                            System.out.println("-- Fazer checkin --\nDigite o código da reserva: ");
+                            entr = Integer.parseInt(scann.next());
+                            Reserva reser = new Reserva();
+                            for (Reserva reserv : reservaServico.listar()){
+                                if (reserv.getId() == entr){
+                                    reser = reserv;
+                                }
+                            }
+                            reser.setDataCheckin(LocalDate.now());
+                            reservaServico.alterar(entr, reser);
+                            System.out.println(">> Checkin realizado!");
+                        } else if(entr == 3){
+                            System.out.println("-- Fazer checkout --\nDigite o código da reserva: ");
+                            entr = Integer.parseInt(scann.next());
+                            Reserva reser = new Reserva();
+                            for (Reserva reserv : reservaServico.listar()){
+                                if (reserv.getId() == entr){
+                                    reser = reserv;
+                                }
+                            }
+                            reser.setDataCheckout(LocalDate.now());
+                            reservaServico.alterar(entr, reser);
+                            System.out.println(">> Checkout realizado!");
+                        } else if(entr == 0){
+                            break;
+                        }
+                    }
+
+                    break;
+                case 6:
+                    System.out.println("-- Excluir conta --");
+                    do {
+                        System.out.println("Tem certeza que deseja excluir sua conta?\n 1 - Sim\n 0 - Não");
+                        scann = new Scanner(System.in);
+                        int ent = 0;
+                        try {
+                            ent = Integer.parseInt(scann.next());
+                            if (ent < 0 || ent > 1){
+                                System.out.println(">> Entrada inválida! Tente novamente.");
+                                voltar = true;
+                            }
+                        } catch (Exception e) {
+                            System.out.println(">> Entrada inválida! Tente novamente.");
+                            voltar = true;
+                        }
+                        if (ent == 1){
+                            hospedeServico.deletarPorId(hospedeLogadoId);
+                            System.out.println(">> Conta excluida");
+                            hospedeLogadoId = 0;
+                        }
+                        if (ent == 0){
+                            break;
+                        }
+                    } while(voltar);
+                    break;
                 default:
                     System.out.println(">> Opção digitada é inválida, tente novamente!");
             }
 
         } while(continuar);
 
-        System.out.println(">> Volte sempre!");
+        System.out.println(">> Fim");
     }
 }

@@ -2,7 +2,7 @@ package enums;
 
 public enum SexoEnum {
 
-    MASCULINO("Masculino", 0), FEMININO("Feminino", 1);
+    MASCULINO("Masculino", 1), FEMININO("Feminino", 2);
     private String descricao;
     private int index;
 
@@ -19,10 +19,10 @@ public enum SexoEnum {
         return this.index;
     }
 
-    public static SexoEnum binaryToSexoEnum(int index){
+    public static SexoEnum intToSexoEnum(int index){
         return switch(index){
-          case 0 -> SexoEnum.MASCULINO;
-          case 1 -> SexoEnum.FEMININO;
+          case 1 -> SexoEnum.MASCULINO;
+          case 2 -> SexoEnum.FEMININO;
           default -> null;
         };
     }
