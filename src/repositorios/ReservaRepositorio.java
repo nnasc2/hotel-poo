@@ -25,17 +25,15 @@ public class ReservaRepositorio implements IReservaRepositorio {
     @Override
     public boolean salvar(Reserva reserva) throws SQLException {
         try {
-            String sql = ("INSERT INTO reserva (data_inicio, data_fim, data_checkin, data_checkout, id_hotel," +
-                    "id_hospede, num_quarto, valor) values(?,?,?,?,?,?,?,?);");
+            String sql = ("INSERT INTO reserva (data_inicio, data_fim, id_hotel," +
+                    "id_hospede, num_quarto, valor) values(?,?,?,?,?,?);");
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setDate(1, Date.valueOf(reserva.getDataInicio()));
             ps.setDate(2, Date.valueOf(reserva.getDataFim()));
-            ps.setDate(3, Date.valueOf(reserva.getDataCheckin()));
-            ps.setDate(4, Date.valueOf(reserva.getDataCheckout()));
-            ps.setInt(5, (int) reserva.getIdHotel());
-            ps.setInt(6, (int) reserva.getIdHospede());
-            ps.setInt(7, reserva.getNumQuarto());
-            ps.setDouble(8, reserva.getValor());
+            ps.setInt(3, (int) reserva.getIdHotel());
+            ps.setInt(4, (int) reserva.getIdHospede());
+            ps.setInt(5, reserva.getNumQuarto());
+            ps.setDouble(6, reserva.getValor());
 
             int retorno = ps.executeUpdate();
 
@@ -66,8 +64,12 @@ public class ReservaRepositorio implements IReservaRepositorio {
                 reserva.setId(rs.getInt("id"));
                 reserva.setDataInicio(rs.getDate("data_inicio").toLocalDate());
                 reserva.setDataFim(rs.getDate("data_fim").toLocalDate());
-                reserva.setDataCheckin(rs.getDate("data_checkin").toLocalDate());
-                reserva.setDataCheckout(rs.getDate("data_checkout").toLocalDate());
+                if (rs.getDate("data_checkin") != null){
+                    reserva.setDataCheckout(rs.getDate("data_checkin").toLocalDate());
+                }
+                if (rs.getDate("data_checkout") != null){
+                    reserva.setDataCheckout(rs.getDate("data_checkout").toLocalDate());
+                }
                 reserva.setIdHotel(rs.getInt("id_hotel"));
                 reserva.setIdHospede(rs.getInt("id_hospede"));
                 reserva.setNumQuarto(rs.getInt("num_quarto"));

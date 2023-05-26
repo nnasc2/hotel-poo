@@ -128,12 +128,12 @@ public class Main {
                         }
                     } while(voltar);
 
-                    if (hospede.getId() != 0){
+                    if (hospede.getId() == 0){
                         System.out.println(">> Vamos iniciar um rápido cadastro antes que possa reservar um quarto.");
                         do {
                             try {
                                 System.out.println("Digite o seu nome completo:");
-                                String nome = scann.nextLine();
+                                String nome = scann.next();
                                 if (nome.equals("") || nome.equals(" ") || nome.contains("1")  || nome.contains("2")
                                         || nome.contains("3") || nome.contains("4") || nome.contains("5")
                                         || nome.contains("6") || nome.contains("7") || nome.contains("8")
@@ -173,7 +173,8 @@ public class Main {
                                 for (SexoEnum sexo : SexoEnum.values()){
                                     System.out.println(sexo.getIndex()+" - Sou do sexo "+sexo.getDescricao());
                                 }
-                                int sexo = scann.nextInt();
+                                scann = new Scanner(System.in);
+                                int sexo = Integer.parseInt(scann.next());
                                 if (sexo < 1 || sexo > SexoEnum.values().length){
                                     System.out.println(">> Opção inválida! Tente novamente.");
                                     voltar = true;
@@ -221,10 +222,12 @@ public class Main {
                         } while(voltar);
 
                         hospedeServico.salvar(hospede);
+                        hospedeLogadoId = (int) hospede.getId();
                         System.out.println(">> Cadastro realizado com sucesso! ");
                     }
 
                     Reserva reserva = new Reserva();
+                    reserva.setIdHospede(hospedeLogadoId);
                     int numero = -1;
                     List<Quarto> quartos = quartoServico.listar();
                     System.out.println("Escolha um destes quartos:");
@@ -256,6 +259,7 @@ public class Main {
 
                     do {
                         try{
+
                             System.out.println("Escolha a data de entrada (check-in):");
                             System.out.println("Digite o dia do mês:");
                             int diaInicio = Integer.parseInt(scanner.next());
@@ -273,6 +277,7 @@ public class Main {
 
                     do {
                         try {
+
                             System.out.println("Escolha a data de saída (check-out):");
                             System.out.println("Digite o dia:");
                             int diaFim = Integer.parseInt(scanner.next());
@@ -301,6 +306,7 @@ public class Main {
                     do {
                         System.out.println("\nConfirmar reserva?\n1 - Sim\n0 - Não");
                         try{
+                            scanner = new Scanner(System.in);
                             numero = Integer.parseInt(scanner.next());
                             if(numero < 0 || numero > 1){
                                 System.out.println(">> Opção inválida! Tente novamente\n");
@@ -431,8 +437,22 @@ public class Main {
                         }
                     } while(voltar);
 
-                    System.out.println("Digite sua data de nascimento no formato dia/mes/ano:");
-                    String dataNascimento = scann.next();
+                    do {
+                        try{
+                            System.out.println("Informe a sua data de nascimento:");
+                            System.out.println("Digite o dia do mês:");
+                            int diaNasc = Integer.parseInt(scanner.next());
+                            System.out.println("Digite o número mês:");
+                            int mesNasc = Integer.parseInt(scanner.next());
+                            System.out.println("Digite o ano:");
+                            int anoNasc = Integer.parseInt(scanner.next());
+                            hospede.setDataNascimento(LocalDate.of(anoNasc, mesNasc, diaNasc));
+                            voltar = false;
+                        } catch(Exception e){
+                            voltar = true;
+                            System.out.println(">> Data inválida, tente novamente.");
+                        }
+                    } while(voltar);
 
                     do {
                         try {
