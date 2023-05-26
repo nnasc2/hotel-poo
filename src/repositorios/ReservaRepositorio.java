@@ -94,8 +94,12 @@ public class ReservaRepositorio implements IReservaRepositorio {
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setDate(1, Date.valueOf(reserva.getDataInicio()));
             ps.setDate(2, Date.valueOf(reserva.getDataFim()));
-            ps.setDate(3, Date.valueOf(reserva.getDataCheckin()));
-            ps.setDate(4, Date.valueOf(reserva.getDataCheckout()));
+            if (reserva.getDataCheckin() != null){
+                ps.setDate(3, Date.valueOf(reserva.getDataCheckin()));
+            }
+            if (reserva.getDataCheckout() != null){
+                ps.setDate(4, Date.valueOf(reserva.getDataCheckout()));
+            }
             ps.setInt(5, (int) reserva.getIdHotel());
             ps.setInt(6, (int) reserva.getIdHospede());
             ps.setInt(7, reserva.getNumQuarto());
